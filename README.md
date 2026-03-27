@@ -12,6 +12,20 @@ The platform is built to be deployable in under 10 minutes with three environmen
 
 ---
 
+## Features at a Glance
+
+- Public Website (12 pages)
+- Authentication System (Student / Faculty / Admin roles)
+- Student Dashboard — Overview, Announcements, Grades, Attendance, Timetable, Event Calendar
+- Student Campus Tools — Career Path Simulator, Roommate Matchmaker, University in a Day, Map Markers (Admin)
+- Faculty Dashboard — Courses, Attendance Marking, Grades, Student Overview, Notices
+- Admin Dashboard — Departments, User Management, Placements, Notices, Settings
+- Interactive Campus Map — zoomable, pannable, marker-based event map
+- Happening Now Live Feed — real-time event posting and upvoting via Supabase Realtime
+- AI Chatbot — Groq-powered assistant available on every public page
+
+---
+
 ## Live Features
 
 ### Public Website (12 Pages)
@@ -119,7 +133,6 @@ A full sidebar-based portal with two navigation groups: Portal and Campus.
 - Attendance — per-subject attendance with progress bars, color-coded by threshold (green ≥85%, amber ≥75%, red <75%)
 - Timetable — day-selector with lecture, lab, and tutorial type badges
 - Event Calendar — interactive monthly calendar with color-coded event dots; upcoming events sidebar; event type legend
-- Resources — quick links to timetable, attendance record, exam schedule, grade report, fee payment, library account
 
 **Campus section:**
 
