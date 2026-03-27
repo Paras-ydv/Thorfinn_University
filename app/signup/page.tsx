@@ -40,7 +40,9 @@ export default function SignupPage() {
         setLoading(false);
         return;
       }
-      router.push("/dashboard");
+      if (form.role === "Admin") router.push("/dashboard/admin");
+      else if (form.role === "Faculty") router.push("/dashboard/faculty");
+      else router.push("/dashboard");
     }
   };
 

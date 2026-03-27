@@ -33,9 +33,14 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) { setError(error.message); setLoading(false); }
-    else router.push("/dashboard");
+    else {
+      const role = data.user?.user_metadata?.role || "Student";
+      if (role === "Admin") router.push("/dashboard/admin");
+      else if (role === "Faculty") router.push("/dashboard/faculty");
+      else router.push("/dashboard");
+    }
   };
 
   const fillDemo = (acc: typeof TEST_ACCOUNTS[0]) => {
