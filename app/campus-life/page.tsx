@@ -1,8 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ChevronRight, Music, Trophy, Utensils, Dumbbell, BookOpen, Heart, ArrowRight, Radio } from "lucide-react";
 import { HappeningNow } from "@/app/dashboard/components/HappeningNow";
+
+const CampusMap3D = dynamic(
+  () => import("@/components/ui/CampusMap3D").then((m) => ({ default: m.CampusMap3D })),
+  { ssr: false, loading: () => <div className="w-full h-[520px] rounded-2xl bg-slate-100 animate-pulse flex items-center justify-center text-slate-400 text-sm">Loading campus map…</div> }
+);
 
 const CLUBS = [
   { name: "Coding Club", members: 450, category: "Technical" },
@@ -61,9 +67,15 @@ export default function CampusLifePage() {
             <span className="text-xs font-bold text-red-500 uppercase tracking-widest ml-1">Live</span>
           </div>
           <p className="text-slate-500 text-sm mb-6 max-w-2xl">
-            Real-time micro-events happening across campus right now — study groups forming, impromptu sessions, free food, and more. Post your own update for others to see.
+            See where things are happening across campus right now. Click any building to view live events — study groups, food stalls, sessions, and more.
           </p>
-          <HappeningNow />
+          <CampusMap3D />
+
+          {/* Live text feed below the map */}
+          <div className="mt-10">
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Live Feed</p>
+            <HappeningNow />
+          </div>
         </section>
 
         <div className="grid lg:grid-cols-3 gap-12">
