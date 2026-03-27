@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/utils";
@@ -26,6 +27,10 @@ export function Navbar() {
   const [scrolled,    setScrolled]    = useState(false);
   const [mobileOpen,  setMobileOpen]  = useState(false);
   const [moreOpen,    setMoreOpen]    = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMore  = () => { if (closeTimer.current) clearTimeout(closeTimer.current); setMoreOpen(true); };
+  const closeMore = () => { closeTimer.current = setTimeout(() => setMoreOpen(false), 250); };
   const pathname = usePathname();
 
   useEffect(() => {
@@ -46,9 +51,7 @@ export function Navbar() {
       <div className="container-max flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <div className="w-8 h-8 bg-[#1e3a8a] rounded flex items-center justify-center">
-            <span className="text-white font-bold text-sm font-serif">TU</span>
-          </div>
+          <Image src="/images/favicon.png" alt="Thorfinn University" width={32} height={32} className="rounded" />
           <span className="font-semibold text-slate-900 text-base hidden sm:block">
             Thorfinn University
           </span>
@@ -72,28 +75,34 @@ export function Navbar() {
           ))}
 
           {/* More */}
-          <div className="relative" onMouseLeave={() => setMoreOpen(false)}>
+          <div className="relative">
             <button
-              onMouseEnter={() => setMoreOpen(true)}
+              onMouseEnter={openMore}
+              onMouseLeave={closeMore}
               onClick={() => setMoreOpen(!moreOpen)}
               className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded transition-colors"
             >
               More <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", moreOpen && "rotate-180")} />
             </button>
-            {moreOpen && (
-              <div className="absolute top-full right-0 mt-1 w-44 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden">
-                {MORE.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
-                    onClick={() => setMoreOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <div
+              onMouseEnter={openMore}
+              onMouseLeave={closeMore}
+              className={cn(
+                "absolute top-full right-0 mt-0.5 w-44 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden transition-all duration-200",
+                moreOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
+              )}
+            >
+              {MORE.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                  onClick={() => setMoreOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </nav>
 

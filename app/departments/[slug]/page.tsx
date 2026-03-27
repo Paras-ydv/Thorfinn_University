@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight, Mail } from "lucide-react";
 
 const DEPARTMENTS: Record<string, {
@@ -8,6 +9,8 @@ const DEPARTMENTS: Record<string, {
   students: number; faculty: number;
   labs: string[]; courses: string[];
   facultyList: { name: string; specialization: string; designation: string }[];
+  heroImage: string;
+  contentImage: string;
 }> = {
   "computer-science": {
     name: "Computer Science & Engineering", short: "CSE",
@@ -22,6 +25,8 @@ const DEPARTMENTS: Record<string, {
       { name: "Dr. Ravi Shankar",  specialization: "Distributed Systems",   designation: "Associate Professor" },
       { name: "Dr. Priya Menon",   specialization: "Cybersecurity",         designation: "Assistant Professor" },
     ],
+    heroImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1400&q=80",
+    contentImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&q=70",
   },
   "electronics": {
     name: "Electronics & Communication Engineering", short: "ECE",
@@ -36,6 +41,8 @@ const DEPARTMENTS: Record<string, {
       { name: "Dr. Suresh Babu",   specialization: "Embedded Systems",      designation: "Assistant Professor" },
       { name: "Dr. Nisha Thomas",  specialization: "RF Engineering",        designation: "Assistant Professor" },
     ],
+    heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=80",
+    contentImage: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=900&q=70",
   },
   "mechanical": {
     name: "Mechanical Engineering", short: "ME",
@@ -45,11 +52,13 @@ const DEPARTMENTS: Record<string, {
     labs: ["CAD/CAM & Rapid Prototyping Lab", "Thermal & Fluid Sciences Lab", "Robotics & Automation Lab", "Materials Testing Lab"],
     courses: ["B.Tech Mechanical Engineering", "M.Tech Manufacturing Systems", "Ph.D Mechanical Engineering"],
     facultyList: [
-      { name: "Dr. Priya Sharma",  specialization: "Manufacturing",         designation: "Professor & HOD" },
-      { name: "Dr. Arjun Das",     specialization: "Thermal Engineering",   designation: "Professor" },
-      { name: "Dr. Leela Krishnan",specialization: "Robotics",              designation: "Associate Professor" },
-      { name: "Dr. Mohan Rao",     specialization: "Materials Science",     designation: "Assistant Professor" },
+      { name: "Dr. Priya Sharma",   specialization: "Manufacturing",         designation: "Professor & HOD" },
+      { name: "Dr. Arjun Das",      specialization: "Thermal Engineering",   designation: "Professor" },
+      { name: "Dr. Leela Krishnan", specialization: "Robotics",              designation: "Associate Professor" },
+      { name: "Dr. Mohan Rao",      specialization: "Materials Science",     designation: "Assistant Professor" },
     ],
+    heroImage: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=1400&q=80",
+    contentImage: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=900&q=70",
   },
   "civil": {
     name: "Civil Engineering", short: "CE",
@@ -59,11 +68,13 @@ const DEPARTMENTS: Record<string, {
     labs: ["Structural Engineering Lab", "Geotechnical Lab", "Environmental Engineering Lab", "Survey & GIS Lab"],
     courses: ["B.Tech Civil Engineering", "M.Tech Structural Engineering", "Ph.D Civil Engineering"],
     facultyList: [
-      { name: "Dr. Sunita Patel",  specialization: "Structural Engineering",designation: "Professor & HOD" },
-      { name: "Dr. Ramesh Gupta",  specialization: "Geotechnics",           designation: "Professor" },
-      { name: "Dr. Anita Joshi",   specialization: "Environmental Engg.",   designation: "Associate Professor" },
-      { name: "Dr. Kiran Mehta",   specialization: "Transportation",        designation: "Assistant Professor" },
+      { name: "Dr. Sunita Patel",  specialization: "Structural Engineering", designation: "Professor & HOD" },
+      { name: "Dr. Ramesh Gupta",  specialization: "Geotechnics",            designation: "Professor" },
+      { name: "Dr. Anita Joshi",   specialization: "Environmental Engg.",    designation: "Associate Professor" },
+      { name: "Dr. Kiran Mehta",   specialization: "Transportation",         designation: "Assistant Professor" },
     ],
+    heroImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80",
+    contentImage: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=70",
   },
   "mba": {
     name: "School of Business Administration", short: "MBA",
@@ -78,6 +89,8 @@ const DEPARTMENTS: Record<string, {
       { name: "Dr. Sanjay Mishra", specialization: "Marketing",             designation: "Associate Professor" },
       { name: "Dr. Ritu Agarwal",  specialization: "Operations",            designation: "Assistant Professor" },
     ],
+    heroImage: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1400&q=80",
+    contentImage: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=70",
   },
   "csbs": {
     name: "CS & Business Systems", short: "CSBS",
@@ -92,6 +105,8 @@ const DEPARTMENTS: Record<string, {
       { name: "Dr. Swati Verma",   specialization: "ERP Systems",           designation: "Assistant Professor" },
       { name: "Dr. Nikhil Jain",   specialization: "Digital Marketing",     designation: "Assistant Professor" },
     ],
+    heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80",
+    contentImage: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=70",
   },
 };
 
@@ -110,8 +125,19 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
 
   return (
     <div className="bg-white pt-16">
-      <div className="bg-[#0f172a]">
-        <div className="container-max py-12">
+
+      {/* ── Hero ── */}
+      <div className="relative min-h-[52vh] flex items-end overflow-hidden">
+        <Image
+          src={dept.heroImage}
+          alt={dept.name}
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[#0f172a]/70" />
+        <div className="relative z-10 container-max py-14 w-full">
           <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
@@ -119,90 +145,112 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
             <ChevronRight className="w-3 h-3" />
             <span className="text-slate-300">{dept.short}</span>
           </nav>
-          <p className="text-xs font-bold text-blue-400 mb-2">{dept.short}</p>
+          <p className="text-xs font-bold text-blue-400 tracking-widest uppercase mb-2">{dept.short}</p>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">{dept.name}</h1>
         </div>
       </div>
 
+      {/* ── Main content ── */}
       <div className="container-max py-12">
         <div className="grid lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2 space-y-10">
-            {/* Overview */}
-            <section>
-              <p className="section-label">Overview</p>
-              <p className="text-sm text-slate-600 leading-relaxed">{dept.description}</p>
-              <div className="grid grid-cols-3 gap-4 mt-6">
-                {[
-                  { v: dept.students, l: "Students" },
-                  { v: dept.faculty,  l: "Faculty" },
-                  { v: dept.labs.length, l: "Research Labs" },
-                ].map(s => (
-                  <div key={s.l} className="card p-4 text-center">
-                    <p className="text-2xl font-bold text-[#1e3a8a] font-serif">{s.v}</p>
-                    <p className="text-xs text-slate-500 mt-1">{s.l}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
 
-            {/* Programs */}
-            <section>
-              <p className="section-label">Programs</p>
-              <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Programs Offered</h2>
-              <div className="card overflow-hidden">
-                <ul className="divide-y divide-slate-100">
-                  {dept.courses.map(c => (
-                    <li key={c} className="flex items-center justify-between px-5 py-3 hover:bg-slate-50 transition-colors">
-                      <span className="text-sm text-slate-700">{c}</span>
-                      <Link href="/admissions" className="text-xs text-[#1e3a8a] hover:underline">Apply</Link>
-                    </li>
-                  ))}
-                </ul>
+          {/* ── Left: content with subtle bg image ── */}
+          <div className="lg:col-span-2">
+            <div className="relative">
+              {/* Background image layer */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <Image
+                  src={dept.contentImage}
+                  alt=""
+                  fill
+                  className="object-cover object-center opacity-[0.06]"
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  aria-hidden
+                />
               </div>
-            </section>
 
-            {/* Labs */}
-            <section>
-              <p className="section-label">Infrastructure</p>
-              <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Research Laboratories</h2>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {dept.labs.map(lab => (
-                  <div key={lab} className="card p-4 flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] mt-1.5 flex-shrink-0" />
-                    <p className="text-sm text-slate-700">{lab}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+              {/* Content */}
+              <div className="relative space-y-10">
 
-            {/* Faculty */}
-            <section>
-              <p className="section-label">People</p>
-              <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Faculty</h2>
-              <div className="card overflow-hidden">
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Designation</th>
-                      <th>Specialization</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {dept.facultyList.map(f => (
-                      <tr key={f.name}>
-                        <td className="font-medium text-slate-900">{f.name}</td>
-                        <td className="text-slate-600">{f.designation}</td>
-                        <td><span className="badge-gray">{f.specialization}</span></td>
-                      </tr>
+                {/* Overview */}
+                <section>
+                  <p className="section-label">Overview</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{dept.description}</p>
+                  <div className="grid grid-cols-3 gap-4 mt-6">
+                    {[
+                      { v: dept.students,       l: "Students" },
+                      { v: dept.faculty,        l: "Faculty" },
+                      { v: dept.labs.length,    l: "Research Labs" },
+                    ].map(s => (
+                      <div key={s.l} className="card p-4 text-center">
+                        <p className="text-2xl font-bold text-[#1e3a8a] font-serif">{s.v}</p>
+                        <p className="text-xs text-slate-500 mt-1">{s.l}</p>
+                      </div>
                     ))}
-                  </tbody>
-                </table>
+                  </div>
+                </section>
+
+                {/* Programs */}
+                <section>
+                  <p className="section-label">Programs</p>
+                  <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Programs Offered</h2>
+                  <div className="card overflow-hidden">
+                    <ul className="divide-y divide-slate-100">
+                      {dept.courses.map(c => (
+                        <li key={c} className="flex items-center justify-between px-5 py-3 hover:bg-slate-50 transition-colors">
+                          <span className="text-sm text-slate-700">{c}</span>
+                          <Link href="/admissions" className="text-xs text-[#1e3a8a] hover:underline">Apply</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
+
+                {/* Labs */}
+                <section>
+                  <p className="section-label">Infrastructure</p>
+                  <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Research Laboratories</h2>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {dept.labs.map(lab => (
+                      <div key={lab} className="card p-4 flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] mt-1.5 flex-shrink-0" />
+                        <p className="text-sm text-slate-700">{lab}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Faculty */}
+                <section>
+                  <p className="section-label">People</p>
+                  <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Faculty</h2>
+                  <div className="card overflow-hidden">
+                    <table className="data-table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Designation</th>
+                          <th>Specialization</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {dept.facultyList.map(f => (
+                          <tr key={f.name}>
+                            <td className="font-medium text-slate-900">{f.name}</td>
+                            <td className="text-slate-600">{f.designation}</td>
+                            <td><span className="badge-gray">{f.specialization}</span></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
               </div>
-            </section>
+            </div>
           </div>
 
-          {/* Sidebar */}
+          {/* ── Sidebar ── */}
           <div className="space-y-5">
             {/* HOD Card */}
             <div className="card p-5">
@@ -240,6 +288,7 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
               </ul>
             </div>
           </div>
+
         </div>
       </div>
     </div>
