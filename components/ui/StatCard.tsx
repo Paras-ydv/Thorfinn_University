@@ -22,7 +22,7 @@ export function StatCard({ value, label, icon, delay = 0, className }: StatCardP
     >
       {icon && <div className="text-3xl mb-2">{icon}</div>}
       <div className="text-3xl font-bold gradient-text mb-1">{value}</div>
-      <div className="text-sm text-gray-400">{label}</div>
+      <div className="text-sm text-slate-600">{label}</div>
     </motion.div>
   );
 }

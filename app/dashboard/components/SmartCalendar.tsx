@@ -39,8 +39,8 @@ export function SmartCalendar() {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-white">Smart Event Calendar</h2>
-        <p className="text-sm text-gray-400 mt-1">University events, exams, and deadlines</p>
+        <h2 className="text-xl font-bold text-slate-900">Smart Event Calendar</h2>
+        <p className="text-sm text-slate-600 mt-1">University events, exams, and deadlines</p>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
@@ -48,12 +48,12 @@ export function SmartCalendar() {
         <div className="lg:col-span-2 glass rounded-3xl p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
-            <h3 className="font-bold text-white text-lg">{format(currentDate, "MMMM yyyy")}</h3>
+            <h3 className="font-bold text-slate-900 text-lg">{format(currentDate, "MMMM yyyy")}</h3>
             <div className="flex gap-2">
-              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors">
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-900 transition-colors">
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
@@ -62,7 +62,7 @@ export function SmartCalendar() {
           {/* Day headers */}
           <div className="grid grid-cols-7 mb-2">
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
-              <div key={d} className="text-center text-xs text-gray-500 font-semibold py-2">{d}</div>
+              <div key={d} className="text-center text-xs text-slate-500 font-semibold py-2">{d}</div>
             ))}
           </div>
 
@@ -77,9 +77,9 @@ export function SmartCalendar() {
                   key={day.toISOString()}
                   onClick={() => setSelectedDate(selected ? null : day)}
                   className={`relative aspect-square flex flex-col items-center justify-center rounded-xl text-sm transition-all ${
-                    selected ? "bg-blue-600 text-white" :
+                    selected ? "bg-blue-600 text-slate-900" :
                     isToday(day) ? "bg-blue-500/20 text-blue-400 font-bold" :
-                    isSameMonth(day, currentDate) ? "text-gray-300 hover:bg-white/10" : "text-gray-600"
+                    isSameMonth(day, currentDate) ? "text-slate-700 hover:bg-slate-200" : "text-gray-600"
                   }`}
                 >
                   {format(day, "d")}
@@ -97,14 +97,14 @@ export function SmartCalendar() {
 
           {/* Selected day events */}
           {selectedDate && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-4 pt-4 border-t border-white/10">
-              <p className="text-sm font-semibold text-white mb-3">{format(selectedDate, "MMMM d, yyyy")}</p>
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-4 pt-4 border-t border-slate-200">
+              <p className="text-sm font-semibold text-slate-900 mb-3">{format(selectedDate, "MMMM d, yyyy")}</p>
               {selectedEvents.length > 0 ? selectedEvents.map((e) => (
                 <div key={e.title} className="flex items-center gap-3 py-2">
                   <div className={`w-2 h-2 rounded-full ${TYPE_COLORS[e.type]}`} />
-                  <span className="text-sm text-gray-300">{e.title}</span>
+                  <span className="text-sm text-slate-700">{e.title}</span>
                 </div>
-              )) : <p className="text-sm text-gray-500">No events on this day</p>}
+              )) : <p className="text-sm text-slate-500">No events on this day</p>}
             </motion.div>
           )}
         </div>
@@ -113,7 +113,7 @@ export function SmartCalendar() {
         <div className="glass rounded-3xl p-6">
           <div className="flex items-center gap-2 mb-4">
             <Calendar className="w-4 h-4 text-blue-400" />
-            <h3 className="font-semibold text-white text-sm">Upcoming Events</h3>
+            <h3 className="font-semibold text-slate-900 text-sm">Upcoming Events</h3>
           </div>
           <div className="space-y-3">
             {upcomingEvents.map((event) => (
@@ -121,8 +121,8 @@ export function SmartCalendar() {
                 <div className="flex items-start gap-2">
                   <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${TYPE_COLORS[event.type]}`} />
                   <div>
-                    <p className="text-xs font-medium text-white">{event.title}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">{format(event.date, "MMM d, yyyy")}</p>
+                    <p className="text-xs font-medium text-slate-900">{event.title}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{format(event.date, "MMM d, yyyy")}</p>
                   </div>
                 </div>
               </div>
@@ -130,11 +130,11 @@ export function SmartCalendar() {
           </div>
 
           {/* Legend */}
-          <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
+          <div className="mt-6 pt-4 border-t border-slate-200 space-y-2">
             {Object.entries(TYPE_COLORS).map(([type, color]) => (
               <div key={type} className="flex items-center gap-2">
                 <div className={`w-2 h-2 rounded-full ${color}`} />
-                <span className="text-xs text-gray-500 capitalize">{type}</span>
+                <span className="text-xs text-slate-500 capitalize">{type}</span>
               </div>
             ))}
           </div>

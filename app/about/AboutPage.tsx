@@ -23,7 +23,7 @@ const LEADERSHIP = [
 
 export function AboutPage() {
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       {/* Hero */}
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-violet-900/20" />
@@ -32,10 +32,10 @@ export function AboutPage() {
             <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 rounded-full mb-4">
               Est. 1965
             </span>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-6">
               About <span className="gradient-text">Thorfinn</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
               For nearly six decades, Thorfinn University has been at the forefront of education, research, and innovation — shaping leaders who transform the world.
             </p>
           </motion.div>
@@ -56,8 +56,8 @@ export function AboutPage() {
               viewport={{ once: true }}
               className={`glass rounded-3xl p-8 bg-gradient-to-br ${item.gradient}`}
             >
-              <h2 className="text-2xl font-bold text-white mb-4">{item.title}</h2>
-              <p className="text-gray-300 leading-relaxed">{item.content}</p>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">{item.title}</h2>
+              <p className="text-slate-700 leading-relaxed">{item.content}</p>
             </motion.div>
           ))}
         </div>
@@ -89,8 +89,8 @@ export function AboutPage() {
                 <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center mx-auto mb-4">
                   <Icon className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="font-bold text-white mb-2">{v.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{v.desc}</p>
+                <h3 className="font-bold text-slate-900 mb-2">{v.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{v.desc}</p>
               </motion.div>
             );
           })}
@@ -113,7 +113,7 @@ export function AboutPage() {
               <div className="relative w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden ring-2 ring-blue-500/30">
                 <Image src={person.img} alt={person.name} fill className="object-cover" />
               </div>
-              <h3 className="font-bold text-white">{person.name}</h3>
+              <h3 className="font-bold text-slate-900">{person.name}</h3>
               <p className="text-sm text-blue-400 mt-1">{person.role}</p>
             </motion.div>
           ))}

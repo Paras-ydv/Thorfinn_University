@@ -89,8 +89,8 @@ export function HappeningNow() {
     <div className="max-w-2xl mx-auto space-y-4">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-xl font-bold text-white">Happening Now</h2>
-          <p className="text-sm text-gray-400 mt-1">Real-time campus events feed</p>
+          <h2 className="text-xl font-bold text-slate-900">Happening Now</h2>
+          <p className="text-sm text-slate-600 mt-1">Real-time campus events feed</p>
         </div>
         <button onClick={() => setShowForm(!showForm)} className="btn-primary flex items-center gap-2 text-sm py-2">
           <Plus className="w-4 h-4" /> Post Event
@@ -102,14 +102,14 @@ export function HappeningNow() {
         {showForm && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="glass rounded-2xl p-6 space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold text-white">Post an Event</h3>
-              <button onClick={() => setShowForm(false)}><X className="w-4 h-4 text-gray-400" /></button>
+              <h3 className="font-semibold text-slate-900">Post an Event</h3>
+              <button onClick={() => setShowForm(false)}><X className="w-4 h-4 text-slate-600" /></button>
             </div>
-            <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="What's happening?" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 text-sm" />
-            <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder="Location (optional)" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 text-sm" />
+            <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="What's happening?" className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-gray-600 focus:outline-none focus:border-blue-500 text-sm" />
+            <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder="Location (optional)" className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-gray-600 focus:outline-none focus:border-blue-500 text-sm" />
             <div className="flex gap-2 flex-wrap">
               {TAGS.map((tag) => (
-                <button key={tag} onClick={() => setForm({ ...form, tag })} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${form.tag === tag ? "bg-blue-600 text-white" : "glass text-gray-400 hover:text-white"}`}>{tag}</button>
+                <button key={tag} onClick={() => setForm({ ...form, tag })} className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${form.tag === tag ? "bg-blue-600 text-slate-900" : "glass text-slate-600 hover:text-slate-900"}`}>{tag}</button>
               ))}
             </div>
             <button onClick={postEvent} disabled={loading || !form.title.trim()} className="w-full btn-primary flex items-center justify-center gap-2 text-sm py-2.5">
@@ -125,23 +125,23 @@ export function HappeningNow() {
           <motion.div key={event.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="glass rounded-2xl p-5 flex items-start gap-4">
             <button
               onClick={() => upvote(event.id)}
-              className={`flex flex-col items-center gap-1 min-w-[48px] py-2 px-3 rounded-xl transition-all ${votedIds.has(event.id) ? "bg-blue-600 text-white" : "glass text-gray-400 hover:text-blue-400"}`}
+              className={`flex flex-col items-center gap-1 min-w-[48px] py-2 px-3 rounded-xl transition-all ${votedIds.has(event.id) ? "bg-blue-600 text-slate-900" : "glass text-slate-600 hover:text-blue-400"}`}
             >
               <ThumbsUp className="w-4 h-4" />
               <span className="text-xs font-bold">{event.votes}</span>
             </button>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-white text-sm">{event.title}</h3>
+              <h3 className="font-semibold text-slate-900 text-sm">{event.title}</h3>
               <div className="flex items-center gap-3 mt-2 flex-wrap">
                 {event.location && (
-                  <span className="flex items-center gap-1 text-xs text-gray-500">
+                  <span className="flex items-center gap-1 text-xs text-slate-500">
                     <MapPin className="w-3 h-3" /> {event.location}
                   </span>
                 )}
-                <span className="flex items-center gap-1 text-xs text-gray-500">
+                <span className="flex items-center gap-1 text-xs text-slate-500">
                   <Clock className="w-3 h-3" /> {formatDistanceToNow(new Date(event.created_at), { addSuffix: true })}
                 </span>
-                <span className={`text-xs px-2 py-0.5 rounded-full ${TAG_COLORS[event.tag] || "bg-gray-500/20 text-gray-400"}`}>{event.tag}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${TAG_COLORS[event.tag] || "bg-gray-500/20 text-slate-600"}`}>{event.tag}</span>
               </div>
             </div>
           </motion.div>

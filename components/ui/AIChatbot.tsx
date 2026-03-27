@@ -55,7 +55,7 @@ export function AIChatbot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
-        <MessageCircle className="w-6 h-6 text-white" />
+        <MessageCircle className="w-6 h-6 text-slate-900" />
       </motion.button>
 
       {/* Chat Window */}
@@ -68,17 +68,17 @@ export function AIChatbot() {
             className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 h-[500px] glass-dark rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10 bg-gradient-to-r from-blue-600/20 to-violet-600/20">
+            <div className="flex items-center justify-between p-4 border-b border-slate-200 bg-gradient-to-r from-blue-600/20 to-violet-600/20">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-white" />
+                  <Bot className="w-4 h-4 text-slate-900" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">Thorfinn AI</p>
+                  <p className="text-sm font-semibold text-slate-900">Thorfinn AI</p>
                   <p className="text-xs text-green-400">● Online</p>
                 </div>
               </div>
-              <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-white transition-colors">
+              <button onClick={() => setOpen(false)} className="text-slate-600 hover:text-slate-900 transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -88,9 +88,9 @@ export function AIChatbot() {
               {messages.map((msg, i) => (
                 <div key={i} className={`flex gap-2 ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
                   <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === "assistant" ? "bg-blue-600" : "bg-violet-600"}`}>
-                    {msg.role === "assistant" ? <Bot className="w-4 h-4 text-white" /> : <User className="w-4 h-4 text-white" />}
+                    {msg.role === "assistant" ? <Bot className="w-4 h-4 text-slate-900" /> : <User className="w-4 h-4 text-slate-900" />}
                   </div>
-                  <div className={`max-w-[75%] px-3 py-2 rounded-xl text-sm leading-relaxed ${msg.role === "assistant" ? "glass text-gray-200" : "bg-blue-600 text-white"}`}>
+                  <div className={`max-w-[75%] px-3 py-2 rounded-xl text-sm leading-relaxed ${msg.role === "assistant" ? "glass text-slate-800" : "bg-blue-600 text-slate-900"}`}>
                     {msg.content}
                   </div>
                 </div>
@@ -98,7 +98,7 @@ export function AIChatbot() {
               {loading && (
                 <div className="flex gap-2">
                   <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-white" />
+                    <Bot className="w-4 h-4 text-slate-900" />
                   </div>
                   <div className="glass px-3 py-2 rounded-xl">
                     <div className="flex gap-1">
@@ -113,21 +113,21 @@ export function AIChatbot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-white/10">
+            <div className="p-4 border-t border-slate-200">
               <div className="flex gap-2">
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && send()}
                   placeholder="Ask anything..."
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="flex-1 bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
                 />
                 <button
                   onClick={send}
                   disabled={!input.trim() || loading}
                   className="w-9 h-9 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 rounded-xl flex items-center justify-center transition-colors"
                 >
-                  <Send className="w-4 h-4 text-white" />
+                  <Send className="w-4 h-4 text-slate-900" />
                 </button>
               </div>
               <p className="text-xs text-gray-600 mt-2 text-center">Powered by Groq · Llama 3</p>

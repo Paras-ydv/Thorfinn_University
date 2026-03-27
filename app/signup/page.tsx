@@ -45,7 +45,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-dark-900 flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-16">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl" />
@@ -56,46 +56,46 @@ export default function SignupPage() {
           <div className="text-center mb-8">
             <Link href="/" className="inline-flex items-center gap-2 font-bold text-xl">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-white" />
+                <GraduationCap className="w-6 h-6 text-slate-900" />
               </div>
               <span className="gradient-text">Thorfinn</span>
             </Link>
-            <h1 className="text-2xl font-bold text-white mt-4">Create Account</h1>
-            <p className="text-gray-400 text-sm mt-1">Join the Thorfinn community</p>
+            <h1 className="text-2xl font-bold text-slate-900 mt-4">Create Account</h1>
+            <p className="text-slate-600 text-sm mt-1">Join the Thorfinn community</p>
           </div>
 
           <form onSubmit={handleSignup} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
+              <label className="block text-sm font-medium text-slate-600 mb-2">Full Name</label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 placeholder="Your full name"
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Email</label>
+              <label className="block text-sm font-medium text-slate-600 mb-2">Email</label>
               <input
                 type="email"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="your@email.com"
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Role</label>
+              <label className="block text-sm font-medium text-slate-600 mb-2">Role</label>
               <div className="grid grid-cols-3 gap-2">
                 {ROLES.map((role) => (
                   <button
                     key={role}
                     type="button"
                     onClick={() => setForm({ ...form, role })}
-                    className={`py-2.5 rounded-xl text-sm font-medium transition-all ${form.role === role ? "bg-blue-600 text-white" : "glass text-gray-400 hover:text-white"}`}
+                    className={`py-2.5 rounded-xl text-sm font-medium transition-all ${form.role === role ? "bg-blue-600 text-slate-900" : "glass text-slate-600 hover:text-slate-900"}`}
                   >
                     {role}
                   </button>
@@ -103,7 +103,7 @@ export default function SignupPage() {
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">Password</label>
+              <label className="block text-sm font-medium text-slate-600 mb-2">Password</label>
               <div className="relative">
                 <input
                   type={showPass ? "text" : "password"}
@@ -112,9 +112,9 @@ export default function SignupPage() {
                   placeholder="Min 8 characters"
                   required
                   minLength={8}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 pr-12 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                  className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 pr-12 text-slate-900 placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                 />
-                <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">
+                <button type="button" onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700">
                   {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
@@ -132,7 +132,7 @@ export default function SignupPage() {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-slate-500 text-sm">
               Already have an account?{" "}
               <Link href="/login" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">Sign in</Link>
             </p>

@@ -17,15 +17,15 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-green-900/20" />
         <div className="container-max relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
               <span className="gradient-text">Contact</span> Us
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
               We're here to help. Reach out to us anytime.
             </p>
           </motion.div>
@@ -48,15 +48,15 @@ export default function ContactPage() {
                   <Icon className="w-5 h-5 text-blue-400" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">{title}</p>
-                  <p className="text-gray-400 text-sm mt-0.5">{content}</p>
+                  <p className="font-semibold text-slate-900 text-sm">{title}</p>
+                  <p className="text-slate-600 text-sm mt-0.5">{content}</p>
                 </div>
               </div>
             ))}
 
             {/* Department Contacts */}
             <div className="glass rounded-2xl p-6">
-              <h3 className="font-bold text-white mb-4">Department Contacts</h3>
+              <h3 className="font-bold text-slate-900 mb-4">Department Contacts</h3>
               <div className="space-y-3">
                 {[
                   { dept: "Admissions", email: "admissions@thorfinn.edu" },
@@ -65,7 +65,7 @@ export default function ContactPage() {
                   { dept: "Hostel", email: "hostel@thorfinn.edu" },
                 ].map((c) => (
                   <div key={c.dept} className="flex justify-between text-sm">
-                    <span className="text-gray-400">{c.dept}</span>
+                    <span className="text-slate-600">{c.dept}</span>
                     <a href={`mailto:${c.email}`} className="text-blue-400 hover:text-blue-300 transition-colors">{c.email}</a>
                   </div>
                 ))}
@@ -76,33 +76,33 @@ export default function ContactPage() {
           {/* Contact Form */}
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <form onSubmit={handleSubmit} className="glass rounded-3xl p-8 space-y-5">
-              <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">Send a Message</h2>
               {[
                 { key: "name", label: "Full Name", type: "text", placeholder: "Your full name" },
                 { key: "email", label: "Email", type: "email", placeholder: "your@email.com" },
                 { key: "subject", label: "Subject", type: "text", placeholder: "How can we help?" },
               ].map(({ key, label, type, placeholder }) => (
                 <div key={key}>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">{label}</label>
+                  <label className="block text-sm font-medium text-slate-600 mb-2">{label}</label>
                   <input
                     type={type}
                     value={form[key as keyof typeof form]}
                     onChange={(e) => setForm({ ...form, [key]: e.target.value })}
                     placeholder={placeholder}
                     required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                    className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                   />
                 </div>
               ))}
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                <label className="block text-sm font-medium text-slate-600 mb-2">Message</label>
                 <textarea
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Your message..."
                   required
                   rows={5}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm resize-none"
+                  className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors text-sm resize-none"
                 />
               </div>
               <button type="submit" className="w-full btn-primary flex items-center justify-center gap-2">

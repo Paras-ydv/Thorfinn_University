@@ -22,7 +22,7 @@ const PROGRAMS_FEE = [
 
 export default function AdmissionsPage() {
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/20 to-blue-900/20" />
         <div className="container-max relative z-10 text-center">
@@ -30,10 +30,10 @@ export default function AdmissionsPage() {
             <span className="inline-block px-3 py-1 text-xs font-semibold text-green-400 bg-green-500/10 border border-green-500/20 rounded-full mb-4">
               Applications Open — 2025
             </span>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
               Join <span className="gradient-text">Thorfinn</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto mb-8">
               Begin your journey to excellence. Applications for 2025 intake are now open.
             </p>
             <Link href="/signup" className="btn-primary text-base inline-flex items-center gap-2">
@@ -65,9 +65,9 @@ export default function AdmissionsPage() {
                 <div className="glass rounded-2xl p-6 flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <Icon className="w-5 h-5 text-blue-400" />
-                    <h3 className="font-bold text-white">{step.title}</h3>
+                    <h3 className="font-bold text-slate-900">{step.title}</h3>
                   </div>
-                  <p className="text-gray-400 text-sm">{step.desc}</p>
+                  <p className="text-slate-600 text-sm">{step.desc}</p>
                 </div>
               </motion.div>
             );
@@ -79,7 +79,7 @@ export default function AdmissionsPage() {
       <section className="section-padding container-max">
         <SectionHeader badge="Fees" title="Fee Structure" />
         <div className="glass rounded-3xl overflow-hidden max-w-3xl mx-auto">
-          <div className="grid grid-cols-4 gap-4 p-4 border-b border-white/10 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+          <div className="grid grid-cols-4 gap-4 p-4 border-b border-slate-200 text-xs font-semibold text-slate-500 uppercase tracking-wider">
             <span>Program</span><span>Annual Fee</span><span>Seats</span><span>Entrance</span>
           </div>
           {PROGRAMS_FEE.map((p, i) => (
@@ -89,11 +89,11 @@ export default function AdmissionsPage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="grid grid-cols-4 gap-4 p-4 border-b border-white/5 hover:bg-white/5 transition-colors text-sm"
+              className="grid grid-cols-4 gap-4 p-4 border-b border-white/5 hover:bg-slate-100 transition-colors text-sm"
             >
-              <span className="text-white font-medium">{p.program}</span>
+              <span className="text-slate-900 font-medium">{p.program}</span>
               <span className="text-green-400 font-semibold">{p.fee}</span>
-              <span className="text-gray-400">{p.seats}</span>
+              <span className="text-slate-600">{p.seats}</span>
               <span className="text-blue-400">{p.exam}</span>
             </motion.div>
           ))}

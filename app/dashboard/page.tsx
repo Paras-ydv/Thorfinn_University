@@ -58,32 +58,32 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-dark-900">
+    <div className="flex h-screen overflow-hidden bg-slate-50">
       {/* ── SIDEBAR ── */}
       <aside
         className={`
           fixed lg:static inset-y-0 left-0 z-40 w-64
-          glass-dark border-r border-white/10 flex flex-col
+          glass-dark border-r border-slate-200 flex flex-col
           transition-transform duration-300
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         `}
       >
         {/* Logo */}
-        <div className="flex items-center gap-2 px-6 h-16 border-b border-white/10 flex-shrink-0">
+        <div className="flex items-center gap-2 px-6 h-16 border-b border-slate-200 flex-shrink-0">
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-            <GraduationCap className="w-4 h-4 text-white" />
+            <GraduationCap className="w-4 h-4 text-slate-900" />
           </div>
-          <span className="font-bold text-white">Thorfinn</span>
+          <span className="font-bold text-slate-900">Thorfinn</span>
         </div>
 
         {/* User Info */}
-        <div className="p-4 border-b border-white/10">
+        <div className="p-4 border-b border-slate-200">
           <div className="flex items-center gap-3 glass rounded-xl p-3">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center font-bold text-white text-sm flex-shrink-0">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center font-bold text-slate-900 text-sm flex-shrink-0">
               {user?.name?.[0]?.toUpperCase() || "U"}
             </div>
             <div className="min-w-0">
-              <p className="font-semibold text-white text-sm truncate">{user?.name || "Loading..."}</p>
+              <p className="font-semibold text-slate-900 text-sm truncate">{user?.name || "Loading..."}</p>
               <p className="text-xs text-blue-400">{user?.role}</p>
             </div>
           </div>
@@ -99,8 +99,8 @@ export default function DashboardPage() {
                 onClick={() => { setActiveTab(tab.id); setSidebarOpen(false); }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeTab === tab.id
-                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                    ? "bg-blue-600 text-slate-900 shadow-lg shadow-blue-500/20"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                 }`}
               >
                 <Icon className="w-4 h-4 flex-shrink-0" />
@@ -111,10 +111,10 @@ export default function DashboardPage() {
         </nav>
 
         {/* Bottom */}
-        <div className="p-4 border-t border-white/10 space-y-1">
+        <div className="p-4 border-t border-slate-200 space-y-1">
           <Link
             href="/"
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all"
           >
             <GraduationCap className="w-4 h-4" /> Back to Site
           </Link>
@@ -138,19 +138,19 @@ export default function DashboardPage() {
       {/* ── MAIN ── */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="h-16 glass-dark border-b border-white/10 px-6 flex items-center justify-between flex-shrink-0">
+        <header className="h-16 glass-dark border-b border-slate-200 px-6 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">
             <button
-              className="lg:hidden text-gray-400 hover:text-white transition-colors"
+              className="lg:hidden text-slate-600 hover:text-slate-900 transition-colors"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-            <h1 className="font-bold text-white">
+            <h1 className="font-bold text-slate-900">
               {TABS.find((t) => t.id === activeTab)?.label}
             </h1>
           </div>
-          <span className="text-xs text-gray-500 hidden sm:block">
+          <span className="text-xs text-slate-500 hidden sm:block">
             Welcome back, {user?.name?.split(" ")[0]} 👋
           </span>
         </header>

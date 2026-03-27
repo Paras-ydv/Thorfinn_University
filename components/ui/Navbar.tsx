@@ -39,7 +39,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
-            <GraduationCap className="w-5 h-5 text-white" />
+            <GraduationCap className="w-5 h-5 text-slate-900" />
           </div>
           <span className="gradient-text">Thorfinn</span>
         </Link>
@@ -54,7 +54,7 @@ export function Navbar() {
                 "px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                 pathname === link.href
                   ? "text-blue-400 bg-blue-500/10"
-                  : "text-gray-300 hover:text-white hover:bg-white/5"
+                  : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
               )}
             >
               {link.label}
@@ -65,7 +65,7 @@ export function Navbar() {
           <div className="relative">
             <button
               onClick={() => setMoreOpen(!moreOpen)}
-              className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+              className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-colors"
             >
               More <ChevronDown className={cn("w-4 h-4 transition-transform", moreOpen && "rotate-180")} />
             </button>
@@ -82,7 +82,7 @@ export function Navbar() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="block px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                      className="block px-4 py-2.5 text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors"
                       onClick={() => setMoreOpen(false)}
                     >
                       {link.label}
@@ -96,7 +96,7 @@ export function Navbar() {
 
         {/* Auth Buttons */}
         <div className="hidden lg:flex items-center gap-3">
-          <Link href="/login" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+          <Link href="/login" className="text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors">
             Login
           </Link>
           <Link href="/signup" className="btn-primary text-sm py-2">
@@ -106,7 +106,7 @@ export function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10"
+          className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-200"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -120,20 +120,20 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass-dark border-t border-white/10"
+            className="lg:hidden glass-dark border-t border-slate-200"
           >
             <div className="px-4 py-4 space-y-1">
               {[...primaryLinks, ...moreLinks].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-3 py-2.5 rounded-lg text-sm text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                  className="block px-3 py-2.5 rounded-lg text-sm text-slate-700 hover:text-slate-900 hover:bg-slate-200 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-3 flex gap-3 border-t border-white/10">
+              <div className="pt-3 flex gap-3 border-t border-slate-200">
                 <Link href="/login" className="flex-1 text-center btn-ghost text-sm py-2" onClick={() => setMobileOpen(false)}>
                   Login
                 </Link>

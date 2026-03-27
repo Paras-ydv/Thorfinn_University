@@ -48,15 +48,15 @@ export default function PlacementsPage() {
   const topCompanies = [...PLACEMENT_COMPANIES].sort((a, b) => b.package - a.package).slice(0, 6);
 
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/20 to-blue-900/20" />
         <div className="container-max relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
               <span className="gradient-text">Placements</span> 2024
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
               94% placement rate. 500+ companies. ₹45 LPA highest package.
             </p>
           </motion.div>
@@ -77,7 +77,7 @@ export default function PlacementsPage() {
         {/* Charts */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
           <div className="glass rounded-3xl p-8">
-            <h3 className="text-xl font-bold text-white mb-6">Top Packages (LPA)</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-6">Top Packages (LPA)</h3>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={topCompanies}>
                 <XAxis dataKey="name" tick={{ fill: "#9ca3af", fontSize: 11 }} />
@@ -88,7 +88,7 @@ export default function PlacementsPage() {
             </ResponsiveContainer>
           </div>
           <div className="glass rounded-3xl p-8">
-            <h3 className="text-xl font-bold text-white mb-6">Placements by Sector</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-6">Placements by Sector</h3>
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie data={sectorData} cx="50%" cy="50%" outerRadius={90} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} labelLine={false}>
@@ -104,12 +104,12 @@ export default function PlacementsPage() {
         <div className="glass rounded-2xl p-6 mb-8">
           <div className="flex flex-col lg:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search companies..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-slate-100 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 placeholder-gray-500 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="flex gap-3 flex-wrap">
@@ -117,33 +117,33 @@ export default function PlacementsPage() {
                 <button
                   key={s}
                   onClick={() => setSector(s)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${sector === s ? "bg-blue-600 text-white" : "glass text-gray-400 hover:text-white"}`}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${sector === s ? "bg-blue-600 text-slate-900" : "glass text-slate-600 hover:text-slate-900"}`}
                 >
                   {s}
                 </button>
               ))}
             </div>
             <div className="flex items-center gap-2">
-              <ArrowUpDown className="w-4 h-4 text-gray-500" />
+              <ArrowUpDown className="w-4 h-4 text-slate-500" />
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
+                className="bg-slate-100 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500"
               >
-                {SORT_OPTIONS.map((o) => <option key={o.value} value={o.value} className="bg-dark-800">{o.label}</option>)}
+                {SORT_OPTIONS.map((o) => <option key={o.value} value={o.value} className="bg-white">{o.label}</option>)}
               </select>
             </div>
             <div className="flex items-center gap-2">
-              <Filter className="w-4 h-4 text-gray-500" />
+              <Filter className="w-4 h-4 text-slate-500" />
               <select
                 value={minPackage}
                 onChange={(e) => setMinPackage(Number(e.target.value))}
-                className="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500"
+                className="bg-slate-100 border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500"
               >
-                <option value={0} className="bg-dark-800">Min Package: Any</option>
-                <option value={10} className="bg-dark-800">10+ LPA</option>
-                <option value={20} className="bg-dark-800">20+ LPA</option>
-                <option value={30} className="bg-dark-800">30+ LPA</option>
+                <option value={0} className="bg-white">Min Package: Any</option>
+                <option value={10} className="bg-white">10+ LPA</option>
+                <option value={20} className="bg-white">20+ LPA</option>
+                <option value={30} className="bg-white">30+ LPA</option>
               </select>
             </div>
           </div>
@@ -160,21 +160,21 @@ export default function PlacementsPage() {
               className="glass rounded-2xl p-6 card-hover"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-violet-500/20 border border-white/10 flex items-center justify-center font-bold text-white text-sm">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-violet-500/20 border border-slate-200 flex items-center justify-center font-bold text-slate-900 text-sm">
                   {company.logo}
                 </div>
                 <div>
-                  <h3 className="font-bold text-white">{company.name}</h3>
-                  <span className="text-xs text-gray-500 bg-white/5 px-2 py-0.5 rounded-full">{company.sector}</span>
+                  <h3 className="font-bold text-slate-900">{company.name}</h3>
+                  <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">{company.sector}</span>
                 </div>
               </div>
               <div className="flex justify-between text-sm">
                 <div>
-                  <p className="text-gray-500 text-xs">Package</p>
+                  <p className="text-slate-500 text-xs">Package</p>
                   <p className="text-green-400 font-bold">₹{company.package} LPA</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-gray-500 text-xs">Hired</p>
+                  <p className="text-slate-500 text-xs">Hired</p>
                   <p className="text-blue-400 font-bold">{company.hired}</p>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default function PlacementsPage() {
           ))}
         </div>
         {filtered.length === 0 && (
-          <div className="text-center py-16 text-gray-500">No companies match your filters.</div>
+          <div className="text-center py-16 text-slate-500">No companies match your filters.</div>
         )}
       </section>
     </div>

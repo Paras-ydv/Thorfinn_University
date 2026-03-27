@@ -32,14 +32,13 @@ const PATH_CONTENT = {
 
 export default function HomePage() {
   const [activePath, setActivePath] = useState<"academics" | "career" | "campus">("academics");
-  const [tourOpen, setTourOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <div className="bg-dark-900">
+    <div className="bg-slate-50">
       {/* ── HERO ── */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Video — aerial drone shot */}
@@ -54,7 +53,7 @@ export default function HomePage() {
           >
             <source src="/videos/s_Aerial_drone_shot_sweepi.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-dark-900/50 via-dark-900/30 to-dark-900" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/50 via-slate-50/30 to-slate-50" />
           <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-transparent to-transparent" />
         </motion.div>
 
@@ -84,7 +83,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white mb-6 leading-tight"
+            className="text-5xl sm:text-6xl lg:text-8xl font-bold text-slate-900 mb-6 leading-tight"
           >
             Shape Your{" "}
             <span className="gradient-text">Future</span>
@@ -95,7 +94,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-slate-700 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
             Where world-class education meets cutting-edge research and a vibrant campus community.
           </motion.p>
@@ -109,12 +108,7 @@ export default function HomePage() {
             <Link href="/admissions" className="btn-primary flex items-center gap-2 justify-center text-base">
               Apply for 2025 <ArrowRight className="w-4 h-4" />
             </Link>
-            <button
-              onClick={() => setTourOpen(true)}
-              className="btn-ghost flex items-center gap-2 justify-center text-base"
-            >
-              <Play className="w-4 h-4" /> Watch Campus Tour
-            </button>
+
           </motion.div>
         </motion.div>
 
@@ -122,46 +116,13 @@ export default function HomePage() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-gray-400"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-slate-600"
         >
           <ChevronDown className="w-6 h-6" />
         </motion.div>
       </section>
 
-      {/* ── CAMPUS TOUR MODAL ── */}
-      <AnimatePresence>
-        {tourOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
-            onClick={() => setTourOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <video
-                autoPlay
-                controls
-                className="w-full h-full object-cover"
-              >
-                <source src="/videos/Quick_cuts_of_campus_life—stud.mp4" type="video/mp4" />
-              </video>
-              <button
-                onClick={() => setTourOpen(false)}
-                className="absolute top-4 right-4 w-9 h-9 glass rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       {/* ── STATS ── */}
       <section className="section-padding container-max">
@@ -193,15 +154,15 @@ export default function HomePage() {
                 className={`flex items-center gap-3 px-6 py-4 rounded-2xl border transition-all duration-300 text-left ${
                   active
                     ? "border-blue-500/50 bg-blue-500/10 shadow-lg shadow-blue-500/10"
-                    : "border-white/10 glass hover:border-white/20"
+                    : "border-slate-200 glass hover:border-slate-300"
                 }`}
               >
                 <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${path.color} flex items-center justify-center flex-shrink-0`}>
-                  <Icon className="w-5 h-5 text-white" />
+                  <Icon className="w-5 h-5 text-slate-900" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">{path.label}</p>
-                  <p className="text-xs text-gray-400 mt-0.5 max-w-[180px]">{path.desc}</p>
+                  <p className="font-semibold text-slate-900 text-sm">{path.label}</p>
+                  <p className="text-xs text-slate-600 mt-0.5 max-w-[180px]">{path.desc}</p>
                 </div>
               </motion.button>
             );
@@ -224,7 +185,7 @@ export default function HomePage() {
                 transition={{ delay: i * 0.08 }}
                 className="glass rounded-xl p-4 text-center"
               >
-                <p className="text-sm font-medium text-white">{h}</p>
+                <p className="text-sm font-medium text-slate-900">{h}</p>
               </motion.div>
             ))}
           </div>
@@ -257,9 +218,9 @@ export default function HomePage() {
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${dept.color} flex items-center justify-center text-2xl mb-4`}>
                     {dept.icon}
                   </div>
-                  <h3 className="font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{dept.name}</h3>
-                  <p className="text-sm text-gray-400 mb-4 leading-relaxed">{dept.description}</p>
-                  <div className="flex gap-4 text-xs text-gray-500">
+                  <h3 className="font-bold text-slate-900 mb-2 group-hover:text-blue-400 transition-colors">{dept.name}</h3>
+                  <p className="text-sm text-slate-600 mb-4 leading-relaxed">{dept.description}</p>
+                  <div className="flex gap-4 text-xs text-slate-500">
                     <span>{dept.students} students</span>
                     <span>{dept.faculty} faculty</span>
                     <span>{dept.labs.length} labs</span>
@@ -277,7 +238,7 @@ export default function HomePage() {
       </section>
 
       {/* ── SCROLL STORYTELLING / TIMELINE ── */}
-      <section className="section-padding bg-gradient-to-b from-dark-900 to-dark-800">
+      <section className="section-padding bg-gradient-to-b from-slate-50 to-white">
         <div className="container-max">
           <SectionHeader badge="Our Story" title="A Legacy of Excellence" />
           <div className="relative max-w-4xl mx-auto">
@@ -300,8 +261,8 @@ export default function HomePage() {
                 <div className={`w-full md:w-5/12 ${item.side === "right" ? "md:pl-8" : "md:pr-8"}`}>
                   <div className="glass rounded-2xl p-6">
                     <span className="text-blue-400 font-bold text-lg">{item.year}</span>
-                    <h3 className="text-white font-bold text-xl mt-1 mb-2">{item.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="text-slate-900 font-bold text-xl mt-1 mb-2">{item.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-2 border-dark-900 z-10" />
@@ -321,8 +282,8 @@ export default function HomePage() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-violet-600/10" />
           <div className="relative z-10">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Ready to Begin?</h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto">
+            <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4">Ready to Begin?</h2>
+            <p className="text-slate-600 text-lg mb-8 max-w-xl mx-auto">
               Applications for 2025 are now open. Join 12,000+ students shaping the future.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

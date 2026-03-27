@@ -25,11 +25,11 @@ export function SectionHeader({ badge, title, subtitle, className, align = "cent
           {badge}
         </span>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 text-balance">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 text-balance">
         {title}
       </h2>
       {subtitle && (
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+        <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
       )}
     </motion.div>
   );

@@ -8,15 +8,15 @@ import { ArrowRight, Users, BookOpen, FlaskConical } from "lucide-react";
 
 export default function DepartmentsPage() {
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-violet-900/20" />
         <div className="container-max relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
               Our <span className="gradient-text">Departments</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
               Six world-class departments offering cutting-edge programs and research opportunities.
             </p>
           </motion.div>
@@ -39,9 +39,9 @@ export default function DepartmentsPage() {
                     {dept.icon}
                   </div>
                   <div className="flex-1">
-                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{dept.shortName}</span>
-                    <h2 className="text-xl font-bold text-white mt-1 mb-3 group-hover:text-blue-400 transition-colors">{dept.name}</h2>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6">{dept.description}</p>
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">{dept.shortName}</span>
+                    <h2 className="text-xl font-bold text-slate-900 mt-1 mb-3 group-hover:text-blue-400 transition-colors">{dept.name}</h2>
+                    <p className="text-slate-600 text-sm leading-relaxed mb-6">{dept.description}</p>
                   </div>
                   <div className="grid grid-cols-3 gap-3 mb-6">
                     {[
@@ -51,8 +51,8 @@ export default function DepartmentsPage() {
                     ].map(({ icon: Icon, value, label }) => (
                       <div key={label} className="glass rounded-xl p-3 text-center">
                         <Icon className="w-4 h-4 text-blue-400 mx-auto mb-1" />
-                        <p className="text-white font-bold text-sm">{value}</p>
-                        <p className="text-gray-500 text-xs">{label}</p>
+                        <p className="text-slate-900 font-bold text-sm">{value}</p>
+                        <p className="text-slate-500 text-xs">{label}</p>
                       </div>
                     ))}
                   </div>

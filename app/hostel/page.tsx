@@ -22,15 +22,15 @@ const AMENITIES = [
 
 export default function HostelPage() {
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-cyan-900/20" />
         <div className="container-max relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
               <span className="gradient-text">Hostel</span> Life
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
               Your home away from home — safe, comfortable, and vibrant.
             </p>
           </motion.div>
@@ -46,17 +46,17 @@ export default function HostelPage() {
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${hostel.color} flex items-center justify-center text-2xl mb-4`}>
                 🏠
               </div>
-              <h3 className="font-bold text-white text-lg mb-1">{hostel.name}</h3>
+              <h3 className="font-bold text-slate-900 text-lg mb-1">{hostel.name}</h3>
               <span className={`text-xs px-2 py-0.5 rounded-full ${hostel.type === "Girls" ? "bg-pink-500/20 text-pink-400" : "bg-blue-500/20 text-blue-400"}`}>
                 {hostel.type}
               </span>
               <div className="mt-4 space-y-2 text-sm">
-                <div className="flex justify-between"><span className="text-gray-500">Capacity</span><span className="text-white">{hostel.capacity}</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Rooms</span><span className="text-white">{hostel.rooms}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500">Capacity</span><span className="text-slate-900">{hostel.capacity}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500">Rooms</span><span className="text-slate-900">{hostel.rooms}</span></div>
               </div>
               <div className="mt-4 flex flex-wrap gap-1">
                 {hostel.amenities.map((a) => (
-                  <span key={a} className="text-xs bg-white/5 text-gray-400 px-2 py-0.5 rounded-full">{a}</span>
+                  <span key={a} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{a}</span>
                 ))}
               </div>
             </motion.div>
@@ -74,8 +74,8 @@ export default function HostelPage() {
                   <Icon className="w-5 h-5 text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-white mb-1">{a.title}</h3>
-                  <p className="text-sm text-gray-400">{a.desc}</p>
+                  <h3 className="font-semibold text-slate-900 mb-1">{a.title}</h3>
+                  <p className="text-sm text-slate-600">{a.desc}</p>
                 </div>
               </motion.div>
             );
@@ -84,7 +84,7 @@ export default function HostelPage() {
 
         {/* Fee */}
         <div className="glass rounded-3xl p-8 max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-white mb-6">Hostel Fee Structure</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Hostel Fee Structure</h2>
           <div className="grid grid-cols-3 gap-4">
             {[
               { type: "Triple Sharing", fee: "₹60,000/year" },
@@ -92,12 +92,12 @@ export default function HostelPage() {
               { type: "Single Room", fee: "₹1,20,000/year" },
             ].map((f) => (
               <div key={f.type} className="glass rounded-xl p-4">
-                <p className="text-sm text-gray-400 mb-2">{f.type}</p>
+                <p className="text-sm text-slate-600 mb-2">{f.type}</p>
                 <p className="text-green-400 font-bold">{f.fee}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-500 mt-4">* Includes mess charges. AC rooms have additional charges.</p>
+          <p className="text-xs text-slate-500 mt-4">* Includes mess charges. AC rooms have additional charges.</p>
         </div>
       </section>
     </div>
