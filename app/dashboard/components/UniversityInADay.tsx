@@ -61,8 +61,8 @@ export function UniversityInADay() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-white">University in a Day</h2>
-        <p className="text-sm text-gray-400 mt-1">Experience a day in the life of different students</p>
+        <h2 className="text-xl font-bold text-slate-900">University in a Day</h2>
+        <p className="text-sm text-slate-600 mt-1">Experience a day in the life of different students</p>
       </div>
 
       {/* Path Selector */}
@@ -71,10 +71,10 @@ export function UniversityInADay() {
           <button
             key={key}
             onClick={() => { setSelectedPath(key); setVisibleItems(3); }}
-            className={`glass rounded-2xl p-4 text-center transition-all ${selectedPath === key ? "border border-blue-500/50 bg-blue-500/10" : "hover:bg-white/5"}`}
+            className={`glass rounded-2xl p-4 text-center transition-all ${selectedPath === key ? "border border-blue-500/50 bg-blue-500/10" : "hover:bg-slate-100"}`}
           >
             <div className="text-2xl mb-2">{path.emoji}</div>
-            <p className="text-xs font-medium text-white">{path.label}</p>
+            <p className="text-xs font-medium text-slate-900">{path.label}</p>
           </button>
         ))}
       </div>
@@ -84,19 +84,19 @@ export function UniversityInADay() {
           <motion.div key={selectedPath} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
             <div className={`h-1 rounded-full bg-gradient-to-r ${PATHS[selectedPath].color} mb-8`} />
             <div className="relative">
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-white/10" />
+              <div className="absolute left-6 top-0 bottom-0 w-px bg-slate-200" />
               <div className="space-y-4">
                 {PATHS[selectedPath].timeline.slice(0, visibleItems).map((item, i) => (
                   <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }} className="flex gap-4 relative">
                     <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${PATHS[selectedPath].color} flex items-center justify-center flex-shrink-0 z-10 shadow-lg`}>
-                      <Clock className="w-4 h-4 text-white" />
+                      <Clock className="w-4 h-4 text-slate-900" />
                     </div>
                     <div className="glass rounded-2xl p-4 flex-1">
                       <div className="flex items-start justify-between gap-2">
-                        <p className="font-semibold text-white text-sm">{item.activity}</p>
+                        <p className="font-semibold text-slate-900 text-sm">{item.activity}</p>
                         <span className="text-xs text-blue-400 font-bold whitespace-nowrap">{item.time}</span>
                       </div>
-                      <p className="text-xs text-gray-500 mt-1">📍 {item.location}</p>
+                      <p className="text-xs text-slate-500 mt-1">📍 {item.location}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -112,7 +112,7 @@ export function UniversityInADay() {
       </AnimatePresence>
 
       {!selectedPath && (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-slate-500">
           <p>Select a student path above to explore their day</p>
         </div>
       )}

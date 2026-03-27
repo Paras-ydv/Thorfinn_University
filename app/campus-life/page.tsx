@@ -26,15 +26,15 @@ const FACILITIES = [
 
 export default function CampusLifePage() {
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-900/20 to-pink-900/20" />
         <div className="container-max relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
               <span className="gradient-text">Campus Life</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
               200 acres of vibrant campus life — where learning meets living.
             </p>
           </motion.div>
@@ -52,8 +52,8 @@ export default function CampusLifePage() {
                 <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6 text-orange-400" />
                 </div>
-                <h3 className="font-bold text-white mb-2">{f.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold text-slate-900 mb-2">{f.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{f.desc}</p>
               </motion.div>
             );
           })}
@@ -65,9 +65,9 @@ export default function CampusLifePage() {
           {CLUBS.map((club, i) => (
             <motion.div key={club.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
               <div className="text-3xl mb-3">{club.icon}</div>
-              <h3 className="font-semibold text-white text-sm mb-1">{club.name}</h3>
-              <p className="text-xs text-gray-500">{club.members} members</p>
-              <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-white/5 text-gray-400">{club.category}</span>
+              <h3 className="font-semibold text-slate-900 text-sm mb-1">{club.name}</h3>
+              <p className="text-xs text-slate-500">{club.members} members</p>
+              <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{club.category}</span>
             </motion.div>
           ))}
         </div>
@@ -84,9 +84,9 @@ export default function CampusLifePage() {
           ].map((event, i) => (
             <motion.div key={event.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-6 card-hover">
               <span className="text-xs font-semibold text-orange-400 bg-orange-500/10 px-2 py-1 rounded-full">{event.type}</span>
-              <h3 className="text-xl font-bold text-white mt-3 mb-1">{event.name}</h3>
+              <h3 className="text-xl font-bold text-slate-900 mt-3 mb-1">{event.name}</h3>
               <p className="text-sm text-blue-400 mb-3">{event.date}</p>
-              <p className="text-sm text-gray-400">{event.desc}</p>
+              <p className="text-sm text-slate-600">{event.desc}</p>
             </motion.div>
           ))}
         </div>

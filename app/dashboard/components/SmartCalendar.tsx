@@ -1,140 +1,125 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Calendar } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, isSameDay } from "date-fns";
 
 const EVENTS = [
-  { date: new Date(2024, 11, 15), title: "End Semester Exams Begin", type: "academic" },
-  { date: new Date(2024, 11, 20), title: "Thorfinn Fest", type: "cultural" },
-  { date: new Date(2024, 11, 25), title: "Christmas Break", type: "holiday" },
-  { date: new Date(2025, 0, 6), title: "Semester II Begins", type: "academic" },
-  { date: new Date(2025, 0, 15), title: "Hackathon 2025", type: "technical" },
-  { date: new Date(2025, 1, 14), title: "Sports Week", type: "sports" },
+  { date: new Date(2025, 0, 8),  title: "Infosys Placement Drive",       type: "Placement" },
+  { date: new Date(2025, 0, 15), title: "TechSummit 2025",               type: "Technical" },
+  { date: new Date(2025, 0, 20), title: "Admissions Open Day",           type: "Admissions" },
+  { date: new Date(2025, 1, 5),  title: "Annual Sports Meet",            type: "Sports" },
+  { date: new Date(2025, 1, 14), title: "Research Symposium",            type: "Research" },
+  { date: new Date(2025, 2, 5),  title: "Mid-Semester Examinations",     type: "Academic" },
 ];
 
-const TYPE_COLORS: Record<string, string> = {
-  academic: "bg-blue-500",
-  cultural: "bg-pink-500",
-  holiday: "bg-green-500",
-  technical: "bg-violet-500",
-  sports: "bg-orange-500",
+const TYPE_COLOR: Record<string, string> = {
+  Placement:  "bg-green-500",
+  Technical:  "bg-blue-500",
+  Admissions: "bg-violet-500",
+  Sports:     "bg-orange-500",
+  Research:   "bg-teal-500",
+  Academic:   "bg-red-500",
 };
 
 export function SmartCalendar() {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [current,  setCurrent]  = useState(new Date(2025, 0, 1));
+  const [selected, setSelected] = useState<Date | null>(null);
 
-  const monthStart = startOfMonth(currentDate);
-  const monthEnd = endOfMonth(currentDate);
-  const days = eachDayOfInterval({ start: monthStart, end: monthEnd });
-  const startDay = monthStart.getDay();
-
-  const getEventsForDay = (day: Date) => EVENTS.filter((e) => isSameDay(e.date, day));
-
-  const selectedEvents = selectedDate ? getEventsForDay(selectedDate) : [];
-  const upcomingEvents = EVENTS.filter((e) => e.date >= new Date()).slice(0, 5);
+  const days     = eachDayOfInterval({ start: startOfMonth(current), end: endOfMonth(current) });
+  const startDay = startOfMonth(current).getDay();
+  const dayEvents = (d: Date) => EVENTS.filter(e => isSameDay(e.date, d));
+  const upcoming  = EVENTS.filter(e => e.date >= new Date()).slice(0, 6);
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="mb-6">
-        <h2 className="text-xl font-bold text-white">Smart Event Calendar</h2>
-        <p className="text-sm text-gray-400 mt-1">University events, exams, and deadlines</p>
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Calendar */}
-        <div className="lg:col-span-2 glass rounded-3xl p-6">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="font-bold text-white text-lg">{format(currentDate, "MMMM yyyy")}</h3>
-            <div className="flex gap-2">
-              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1))} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1))} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-colors">
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+    <div className="grid lg:grid-cols-3 gap-6 max-w-4xl">
+      {/* Calendar */}
+      <div className="lg:col-span-2 card p-5">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-semibold text-slate-900 text-sm">{format(current, "MMMM yyyy")}</h2>
+          <div className="flex gap-1">
+            <button onClick={() => setCurrent(new Date(current.getFullYear(), current.getMonth() - 1))}
+              className="p-1.5 rounded border border-slate-200 hover:bg-slate-50 transition-colors">
+              <ChevronLeft className="w-4 h-4 text-slate-600" />
+            </button>
+            <button onClick={() => setCurrent(new Date(current.getFullYear(), current.getMonth() + 1))}
+              className="p-1.5 rounded border border-slate-200 hover:bg-slate-50 transition-colors">
+              <ChevronRight className="w-4 h-4 text-slate-600" />
+            </button>
           </div>
-
-          {/* Day headers */}
-          <div className="grid grid-cols-7 mb-2">
-            {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((d) => (
-              <div key={d} className="text-center text-xs text-gray-500 font-semibold py-2">{d}</div>
-            ))}
-          </div>
-
-          {/* Days */}
-          <div className="grid grid-cols-7 gap-1">
-            {Array.from({ length: startDay }).map((_, i) => <div key={`empty-${i}`} />)}
-            {days.map((day) => {
-              const dayEvents = getEventsForDay(day);
-              const selected = selectedDate && isSameDay(day, selectedDate);
-              return (
-                <button
-                  key={day.toISOString()}
-                  onClick={() => setSelectedDate(selected ? null : day)}
-                  className={`relative aspect-square flex flex-col items-center justify-center rounded-xl text-sm transition-all ${
-                    selected ? "bg-blue-600 text-white" :
-                    isToday(day) ? "bg-blue-500/20 text-blue-400 font-bold" :
-                    isSameMonth(day, currentDate) ? "text-gray-300 hover:bg-white/10" : "text-gray-600"
-                  }`}
-                >
-                  {format(day, "d")}
-                  {dayEvents.length > 0 && (
-                    <div className="flex gap-0.5 mt-0.5">
-                      {dayEvents.slice(0, 3).map((e, i) => (
-                        <div key={i} className={`w-1 h-1 rounded-full ${TYPE_COLORS[e.type]}`} />
-                      ))}
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Selected day events */}
-          {selectedDate && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-4 pt-4 border-t border-white/10">
-              <p className="text-sm font-semibold text-white mb-3">{format(selectedDate, "MMMM d, yyyy")}</p>
-              {selectedEvents.length > 0 ? selectedEvents.map((e) => (
-                <div key={e.title} className="flex items-center gap-3 py-2">
-                  <div className={`w-2 h-2 rounded-full ${TYPE_COLORS[e.type]}`} />
-                  <span className="text-sm text-gray-300">{e.title}</span>
-                </div>
-              )) : <p className="text-sm text-gray-500">No events on this day</p>}
-            </motion.div>
-          )}
         </div>
 
-        {/* Upcoming Events */}
-        <div className="glass rounded-3xl p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Calendar className="w-4 h-4 text-blue-400" />
-            <h3 className="font-semibold text-white text-sm">Upcoming Events</h3>
-          </div>
-          <div className="space-y-3">
-            {upcomingEvents.map((event) => (
-              <div key={event.title} className="glass rounded-xl p-3">
-                <div className="flex items-start gap-2">
-                  <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${TYPE_COLORS[event.type]}`} />
-                  <div>
-                    <p className="text-xs font-medium text-white">{event.title}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">{format(event.date, "MMM d, yyyy")}</p>
+        <div className="grid grid-cols-7 mb-1">
+          {["Su","Mo","Tu","We","Th","Fr","Sa"].map(d => (
+            <div key={d} className="text-center text-xs font-semibold text-slate-400 py-2">{d}</div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-7 gap-0.5">
+          {Array.from({ length: startDay }).map((_, i) => <div key={`e${i}`} />)}
+          {days.map(day => {
+            const evs = dayEvents(day);
+            const sel = selected && isSameDay(day, selected);
+            return (
+              <button key={day.toISOString()} onClick={() => setSelected(sel ? null : day)}
+                className={`relative aspect-square flex flex-col items-center justify-center rounded text-xs transition-colors ${
+                  sel ? "bg-[#1e3a8a] text-white" :
+                  isToday(day) ? "bg-blue-50 text-[#1e3a8a] font-bold" :
+                  isSameMonth(day, current) ? "text-slate-700 hover:bg-slate-50" : "text-slate-300"
+                }`}>
+                {format(day, "d")}
+                {evs.length > 0 && (
+                  <div className="flex gap-0.5 mt-0.5">
+                    {evs.slice(0, 2).map((e, i) => <div key={i} className={`w-1 h-1 rounded-full ${TYPE_COLOR[e.type]}`} />)}
                   </div>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {selected && (
+          <div className="mt-4 pt-4 border-t border-slate-200">
+            <p className="text-xs font-semibold text-slate-700 mb-2">{format(selected, "MMMM d, yyyy")}</p>
+            {dayEvents(selected).length > 0
+              ? dayEvents(selected).map(e => (
+                  <div key={e.title} className="flex items-center gap-2 py-1.5">
+                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${TYPE_COLOR[e.type]}`} />
+                    <span className="text-sm text-slate-700">{e.title}</span>
+                    <span className="badge-gray ml-auto">{e.type}</span>
+                  </div>
+                ))
+              : <p className="text-sm text-slate-500">No events on this date.</p>
+            }
+          </div>
+        )}
+      </div>
+
+      {/* Upcoming */}
+      <div className="card overflow-hidden">
+        <div className="px-4 py-3 bg-slate-50 border-b border-slate-200">
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500">Upcoming Events</h3>
+        </div>
+        <div className="divide-y divide-slate-100">
+          {upcoming.map(ev => (
+            <div key={ev.title} className="px-4 py-3">
+              <div className="flex items-start gap-2">
+                <div className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${TYPE_COLOR[ev.type]}`} />
+                <div>
+                  <p className="text-xs font-medium text-slate-800">{ev.title}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{format(ev.date, "MMM d, yyyy")}</p>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Legend */}
-          <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
-            {Object.entries(TYPE_COLORS).map(([type, color]) => (
-              <div key={type} className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${color}`} />
-                <span className="text-xs text-gray-500 capitalize">{type}</span>
+            </div>
+          ))}
+        </div>
+        <div className="px-4 py-3 border-t border-slate-200">
+          <p className="text-xs font-semibold text-slate-500 mb-2">Legend</p>
+          <div className="space-y-1.5">
+            {Object.entries(TYPE_COLOR).map(([t, c]) => (
+              <div key={t} className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${c}`} />
+                <span className="text-xs text-slate-500">{t}</span>
               </div>
             ))}
           </div>

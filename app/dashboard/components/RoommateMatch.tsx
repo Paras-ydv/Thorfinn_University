@@ -36,8 +36,8 @@ export function RoommateMatch() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-white">Roommate Matchmaker</h2>
-        <p className="text-sm text-gray-400 mt-1">Find your perfect roommate based on lifestyle compatibility</p>
+        <h2 className="text-xl font-bold text-slate-900">Roommate Matchmaker</h2>
+        <p className="text-sm text-slate-600 mt-1">Find your perfect roommate based on lifestyle compatibility</p>
       </div>
 
       <AnimatePresence mode="wait">
@@ -46,13 +46,13 @@ export function RoommateMatch() {
             <div className="w-16 h-16 rounded-2xl bg-violet-500/20 flex items-center justify-center mx-auto mb-6">
               <Users className="w-8 h-8 text-violet-400" />
             </div>
-            <h3 className="text-2xl font-bold text-white mb-3">Find Your Match</h3>
-            <p className="text-gray-400 mb-8 max-w-sm mx-auto">Answer 5 quick questions about your lifestyle and we'll find compatible roommates.</p>
+            <h3 className="text-2xl font-bold text-slate-900 mb-3">Find Your Match</h3>
+            <p className="text-slate-600 mb-8 max-w-sm mx-auto">Answer 5 quick questions about your lifestyle and we'll find compatible roommates.</p>
             <div className="grid grid-cols-3 gap-4 mb-8">
               {[{ icon: Coffee, label: "Sleep habits" }, { icon: BookOpen, label: "Study style" }, { icon: Music, label: "Interests" }].map(({ icon: Icon, label }) => (
                 <div key={label} className="glass rounded-xl p-4 text-center">
                   <Icon className="w-5 h-5 text-violet-400 mx-auto mb-2" />
-                  <p className="text-xs text-gray-400">{label}</p>
+                  <p className="text-xs text-slate-600">{label}</p>
                 </div>
               ))}
             </div>
@@ -67,14 +67,14 @@ export function RoommateMatch() {
             {/* Progress */}
             <div className="flex gap-1.5 mb-8">
               {QUESTIONS.map((_, i) => (
-                <div key={i} className={`h-1.5 flex-1 rounded-full transition-all ${i <= currentQ ? "bg-blue-500" : "bg-white/10"}`} />
+                <div key={i} className={`h-1.5 flex-1 rounded-full transition-all ${i <= currentQ ? "bg-blue-500" : "bg-slate-200"}`} />
               ))}
             </div>
-            <p className="text-sm text-gray-500 mb-2">Question {currentQ + 1} of {QUESTIONS.length}</p>
-            <h3 className="text-2xl font-bold text-white mb-8">{QUESTIONS[currentQ].question}</h3>
+            <p className="text-sm text-slate-500 mb-2">Question {currentQ + 1} of {QUESTIONS.length}</p>
+            <h3 className="text-2xl font-bold text-slate-900 mb-8">{QUESTIONS[currentQ].question}</h3>
             <div className="space-y-3">
               {QUESTIONS[currentQ].options.map((opt) => (
-                <button key={opt} onClick={() => answer(opt)} className="w-full glass rounded-xl p-4 text-left text-gray-300 hover:text-white hover:bg-white/10 hover:border-blue-500/50 border border-transparent transition-all text-sm font-medium">
+                <button key={opt} onClick={() => answer(opt)} className="w-full glass rounded-xl p-4 text-left text-slate-700 hover:text-slate-900 hover:bg-slate-200 hover:border-blue-500/50 border border-transparent transition-all text-sm font-medium">
                   {opt}
                 </button>
               ))}
@@ -86,25 +86,25 @@ export function RoommateMatch() {
           <motion.div key="results" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
             <div className="glass rounded-2xl p-6 text-center mb-6">
               <Heart className="w-8 h-8 text-pink-400 mx-auto mb-3" />
-              <h3 className="text-xl font-bold text-white">Your Top Matches!</h3>
-              <p className="text-sm text-gray-400 mt-1">Based on your lifestyle preferences</p>
+              <h3 className="text-xl font-bold text-slate-900">Your Top Matches!</h3>
+              <p className="text-sm text-slate-600 mt-1">Based on your lifestyle preferences</p>
             </div>
             {MOCK_MATCHES.map((match, i) => (
               <motion.div key={match.name} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-6 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center font-bold text-white flex-shrink-0">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center font-bold text-slate-900 flex-shrink-0">
                   {match.avatar}
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <h4 className="font-bold text-white">{match.name}</h4>
+                    <h4 className="font-bold text-slate-900">{match.name}</h4>
                     <span className="text-green-400 font-bold text-sm">{match.score}% match</span>
                   </div>
-                  <p className="text-xs text-gray-500 mb-2">{match.dept}</p>
+                  <p className="text-xs text-slate-500 mb-2">{match.dept}</p>
                   <div className="flex gap-1.5 flex-wrap">
-                    {match.traits.map((t) => <span key={t} className="text-xs bg-white/5 text-gray-400 px-2 py-0.5 rounded-full">{t}</span>)}
+                    {match.traits.map((t) => <span key={t} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">{t}</span>)}
                   </div>
                   {/* Compatibility bar */}
-                  <div className="mt-3 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div className="mt-3 h-1.5 bg-slate-200 rounded-full overflow-hidden">
                     <motion.div initial={{ width: 0 }} animate={{ width: `${match.score}%` }} transition={{ duration: 0.8, delay: i * 0.1 + 0.3 }} className="h-full bg-gradient-to-r from-blue-500 to-green-500 rounded-full" />
                   </div>
                 </div>

@@ -1,70 +1,77 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { DEPARTMENTS } from "@/lib/data";
-import { ArrowRight, Users, BookOpen, FlaskConical } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+
+export const metadata: Metadata = { title: "Departments" };
+
+const DEPARTMENTS = [
+  { slug: "computer-science", name: "Computer Science & Engineering",  short: "CSE",  hod: "Dr. Rajesh Kumar",  students: 1200, faculty: 45, labs: 4, programs: ["B.Tech CSE", "M.Tech AI/ML", "Ph.D CS", "B.Tech CSBS"] },
+  { slug: "electronics",      name: "Electronics & Communication",     short: "ECE",  hod: "Dr. Anil Verma",    students: 850,  faculty: 35, labs: 4, programs: ["B.Tech ECE", "M.Tech VLSI", "Ph.D ECE"] },
+  { slug: "mechanical",       name: "Mechanical Engineering",          short: "ME",   hod: "Dr. Priya Sharma",  students: 900,  faculty: 38, labs: 4, programs: ["B.Tech ME", "M.Tech Manufacturing", "Ph.D ME"] },
+  { slug: "civil",            name: "Civil Engineering",               short: "CE",   hod: "Dr. Sunita Patel",  students: 700,  faculty: 30, labs: 4, programs: ["B.Tech CE", "M.Tech Structural", "Ph.D CE"] },
+  { slug: "mba",              name: "Business Administration",         short: "MBA",  hod: "Dr. Vikram Singh",  students: 600,  faculty: 28, labs: 3, programs: ["MBA", "Executive MBA", "Ph.D Management"] },
+  { slug: "csbs",             name: "CS & Business Systems",           short: "CSBS", hod: "Dr. Meera Nair",    students: 500,  faculty: 22, labs: 3, programs: ["B.Tech CSBS", "M.Tech Data Science"] },
+];
 
 export default function DepartmentsPage() {
   return (
-    <div className="bg-dark-900 pt-16">
-      <section className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-violet-900/20" />
-        <div className="container-max relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
-              Our <span className="gradient-text">Departments</span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Six world-class departments offering cutting-edge programs and research opportunities.
-            </p>
-          </motion.div>
+    <div className="bg-white pt-16">
+      <div className="bg-[#0f172a]">
+        <div className="container-max py-12">
+          <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-slate-300">Departments</span>
+          </nav>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">Schools & Departments</h1>
+          <p className="text-slate-400 mt-2 text-sm">Six departments offering world-class programs and research opportunities.</p>
         </div>
-      </section>
+      </div>
 
-      <section className="section-padding container-max">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {DEPARTMENTS.map((dept, i) => (
-            <motion.div
-              key={dept.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <Link href={`/departments/${dept.slug}`}>
-                <div className="glass rounded-3xl p-8 card-hover group h-full flex flex-col">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${dept.color} flex items-center justify-center text-3xl mb-6`}>
-                    {dept.icon}
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">{dept.shortName}</span>
-                    <h2 className="text-xl font-bold text-white mt-1 mb-3 group-hover:text-blue-400 transition-colors">{dept.name}</h2>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6">{dept.description}</p>
-                  </div>
-                  <div className="grid grid-cols-3 gap-3 mb-6">
-                    {[
-                      { icon: Users, value: dept.students, label: "Students" },
-                      { icon: BookOpen, value: dept.faculty, label: "Faculty" },
-                      { icon: FlaskConical, value: dept.labs.length, label: "Labs" },
-                    ].map(({ icon: Icon, value, label }) => (
-                      <div key={label} className="glass rounded-xl p-3 text-center">
-                        <Icon className="w-4 h-4 text-blue-400 mx-auto mb-1" />
-                        <p className="text-white font-bold text-sm">{value}</p>
-                        <p className="text-gray-500 text-xs">{label}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-2 text-blue-400 text-sm font-medium group-hover:gap-3 transition-all">
-                    Explore Department <ArrowRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+      <div className="container-max py-12">
+        <div className="card overflow-hidden">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Department</th>
+                <th>Head of Department</th>
+                <th>Students</th>
+                <th>Faculty</th>
+                <th>Programs</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {DEPARTMENTS.map((d) => (
+                <tr key={d.slug}>
+                  <td>
+                    <div>
+                      <span className="text-xs font-bold text-[#1e3a8a] mr-2">{d.short}</span>
+                      <span className="font-medium text-slate-900">{d.name}</span>
+                    </div>
+                  </td>
+                  <td className="text-slate-600">{d.hod}</td>
+                  <td>{d.students}</td>
+                  <td>{d.faculty}</td>
+                  <td>
+                    <div className="flex flex-wrap gap-1">
+                      {d.programs.slice(0, 2).map(p => (
+                        <span key={p} className="badge-gray">{p}</span>
+                      ))}
+                      {d.programs.length > 2 && <span className="badge-gray">+{d.programs.length - 2}</span>}
+                    </div>
+                  </td>
+                  <td>
+                    <Link href={`/departments/${d.slug}`} className="text-xs text-[#1e3a8a] hover:underline flex items-center gap-1 whitespace-nowrap">
+                      View <ChevronRight className="w-3 h-3" />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

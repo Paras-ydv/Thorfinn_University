@@ -1,104 +1,154 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { CheckCircle, Calendar, FileText, ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
-const STEPS = [
-  { step: "01", title: "Check Eligibility", desc: "Review program requirements and entrance exam criteria.", icon: FileText },
-  { step: "02", title: "Fill Application", desc: "Complete the online application form with all required documents.", icon: FileText },
-  { step: "03", title: "Entrance Exam", desc: "Appear for JEE/GATE/CAT or university entrance test.", icon: Calendar },
-  { step: "04", title: "Counseling", desc: "Attend counseling session and select your preferred program.", icon: CheckCircle },
-  { step: "05", title: "Admission Confirmed", desc: "Pay fees and complete enrollment formalities.", icon: CheckCircle },
+export const metadata: Metadata = { title: "Admissions" };
+
+const DATES = [
+  { event: "Application Portal Opens",       date: "January 1, 2025" },
+  { event: "Application Deadline (B.Tech)",  date: "March 31, 2025" },
+  { event: "Application Deadline (M.Tech)",  date: "April 15, 2025" },
+  { event: "Application Deadline (MBA)",     date: "April 30, 2025" },
+  { event: "Entrance Exam (University Test)",date: "May 10, 2025" },
+  { event: "Results Announcement",           date: "May 25, 2025" },
+  { event: "Counseling & Seat Allotment",    date: "June 1–15, 2025" },
+  { event: "Fee Payment Deadline",           date: "June 20, 2025" },
+  { event: "Commencement of Classes",        date: "July 15, 2025" },
 ];
 
-const PROGRAMS_FEE = [
-  { program: "B.Tech (All branches)", fee: "₹1,20,000/year", seats: 720, exam: "JEE Main" },
-  { program: "M.Tech", fee: "₹80,000/year", seats: 300, exam: "GATE" },
-  { program: "MBA", fee: "₹1,50,000/year", seats: 120, exam: "CAT/MAT" },
-  { program: "Ph.D", fee: "₹40,000/year", seats: 100, exam: "University Test" },
+const PROGRAMS = [
+  { name: "B.Tech (All branches)", fee: "1,20,000", seats: 720, exam: "JEE Main" },
+  { name: "M.Tech",                fee: "80,000",   seats: 300, exam: "GATE" },
+  { name: "MBA",                   fee: "1,50,000", seats: 120, exam: "CAT / MAT" },
+  { name: "Ph.D",                  fee: "40,000",   seats: 100, exam: "University Test" },
 ];
 
 export default function AdmissionsPage() {
   return (
-    <div className="bg-dark-900 pt-16">
-      <section className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900/20 to-blue-900/20" />
-        <div className="container-max relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <span className="inline-block px-3 py-1 text-xs font-semibold text-green-400 bg-green-500/10 border border-green-500/20 rounded-full mb-4">
-              Applications Open — 2025
-            </span>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
-              Join <span className="gradient-text">Thorfinn</span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-              Begin your journey to excellence. Applications for 2025 intake are now open.
-            </p>
-            <Link href="/signup" className="btn-primary text-base inline-flex items-center gap-2">
-              Apply Now <ArrowRight className="w-4 h-4" />
-            </Link>
-          </motion.div>
+    <div className="bg-white pt-16">
+      <div className="bg-[#0f172a]">
+        <div className="container-max py-12">
+          <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-slate-300">Admissions</span>
+          </nav>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">Admissions 2025</h1>
+          <p className="text-slate-400 mt-2 text-sm max-w-xl">
+            Applications for the 2025 intake are now open. Review eligibility criteria and apply before the deadline.
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* Process */}
-      <section className="section-padding container-max">
-        <SectionHeader badge="Process" title="How to Apply" subtitle="Simple 5-step admission process." />
-        <div className="relative max-w-3xl mx-auto">
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 to-violet-500 hidden sm:block" />
-          {STEPS.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6 mb-8 relative"
-              >
-                <div className="w-16 h-16 rounded-full glass border border-blue-500/30 flex items-center justify-center flex-shrink-0 z-10">
-                  <span className="text-blue-400 font-bold">{step.step}</span>
-                </div>
-                <div className="glass rounded-2xl p-6 flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <Icon className="w-5 h-5 text-blue-400" />
-                    <h3 className="font-bold text-white">{step.title}</h3>
+      <div className="container-max py-12">
+        <div className="grid lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2 space-y-10">
+            {/* Process */}
+            <section>
+              <p className="section-label">How to Apply</p>
+              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">Admission Process</h2>
+              <ol className="space-y-4">
+                {[
+                  { n: "01", t: "Check Eligibility",    d: "Review the eligibility criteria for your chosen program. Ensure you meet the academic and entrance exam requirements." },
+                  { n: "02", t: "Register Online",      d: "Create an account on the admissions portal and fill in the application form with accurate personal and academic details." },
+                  { n: "03", t: "Upload Documents",     d: "Upload scanned copies of mark sheets, certificates, ID proof, and passport-size photograph as specified." },
+                  { n: "04", t: "Pay Application Fee",  d: "Pay the non-refundable application fee of Rs. 1,000 via net banking, UPI, or credit/debit card." },
+                  { n: "05", t: "Appear for Entrance",  d: "Appear for JEE Main / GATE / CAT or the university entrance test as applicable to your program." },
+                  { n: "06", t: "Counseling & Joining", d: "Attend the counseling session, confirm your seat, pay the first-semester fee, and complete enrollment formalities." },
+                ].map(s => (
+                  <li key={s.n} className="flex gap-5">
+                    <span className="text-2xl font-bold text-slate-200 font-serif flex-shrink-0 w-8">{s.n}</span>
+                    <div className="pt-1">
+                      <p className="font-semibold text-slate-900 text-sm mb-1">{s.t}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{s.d}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            {/* Fee structure */}
+            <section>
+              <p className="section-label">Fees</p>
+              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Fee Structure (Annual)</h2>
+              <div className="card overflow-hidden">
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th>Program</th>
+                      <th>Annual Fee (INR)</th>
+                      <th>Seats</th>
+                      <th>Entrance Exam</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {PROGRAMS.map(p => (
+                      <tr key={p.name}>
+                        <td className="font-medium text-slate-900">{p.name}</td>
+                        <td>Rs. {p.fee}</td>
+                        <td>{p.seats}</td>
+                        <td><span className="badge-blue">{p.exam}</span></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-slate-500 mt-2">* Fees are subject to revision. Hostel and mess charges are additional.</p>
+            </section>
+
+            {/* Eligibility */}
+            <section>
+              <p className="section-label">Eligibility</p>
+              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Eligibility Criteria</h2>
+              <div className="space-y-3">
+                {[
+                  { prog: "B.Tech", criteria: "10+2 with Physics, Chemistry, Mathematics. Minimum 60% aggregate. Valid JEE Main score." },
+                  { prog: "M.Tech", criteria: "B.Tech / B.E. in relevant discipline with minimum 60% aggregate. Valid GATE score." },
+                  { prog: "MBA",    criteria: "Bachelor's degree in any discipline with minimum 50% aggregate. Valid CAT / MAT score." },
+                  { prog: "Ph.D",   criteria: "Master's degree in relevant discipline with minimum 55% aggregate. University entrance test." },
+                ].map(e => (
+                  <div key={e.prog} className="card p-4 flex gap-4">
+                    <span className="text-xs font-bold text-[#1e3a8a] bg-blue-50 px-2 py-1 rounded h-fit flex-shrink-0">{e.prog}</span>
+                    <p className="text-sm text-slate-600 leading-relaxed">{e.criteria}</p>
                   </div>
-                  <p className="text-gray-400 text-sm">{step.desc}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Fee Structure */}
-      <section className="section-padding container-max">
-        <SectionHeader badge="Fees" title="Fee Structure" />
-        <div className="glass rounded-3xl overflow-hidden max-w-3xl mx-auto">
-          <div className="grid grid-cols-4 gap-4 p-4 border-b border-white/10 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            <span>Program</span><span>Annual Fee</span><span>Seats</span><span>Entrance</span>
+                ))}
+              </div>
+            </section>
           </div>
-          {PROGRAMS_FEE.map((p, i) => (
-            <motion.div
-              key={p.program}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="grid grid-cols-4 gap-4 p-4 border-b border-white/5 hover:bg-white/5 transition-colors text-sm"
-            >
-              <span className="text-white font-medium">{p.program}</span>
-              <span className="text-green-400 font-semibold">{p.fee}</span>
-              <span className="text-gray-400">{p.seats}</span>
-              <span className="text-blue-400">{p.exam}</span>
-            </motion.div>
-          ))}
+
+          {/* Sidebar */}
+          <div className="space-y-5">
+            <div className="bg-[#1e3a8a] rounded-lg p-5 text-white">
+              <p className="text-xs font-semibold uppercase tracking-widest text-blue-200 mb-3">Apply Now</p>
+              <p className="text-sm text-blue-100 mb-4">Applications for 2025 are open. Deadline: March 31, 2025.</p>
+              <Link href="/signup" className="block text-center bg-white text-[#1e3a8a] font-semibold text-sm py-2.5 rounded hover:bg-blue-50 transition-colors">
+                Start Application
+              </Link>
+            </div>
+
+            <div className="card overflow-hidden">
+              <div className="px-5 py-4 bg-slate-50 border-b border-slate-200">
+                <h3 className="text-sm font-semibold text-slate-700">Important Dates</h3>
+              </div>
+              <div className="divide-y divide-slate-100">
+                {DATES.map(d => (
+                  <div key={d.event} className="px-5 py-3">
+                    <p className="text-xs font-medium text-slate-800">{d.event}</p>
+                    <p className="text-xs text-[#1e3a8a] font-semibold mt-0.5">{d.date}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="card p-5">
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Contact Admissions</h3>
+              <p className="text-sm text-slate-600">admissions@thorfinn.edu</p>
+              <p className="text-sm text-slate-600">+91 80 2345 6790</p>
+              <p className="text-xs text-slate-500 mt-2">Mon–Fri, 9:00 AM – 5:00 PM</p>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

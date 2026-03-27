@@ -26,15 +26,15 @@ import Image from "next/image";
 
 export default function AlumniPage() {
   return (
-    <div className="bg-dark-900 pt-16">
+    <div className="bg-slate-50 pt-16">
       <section className="relative section-padding overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-pink-900/20" />
         <div className="container-max relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
               <span className="gradient-text">Alumni</span> Network
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
               50,000+ alumni across 80+ countries, leading industries and shaping the world.
             </p>
           </motion.div>
@@ -53,7 +53,7 @@ export default function AlumniPage() {
             <motion.div key={label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-6 text-center">
               <Icon className="w-8 h-8 text-violet-400 mx-auto mb-3" />
               <p className="text-2xl font-bold gradient-text">{value}</p>
-              <p className="text-sm text-gray-400 mt-1">{label}</p>
+              <p className="text-sm text-slate-600 mt-1">{label}</p>
             </motion.div>
           ))}
         </div>
@@ -79,7 +79,7 @@ export default function AlumniPage() {
                 transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
                 className="w-4 h-4 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50 mb-1"
               />
-              <span className="text-xs text-white font-semibold bg-dark-800/80 px-2 py-0.5 rounded-full">{node.label}</span>
+              <span className="text-xs text-slate-900 font-semibold bg-white/80 px-2 py-0.5 rounded-full">{node.label}</span>
               <span className="text-xs text-blue-400">{node.count.toLocaleString()}</span>
             </motion.div>
           ))}
@@ -94,9 +94,9 @@ export default function AlumniPage() {
                 <Image src={alumni.img} alt={alumni.name} fill className="object-cover" />
               </div>
               <div>
-                <h3 className="font-bold text-white">{alumni.name}</h3>
+                <h3 className="font-bold text-slate-900">{alumni.name}</h3>
                 <p className="text-sm text-violet-400">{alumni.role}</p>
-                <p className="text-xs text-gray-500 mt-1">{alumni.batch}</p>
+                <p className="text-xs text-slate-500 mt-1">{alumni.batch}</p>
               </div>
             </motion.div>
           ))}

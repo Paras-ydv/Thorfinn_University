@@ -1,340 +1,292 @@
-"use client";
-
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Play, ChevronDown, Star, TrendingUp, Users, BookOpen, X } from "lucide-react";
-import { STATS, DEPARTMENTS } from "@/lib/data";
-import { StatCard } from "@/components/ui/StatCard";
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { AIChatbot } from "@/components/ui/AIChatbot";
 
-const PATHS = [
-  { id: "academics", label: "Academics First", icon: BookOpen, color: "from-blue-500 to-cyan-500", desc: "Explore world-class programs and research opportunities" },
-  { id: "career", label: "Career First", icon: TrendingUp, color: "from-violet-500 to-purple-500", desc: "94% placement rate with top global companies" },
-  { id: "campus", label: "Campus Life First", icon: Users, color: "from-orange-500 to-pink-500", desc: "Vibrant community, clubs, sports, and events" },
+const STATS = [
+  { value: "12,000+", label: "Students Enrolled" },
+  { value: "500+",    label: "Faculty Members" },
+  { value: "94%",     label: "Placement Rate" },
+  { value: "2,400+",  label: "Research Publications" },
+  { value: "50,000+", label: "Alumni Worldwide" },
+  { value: "200",     label: "Acres Campus" },
 ];
 
-const PATH_CONTENT = {
-  academics: {
-    highlights: ["200+ Programs", "50+ Research Labs", "PhD Programs", "International Exchange"],
-    cta: { label: "Explore Academics", href: "/academics" },
-  },
-  career: {
-    highlights: ["₹45 LPA Highest Package", "500+ Hiring Companies", "Career Mentorship", "Internship Network"],
-    cta: { label: "View Placements", href: "/placements" },
-  },
-  campus: {
-    highlights: ["200-Acre Campus", "50+ Student Clubs", "World-class Sports", "24/7 Hostel"],
-    cta: { label: "Explore Campus", href: "/campus-life" },
-  },
-};
+const DEPARTMENTS = [
+  { name: "Computer Science & Engineering",  short: "CSE",  href: "/departments/computer-science",  students: 1200, faculty: 45 },
+  { name: "Electronics & Communication",     short: "ECE",  href: "/departments/electronics",        students: 850,  faculty: 35 },
+  { name: "Mechanical Engineering",          short: "ME",   href: "/departments/mechanical",         students: 900,  faculty: 38 },
+  { name: "Civil Engineering",               short: "CE",   href: "/departments/civil",              students: 700,  faculty: 30 },
+  { name: "Business Administration",         short: "MBA",  href: "/departments/mba",                students: 600,  faculty: 28 },
+  { name: "CS & Business Systems",           short: "CSBS", href: "/departments/csbs",               students: 500,  faculty: 22 },
+];
+
+const NEWS = [
+  { date: "Dec 12, 2024", category: "Research",   title: "Thorfinn researchers develop low-power AI chip for edge computing" },
+  { date: "Dec 8, 2024",  category: "Placements", title: "Record 94% placement rate achieved for the batch of 2024" },
+  { date: "Dec 3, 2024",  category: "Events",     title: "Annual TechSummit 2024 to be held on January 15–17, 2025" },
+  { date: "Nov 28, 2024", category: "Admissions", title: "Applications for B.Tech 2025 intake now open — deadline March 31" },
+];
+
+const EVENTS = [
+  { date: "Jan 15", title: "TechSummit 2025",          type: "Technical",  venue: "Main Auditorium" },
+  { date: "Jan 20", title: "Admissions Open Day",       type: "Admissions", venue: "Admin Block" },
+  { date: "Feb 5",  title: "Annual Sports Meet",        type: "Sports",     venue: "Sports Complex" },
+  { date: "Feb 14", title: "Research Symposium 2025",   type: "Research",   venue: "Conference Hall" },
+];
+
+const RESEARCH = [
+  { area: "Artificial Intelligence & Machine Learning", papers: 145, pi: "Dr. Arun Patel" },
+  { area: "VLSI Design & Embedded Systems",             papers: 98,  pi: "Dr. Anil Verma" },
+  { area: "Sustainable Manufacturing",                  papers: 76,  pi: "Dr. Priya Sharma" },
+  { area: "Business Analytics & FinTech",               papers: 54,  pi: "Dr. Meera Nair" },
+];
 
 export default function HomePage() {
-  const [activePath, setActivePath] = useState<"academics" | "career" | "campus">("academics");
-  const [tourOpen, setTourOpen] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
   return (
-    <div className="bg-dark-900">
+    <div className="bg-white">
       {/* ── HERO ── */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Video — aerial drone shot */}
-        <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-40"
-            poster="/images/hero-poster.jpg"
-          >
-            <source src="/videos/s_Aerial_drone_shot_sweepi.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-dark-900/50 via-dark-900/30 to-dark-900" />
-          <div className="absolute inset-0 bg-gradient-radial from-blue-900/20 via-transparent to-transparent" />
-        </motion.div>
-
-        {/* Animated orbs — always visible, layer behind video */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <motion.div
-            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-3xl"
-          />
-        </div>
-
-        {/* Hero Content */}
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <span className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full text-sm text-blue-300 mb-6">
-              <Star className="w-4 h-4 fill-current" /> Ranked #1 in Innovation 2024
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white mb-6 leading-tight"
-          >
-            Shape Your{" "}
-            <span className="gradient-text">Future</span>
-            <br />at Thorfinn
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed"
-          >
-            Where world-class education meets cutting-edge research and a vibrant campus community.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link href="/admissions" className="btn-primary flex items-center gap-2 justify-center text-base">
-              Apply for 2025 <ArrowRight className="w-4 h-4" />
-            </Link>
-            <button
-              onClick={() => setTourOpen(true)}
-              className="btn-ghost flex items-center gap-2 justify-center text-base"
-            >
-              <Play className="w-4 h-4" /> Watch Campus Tour
-            </button>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-gray-400"
-        >
-          <ChevronDown className="w-6 h-6" />
-        </motion.div>
-      </section>
-
-      {/* ── CAMPUS TOUR MODAL ── */}
-      <AnimatePresence>
-        {tourOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4"
-            onClick={() => setTourOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-4xl aspect-video rounded-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <video
-                autoPlay
-                controls
-                className="w-full h-full object-cover"
-              >
-                <source src="/videos/Quick_cuts_of_campus_life—stud.mp4" type="video/mp4" />
-              </video>
-              <button
-                onClick={() => setTourOpen(false)}
-                className="absolute top-4 right-4 w-9 h-9 glass rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── STATS ── */}
-      <section className="section-padding container-max">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {STATS.map((stat, i) => (
-            <StatCard key={stat.label} {...stat} delay={i * 0.08} />
-          ))}
-        </div>
-      </section>
-
-      {/* ── PERSONALIZED PATH SELECTOR ── */}
-      <section className="section-padding container-max">
-        <SectionHeader
-          badge="Your Journey"
-          title="Choose Your Path"
-          subtitle="Thorfinn adapts to what matters most to you. Select your priority and explore a tailored experience."
-        />
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          {PATHS.map((path) => {
-            const Icon = path.icon;
-            const active = activePath === path.id;
-            return (
-              <motion.button
-                key={path.id}
-                onClick={() => setActivePath(path.id as typeof activePath)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`flex items-center gap-3 px-6 py-4 rounded-2xl border transition-all duration-300 text-left ${
-                  active
-                    ? "border-blue-500/50 bg-blue-500/10 shadow-lg shadow-blue-500/10"
-                    : "border-white/10 glass hover:border-white/20"
-                }`}
-              >
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${path.color} flex items-center justify-center flex-shrink-0`}>
-                  <Icon className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="font-semibold text-white text-sm">{path.label}</p>
-                  <p className="text-xs text-gray-400 mt-0.5 max-w-[180px]">{path.desc}</p>
-                </div>
-              </motion.button>
-            );
-          })}
-        </div>
-
-        <motion.div
-          key={activePath}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="glass rounded-3xl p-8 max-w-3xl mx-auto"
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-            {PATH_CONTENT[activePath].highlights.map((h, i) => (
-              <motion.div
-                key={h}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.08 }}
-                className="glass rounded-xl p-4 text-center"
-              >
-                <p className="text-sm font-medium text-white">{h}</p>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link href={PATH_CONTENT[activePath].cta.href} className="btn-primary inline-flex items-center gap-2">
-              {PATH_CONTENT[activePath].cta.label} <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ── DEPARTMENTS PREVIEW ── */}
-      <section className="section-padding container-max">
-        <SectionHeader
-          badge="Academics"
-          title="World-Class Departments"
-          subtitle="Six departments, hundreds of programs, and thousands of opportunities."
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {DEPARTMENTS.map((dept, i) => (
-            <motion.div
-              key={dept.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
-              <Link href={`/departments/${dept.slug}`}>
-                <div className="glass rounded-2xl p-6 card-hover group cursor-pointer h-full">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${dept.color} flex items-center justify-center text-2xl mb-4`}>
-                    {dept.icon}
-                  </div>
-                  <h3 className="font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{dept.name}</h3>
-                  <p className="text-sm text-gray-400 mb-4 leading-relaxed">{dept.description}</p>
-                  <div className="flex gap-4 text-xs text-gray-500">
-                    <span>{dept.students} students</span>
-                    <span>{dept.faculty} faculty</span>
-                    <span>{dept.labs.length} labs</span>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-        <div className="text-center mt-10">
-          <Link href="/departments" className="btn-ghost inline-flex items-center gap-2">
-            View All Departments <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
-
-      {/* ── SCROLL STORYTELLING / TIMELINE ── */}
-      <section className="section-padding bg-gradient-to-b from-dark-900 to-dark-800">
-        <div className="container-max">
-          <SectionHeader badge="Our Story" title="A Legacy of Excellence" />
-          <div className="relative max-w-4xl mx-auto">
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-violet-500 to-pink-500 hidden md:block" />
-            {[
-              { year: "1965", title: "Founded", desc: "Thorfinn University established with a vision to democratize world-class education.", side: "left" },
-              { year: "1985", title: "Research Excellence", desc: "Launched 20+ research centers, attracting global talent and funding.", side: "right" },
-              { year: "2005", title: "Global Recognition", desc: "Ranked among Asia's top 50 universities. International collaborations with MIT, Stanford.", side: "left" },
-              { year: "2015", title: "Innovation Hub", desc: "Opened the Innovation & Entrepreneurship Center. 100+ startups incubated.", side: "right" },
-              { year: "2024", title: "AI & Future Tech", desc: "Launched AI Research Institute. 94% placement rate. ₹45 LPA highest package.", side: "left" },
-            ].map((item, i) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: item.side === "left" ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`relative flex items-center mb-12 ${item.side === "right" ? "md:flex-row-reverse" : ""}`}
-              >
-                <div className={`w-full md:w-5/12 ${item.side === "right" ? "md:pl-8" : "md:pr-8"}`}>
-                  <div className="glass rounded-2xl p-6">
-                    <span className="text-blue-400 font-bold text-lg">{item.year}</span>
-                    <h3 className="text-white font-bold text-xl mt-1 mb-2">{item.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 border-2 border-dark-900 z-10" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="section-padding container-max">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative glass rounded-3xl p-12 text-center overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-violet-600/10" />
-          <div className="relative z-10">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Ready to Begin?</h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-xl mx-auto">
-              Applications for 2025 are now open. Join 12,000+ students shaping the future.
+      <section className="relative bg-[#0f172a] pt-16">
+        <div className="container-max py-20 lg:py-28">
+          <div className="max-w-3xl">
+            <p className="section-label text-blue-400 mb-4">Est. 1965 — Ranked #1 in Innovation</p>
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+              Advancing Knowledge.<br />Shaping Leaders.
+            </h1>
+            <p className="text-lg text-slate-300 leading-relaxed mb-10 max-w-xl">
+              Thorfinn University is committed to excellence in education, research, and public service — preparing graduates to lead in a rapidly changing world.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/admissions" className="btn-primary text-base flex items-center gap-2 justify-center">
-                Apply Now — 2025 <ArrowRight className="w-4 h-4" />
+            <div className="flex flex-wrap gap-3">
+              <Link href="/admissions" className="btn-primary">
+                Apply for 2025 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/contact" className="btn-ghost text-base">
-                Talk to Admissions
+              <Link href="/academics" className="btn-outline border-slate-400 text-slate-200 hover:bg-white hover:text-[#1e3a8a]">
+                Explore Programs
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
+        {/* Bottom border accent */}
+        <div className="h-1 bg-[#1e3a8a]" />
+      </section>
+
+      {/* ── STATS ── */}
+      <section className="bg-slate-50 border-b border-slate-200">
+        <div className="container-max">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-slate-200">
+            {STATS.map((s) => (
+              <div key={s.label} className="px-6 py-8 text-center">
+                <p className="text-2xl font-bold text-[#1e3a8a] font-serif">{s.value}</p>
+                <p className="text-xs text-slate-500 mt-1 leading-snug">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── DEPARTMENTS ── */}
+      <section className="section-pad border-b border-slate-100">
+        <div className="container-max">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="section-label">Academic Departments</p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">Schools & Departments</h2>
+            </div>
+            <Link href="/departments" className="text-sm text-[#1e3a8a] font-medium hover:underline hidden sm:flex items-center gap-1">
+              All Departments <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200">
+            {DEPARTMENTS.map((dept) => (
+              <Link key={dept.short} href={dept.href}>
+                <div className="bg-white p-6 hover:bg-slate-50 transition-colors group h-full">
+                  <div className="flex items-start justify-between mb-3">
+                    <span className="text-xs font-bold text-[#1e3a8a] bg-blue-50 px-2 py-1 rounded">
+                      {dept.short}
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#1e3a8a] transition-colors" />
+                  </div>
+                  <h3 className="font-semibold text-slate-900 text-sm leading-snug mb-3 group-hover:text-[#1e3a8a] transition-colors">
+                    {dept.name}
+                  </h3>
+                  <div className="flex gap-4 text-xs text-slate-500">
+                    <span>{dept.students} students</span>
+                    <span>{dept.faculty} faculty</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-4 sm:hidden">
+            <Link href="/departments" className="text-sm text-[#1e3a8a] font-medium hover:underline flex items-center gap-1">
+              View all departments <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── NEWS + EVENTS ── */}
+      <section className="section-pad border-b border-slate-100">
+        <div className="container-max">
+          <div className="grid lg:grid-cols-3 gap-12">
+            {/* News */}
+            <div className="lg:col-span-2">
+              <div className="flex items-end justify-between mb-6">
+                <div>
+                  <p className="section-label">Latest Updates</p>
+                  <h2 className="font-serif text-2xl font-bold text-slate-900">News & Announcements</h2>
+                </div>
+                <Link href="#" className="text-sm text-[#1e3a8a] font-medium hover:underline hidden sm:flex items-center gap-1">
+                  All News <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <div className="divide-y divide-slate-100">
+                {NEWS.map((item) => (
+                  <div key={item.title} className="py-4 flex gap-4 group cursor-pointer">
+                    <div className="flex-shrink-0 text-right w-24">
+                      <p className="text-xs text-slate-400">{item.date}</p>
+                    </div>
+                    <div>
+                      <span className="badge-blue mb-1.5">{item.category}</span>
+                      <p className="text-sm font-medium text-slate-800 group-hover:text-[#1e3a8a] transition-colors leading-snug">
+                        {item.title}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Events */}
+            <div>
+              <div className="mb-6">
+                <p className="section-label">Upcoming</p>
+                <h2 className="font-serif text-2xl font-bold text-slate-900">Events</h2>
+              </div>
+              <div className="space-y-3">
+                {EVENTS.map((ev) => (
+                  <div key={ev.title} className="card p-4 hover:shadow-sm transition-shadow cursor-pointer">
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0 w-12 text-center">
+                        <p className="text-lg font-bold text-[#1e3a8a] font-serif leading-none">
+                          {ev.date.split(" ")[1]}
+                        </p>
+                        <p className="text-xs text-slate-500 uppercase">{ev.date.split(" ")[0]}</p>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-slate-800 leading-snug">{ev.title}</p>
+                        <p className="text-xs text-slate-500 mt-1">{ev.venue}</p>
+                        <span className="badge-gray mt-1.5">{ev.type}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── RESEARCH ── */}
+      <section className="section-pad bg-slate-50 border-b border-slate-200">
+        <div className="container-max">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="section-label">Innovation & Discovery</p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">Research Highlights</h2>
+            </div>
+            <Link href="/research" className="text-sm text-[#1e3a8a] font-medium hover:underline hidden sm:flex items-center gap-1">
+              All Research <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {RESEARCH.map((r) => (
+              <div key={r.area} className="card p-5 hover:shadow-sm transition-shadow">
+                <p className="text-sm font-semibold text-slate-800 leading-snug mb-3">{r.area}</p>
+                <p className="text-xs text-slate-500 mb-1">Principal Investigator</p>
+                <p className="text-xs font-medium text-slate-700">{r.pi}</p>
+                <div className="mt-4 pt-4 border-t border-slate-100">
+                  <p className="text-xl font-bold text-[#1e3a8a] font-serif">{r.papers}</p>
+                  <p className="text-xs text-slate-500">Publications</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ALUMNI HIGHLIGHT ── */}
+      <section className="section-pad border-b border-slate-100">
+        <div className="container-max">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="section-label">Our Community</p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
+                A Global Alumni Network
+              </h2>
+              <p className="text-slate-600 leading-relaxed mb-6">
+                Over 50,000 Thorfinn alumni are making an impact across industries and continents — from Silicon Valley to Singapore, from research labs to boardrooms.
+              </p>
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                {[
+                  { v: "50,000+", l: "Alumni" },
+                  { v: "80+",     l: "Countries" },
+                  { v: "200+",    l: "CEOs & Founders" },
+                ].map((s) => (
+                  <div key={s.l} className="text-center p-4 bg-slate-50 rounded border border-slate-200">
+                    <p className="text-xl font-bold text-[#1e3a8a] font-serif">{s.v}</p>
+                    <p className="text-xs text-slate-500 mt-1">{s.l}</p>
+                  </div>
+                ))}
+              </div>
+              <Link href="/alumni" className="btn-outline">
+                Explore Alumni Network <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="space-y-3">
+              {[
+                { name: "Arjun Kapoor",  batch: "B.Tech CSE, 2010",  role: "CTO, TechCorp Inc." },
+                { name: "Priya Nair",    batch: "MBA, 2012",          role: "Vice President, Goldman Sachs" },
+                { name: "Rahul Sharma",  batch: "B.Tech ECE, 2008",   role: "Founder & CEO, StartupX" },
+                { name: "Ananya Patel",  batch: "B.Tech CSBS, 2015",  role: "ML Engineer, Google" },
+              ].map((a) => (
+                <div key={a.name} className="card p-4 flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                    {a.name.split(" ").map((n) => n[0]).join("")}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-800">{a.name}</p>
+                    <p className="text-xs text-slate-500">{a.role}</p>
+                    <p className="text-xs text-slate-400">{a.batch}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA BANNER ── */}
+      <section className="bg-[#1e3a8a]">
+        <div className="container-max py-14 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h2 className="font-serif text-2xl font-bold text-white mb-1">
+              Applications for 2025 are now open
+            </h2>
+            <p className="text-blue-200 text-sm">
+              Deadline: March 31, 2025. Limited seats available across all programs.
+            </p>
+          </div>
+          <div className="flex gap-3 flex-shrink-0">
+            <Link href="/admissions" className="btn-primary bg-white text-[#1e3a8a] hover:bg-blue-50">
+              Apply Now <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/contact" className="btn-outline border-white text-white hover:bg-white hover:text-[#1e3a8a]">
+              Contact Us
+            </Link>
+          </div>
+        </div>
       </section>
 
       <AIChatbot />
