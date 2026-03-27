@@ -24,8 +24,8 @@ export default function ResearchPage() {
   return (
     <div className="bg-white pt-16">
       {/* Dark Hero like Academics */}
-      <div className="bg-[#0f172a]">
-        <div className="container-max py-20 lg:py-24">
+      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
+        <div className="container-max py-20 lg:py-24 w-full">
           <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />

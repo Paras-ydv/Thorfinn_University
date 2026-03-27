@@ -26,21 +26,21 @@ const PROGRAMS = [
 export default function AdmissionsPage() {
   return (
     <div className="bg-white pt-16">
-      <div className="bg-[#0f172a]">
-        <div className="container-max py-12">
-          <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
+        <div className="container-max py-20 lg:py-24 w-full">
+          <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
+            <ChevronRight className="w-4 h-4" />
             <span className="text-slate-300">Admissions</span>
           </nav>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">Admissions 2025</h1>
-          <p className="text-slate-400 mt-2 text-sm max-w-xl">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">Admissions 2025</h1>
+          <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
             Applications for the 2025 intake are now open. Review eligibility criteria and apply before the deadline.
           </p>
         </div>
       </div>
 
-      <div className="container-max py-12">
+      <div className="container-max py-16">
         <div className="grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-10">
             {/* Process */}

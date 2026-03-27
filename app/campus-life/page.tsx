@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ChevronRight, Music, Trophy, Utensils, Dumbbell, BookOpen, Heart, ArrowRight } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = { title: "Campus Life" };
+import Link from "next/link";
+import { ChevronRight, Music, Trophy, Utensils, Dumbbell, BookOpen, Heart, ArrowRight, Radio } from "lucide-react";
+import { HappeningNow } from "@/app/dashboard/components/HappeningNow";
 
 const CLUBS = [
   { name: "Coding Club", members: 450, category: "Technical" },
@@ -33,8 +33,8 @@ const EVENTS = [
 export default function CampusLifePage() {
   return (
     <div className="bg-white pt-16">
-      <div className="bg-[#0f172a]">
-        <div className="container-max py-20 lg:py-24">
+      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
+        <div className="container-max py-20 lg:py-24 w-full">
           <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />
@@ -47,7 +47,25 @@ export default function CampusLifePage() {
         </div>
       </div>
 
-      <div className="container-max py-16">
+      <div className="container-max py-16 space-y-16">
+
+        {/* ── HAPPENING NOW ── */}
+        <section>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+            <Radio className="w-5 h-5 text-[#1e3a8a]" />
+            <h2 className="font-serif text-3xl font-bold text-slate-900 tracking-tight">Happening Now</h2>
+            <span className="text-xs font-bold text-red-500 uppercase tracking-widest ml-1">Live</span>
+          </div>
+          <p className="text-slate-500 text-sm mb-6 max-w-2xl">
+            Real-time micro-events happening across campus right now — study groups forming, impromptu sessions, free food, and more. Post your own update for others to see.
+          </p>
+          <HappeningNow />
+        </section>
+
         <div className="grid lg:grid-cols-3 gap-12">
           
           <div className="lg:col-span-2 space-y-12">

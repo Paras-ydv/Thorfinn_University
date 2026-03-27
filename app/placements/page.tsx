@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Search, ChevronUp, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { Search, ChevronUp, ChevronDown, ChevronRight } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from "recharts";
 
 const COMPANIES = [
@@ -74,17 +75,21 @@ export default function PlacementsPage() {
   return (
     <div className="bg-white pt-16">
       {/* Page header */}
-      <div className="bg-[#0f172a] border-b border-slate-800">
-        <div className="container-max py-12">
-          <p className="section-label text-blue-400">Career Development</p>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">Placements 2024</h1>
-          <p className="text-slate-400 mt-2 text-sm max-w-xl">
+      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
+        <div className="container-max py-20 lg:py-24 w-full">
+          <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-slate-300">Placements</span>
+          </nav>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight mt-1">Placements 2024</h1>
+          <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
             Placement statistics for the graduating batch of 2024. Data verified by the Training & Placement Cell.
           </p>
         </div>
       </div>
 
-      <div className="container-max py-10">
+      <div className="container-max py-16">
         {/* Key stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-slate-200 border border-slate-200 rounded-lg overflow-hidden mb-10">
           {[
