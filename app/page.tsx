@@ -3,42 +3,42 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { AIChatbot } from "@/components/ui/AIChatbot";
 
 const STATS = [
-  { value: "12,000+", label: "Students Enrolled" },
-  { value: "500+",    label: "Faculty Members" },
-  { value: "94%",     label: "Placement Rate" },
-  { value: "2,400+",  label: "Research Publications" },
+  { value: "1,20,000+", label: "Students Enrolled" },
+  { value: "500+", label: "Faculty Members" },
+  { value: "94%", label: "Placement Rate" },
+  { value: "2,400+", label: "Research Publications" },
   { value: "50,000+", label: "Alumni Worldwide" },
-  { value: "200",     label: "Acres Campus" },
+  { value: "200", label: "Acres Campus" },
 ];
 
 const DEPARTMENTS = [
-  { name: "Computer Science & Engineering",  short: "CSE",  href: "/departments/computer-science",  students: 1200, faculty: 45 },
-  { name: "Electronics & Communication",     short: "ECE",  href: "/departments/electronics",        students: 850,  faculty: 35 },
-  { name: "Mechanical Engineering",          short: "ME",   href: "/departments/mechanical",         students: 900,  faculty: 38 },
-  { name: "Civil Engineering",               short: "CE",   href: "/departments/civil",              students: 700,  faculty: 30 },
-  { name: "Business Administration",         short: "MBA",  href: "/departments/mba",                students: 600,  faculty: 28 },
-  { name: "CS & Business Systems",           short: "CSBS", href: "/departments/csbs",               students: 500,  faculty: 22 },
+  { name: "Computer Science & Engineering", short: "CSE", href: "/departments/computer-science", students: 1200, faculty: 45 },
+  { name: "Electronics & Communication", short: "ECE", href: "/departments/electronics", students: 850, faculty: 35 },
+  { name: "Mechanical Engineering", short: "ME", href: "/departments/mechanical", students: 900, faculty: 38 },
+  { name: "Civil Engineering", short: "CE", href: "/departments/civil", students: 700, faculty: 30 },
+  { name: "Business Administration", short: "MBA", href: "/departments/mba", students: 600, faculty: 28 },
+  { name: "CS & Business Systems", short: "CSBS", href: "/departments/csbs", students: 500, faculty: 22 },
 ];
 
 const NEWS = [
-  { date: "Dec 12, 2024", category: "Research",   title: "Thorfinn researchers develop low-power AI chip for edge computing" },
-  { date: "Dec 8, 2024",  category: "Placements", title: "Record 94% placement rate achieved for the batch of 2024" },
-  { date: "Dec 3, 2024",  category: "Events",     title: "Annual TechSummit 2024 to be held on January 15–17, 2025" },
+  { date: "Dec 12, 2024", category: "Research", title: "Thorfinn researchers develop low-power AI chip for edge computing" },
+  { date: "Dec 8, 2024", category: "Placements", title: "Record 94% placement rate achieved for the batch of 2024" },
+  { date: "Dec 3, 2024", category: "Events", title: "Annual TechSummit 2024 to be held on January 15–17, 2025" },
   { date: "Nov 28, 2024", category: "Admissions", title: "Applications for B.Tech 2025 intake now open — deadline March 31" },
 ];
 
 const EVENTS = [
-  { date: "Jan 15", title: "TechSummit 2025",          type: "Technical",  venue: "Main Auditorium" },
-  { date: "Jan 20", title: "Admissions Open Day",       type: "Admissions", venue: "Admin Block" },
-  { date: "Feb 5",  title: "Annual Sports Meet",        type: "Sports",     venue: "Sports Complex" },
-  { date: "Feb 14", title: "Research Symposium 2025",   type: "Research",   venue: "Conference Hall" },
+  { date: "Jan 15", title: "TechSummit 2025", type: "Technical", venue: "Main Auditorium" },
+  { date: "Jan 20", title: "Admissions Open Day", type: "Admissions", venue: "Admin Block" },
+  { date: "Feb 5", title: "Annual Sports Meet", type: "Sports", venue: "Sports Complex" },
+  { date: "Feb 14", title: "Research Symposium 2025", type: "Research", venue: "Conference Hall" },
 ];
 
 const RESEARCH = [
   { area: "Artificial Intelligence & Machine Learning", papers: 145, pi: "Dr. Arun Patel" },
-  { area: "VLSI Design & Embedded Systems",             papers: 98,  pi: "Dr. Anil Verma" },
-  { area: "Sustainable Manufacturing",                  papers: 76,  pi: "Dr. Priya Sharma" },
-  { area: "Business Analytics & FinTech",               papers: 54,  pi: "Dr. Meera Nair" },
+  { area: "VLSI Design & Embedded Systems", papers: 98, pi: "Dr. Anil Verma" },
+  { area: "Sustainable Manufacturing", papers: 76, pi: "Dr. Priya Sharma" },
+  { area: "Business Analytics & FinTech", papers: 54, pi: "Dr. Meera Nair" },
 ];
 
 export default function HomePage() {
@@ -104,7 +104,7 @@ export default function HomePage() {
               <p className="section-label">Academic Departments</p>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">Schools & Departments</h2>
             </div>
-            <Link href="/departments" className="text-sm text-[#1e3a8a] font-medium hover:underline hidden sm:flex items-center gap-1">
+            <Link href="/academics" className="text-sm text-[#1e3a8a] font-medium hover:underline hidden sm:flex items-center gap-1">
               All Departments <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -134,7 +134,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-4 sm:hidden">
-            <Link href="/departments" className="text-sm text-[#1e3a8a] font-medium hover:underline flex items-center gap-1">
+            <Link href="/academics" className="text-sm text-[#1e3a8a] font-medium hover:underline flex items-center gap-1">
               View all departments <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -167,7 +167,7 @@ export default function HomePage() {
                     </div>
                   ))}
                 </div>
-                
+
                 {/* Right Column (1 large card) */}
                 <div className="flex flex-col">
                   {NEWS.slice(2, 3).map((item) => (
@@ -253,8 +253,8 @@ export default function HomePage() {
               <div className="grid grid-cols-3 gap-4 mb-6">
                 {[
                   { v: "50,000+", l: "Alumni" },
-                  { v: "80+",     l: "Countries" },
-                  { v: "200+",    l: "CEOs & Founders" },
+                  { v: "80+", l: "Countries" },
+                  { v: "200+", l: "CEOs & Founders" },
                 ].map((s) => (
                   <div key={s.l} className="text-center p-5 bg-slate-50 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-center">
                     <p className="text-2xl sm:text-3xl font-extrabold text-[#1e3a8a] font-serif tracking-tight">{s.v}</p>
@@ -268,10 +268,10 @@ export default function HomePage() {
             </div>
             <div className="space-y-3">
               {[
-                { name: "Arjun Kapoor",  batch: "B.Tech CSE, 2010",  role: "CTO, TechCorp Inc." },
-                { name: "Priya Nair",    batch: "MBA, 2012",          role: "Vice President, Goldman Sachs" },
-                { name: "Rahul Sharma",  batch: "B.Tech ECE, 2008",   role: "Founder & CEO, StartupX" },
-                { name: "Ananya Patel",  batch: "B.Tech CSBS, 2015",  role: "ML Engineer, Google" },
+                { name: "Arjun Kapoor", batch: "B.Tech CSE, 2010", role: "CTO, TechCorp Inc." },
+                { name: "Priya Nair", batch: "MBA, 2012", role: "Vice President, Goldman Sachs" },
+                { name: "Rahul Sharma", batch: "B.Tech ECE, 2008", role: "Founder & CEO, StartupX" },
+                { name: "Ananya Patel", batch: "B.Tech CSBS, 2015", role: "ML Engineer, Google" },
               ].map((a) => (
                 <div key={a.name} className="card p-4 flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">

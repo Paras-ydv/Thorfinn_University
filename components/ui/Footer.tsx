@@ -3,7 +3,6 @@ import { MapPin, Phone, Mail } from "lucide-react";
 
 const COLS = {
   Academics: [
-    { label: "Departments",  href: "/departments" },
     { label: "Programs",     href: "/academics" },
     { label: "Research",     href: "/research" },
     { label: "Placements",   href: "/placements" },
