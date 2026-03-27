@@ -13,21 +13,31 @@ The platform is built to be deployable in under 10 minutes with three environmen
 ---
 
 ## Features at a Glance
-1. Interactive Campus Map with Live Event Markers
-2. Happening Now Real-Time Campus Feed (Supabase Realtime)
-3. Career Path Simulator (End-to-End Academic → Placement Flow)
-4. AI Chatbot (Groq Llama 3.1 Integration)
 
-5. Role-Based Authentication System (Student / Faculty / Admin)
-6. Student Dashboard (Grades, Attendance, CGPA, Timetable, Events)
-7. Faculty Dashboard (Course + Attendance + Grading)
-8. Admin Dashboard (User Management + Analytics + Controls)
+1. **Interactive Campus Map with Live Event Markers** — A zoomable (1×–4×), pannable image map of the university campus. Markers are fetched from Supabase and positioned using percentage-based coordinates so they scale on any screen size. Live markers pulse continuously. Clicking any marker opens a side panel with full event details — title, venue, time, date, expected attendees, and a live indicator.
 
-9. Roommate Matchmaker (Compatibility Engine)
-10. University in a Day (Interactive Timeline Experience)
+2. **Happening Now Real-Time Campus Feed (Supabase Realtime)** — A live activity feed where students post campus events with a title, location, and tag. New posts and upvotes propagate instantly to all connected clients via Supabase Realtime — no polling, no refresh required. Posts auto-expire after 4 hours and are ranked by vote count.
 
-11. Public Website (12 Fully Designed Pages)
-12. Cloudinary Video Integration (Optimized Streaming)
+3. **Career Path Simulator (End-to-End Academic → Placement Flow)** — A multi-step interactive simulator that walks a student through their entire university journey: interest selection → department → research labs → internship → placement package → alumni career path. Each step is animated and the final screen renders a complete career summary card.
+
+4. **AI Chatbot (Groq Llama 3.1 Integration)** — A persistent floating assistant available on every public page, powered by Groq's Llama 3.1 8B Instant model. The API key is kept server-side in a Next.js route handler. The chatbot maintains the last 6 messages for context, surfaces suggested quick questions on first open, and falls back gracefully when the API is unavailable.
+
+5. **Role-Based Authentication System (Student / Faculty / Admin)** — Email/password authentication via Supabase Auth. Each user is assigned a role stored in both `user_metadata` and the `profiles` table. Login redirects automatically to the correct dashboard per role, and all protected routes bounce unauthenticated users back to `/login`.
+
+6. **Student Dashboard (Grades, Attendance, CGPA, Timetable, Events)** — A full sidebar portal split into Portal and Campus sections. Portal covers Overview (CGPA, attendance %, credits, backlogs), Announcements, Grades with grade-point table, Attendance with color-coded progress bars (green ≥85%, amber ≥75%, red <75%), a day-selector Timetable, and an interactive Event Calendar. Campus houses the Career Simulator, Roommate Matchmaker, University in a Day, and Map Markers.
+
+7. **Faculty Dashboard (Course + Attendance + Grading)** — A dedicated portal with a violet accent theme, role-gated so only faculty can access it. Faculty can view assigned courses, mark per-student attendance with a present/absent toggle, review mid and end-semester grades with badge indicators, and monitor students flagged for low attendance.
+
+8. **Admin Dashboard (User Management + Analytics + Controls)** — A red-accented control panel gated to the Admin role. Covers department management, a full user table with role badges and active/inactive status, placement analytics with a department-wise bar chart, notice publishing with urgency toggles, and settings panels for security, notifications, academic calendar, and fee configuration.
+
+9. **Roommate Matchmaker (Compatibility Engine)** — A five-question lifestyle quiz covering sleep schedule, study style, social preference, cleanliness, and interests. Answers are scored against other profiles and results are displayed as animated compatibility percentage bars, helping students find well-matched roommates before the semester begins.
+
+10. **University in a Day (Interactive Timeline Experience)** — An hour-by-hour interactive timeline showing what a typical day looks like for CS, Mechanical, and MBA students. The timeline reveals progressively and expands to a full-day view on demand, giving prospective and current students a realistic picture of campus life.
+
+11. **Public Website (12 Fully Designed Pages)** — A complete public-facing site covering Homepage, About, Departments (12 dynamic slug pages), Academics, Admissions, Placements, Research, Campus Life, Students, Alumni, Contact, and Hostel. Every page has a video hero, animated statistics, and rich content. Department pages are statically generated at build time via `generateStaticParams`.
+
+12. **Cloudinary Video Integration (Optimized Streaming)** — All video heroes and the 12 department-specific videos are hosted on Cloudinary and streamed directly to the browser. Videos use `preload="none"` with `autoPlay muted playsInline` so they never block the initial render or inflate the deployment bundle.
+
 ---
 
 ## Live Features
