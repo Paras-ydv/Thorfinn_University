@@ -34,12 +34,21 @@ export default function SignupPage() {
     }
 
     if (data.user) {
+      // Insert profile — ignore error if table doesn't exist yet
       await supabase.from("profiles").upsert({
         id: data.user.id,
         name: form.name,
         email: form.email,
         role: form.role,
       });
+
+      // If email confirmation is required, Supabase returns user but no session
+      if (!data.session) {
+        setError("Check your email to confirm your account, then sign in.");
+        setLoading(false);
+        return;
+      }
+
       router.push("/dashboard");
     }
   };
