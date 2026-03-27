@@ -30,6 +30,7 @@ const NEWS = [
   { date: "Dec 8, 2024", category: "Placements", title: "Record 94% placement rate achieved for the batch of 2024" },
   { date: "Dec 3, 2024", category: "Events", title: "Annual TechSummit 2024 to be held on January 15–17, 2025" },
   { date: "Nov 28, 2024", category: "Admissions", title: "Applications for B.Tech 2025 intake now open — deadline March 31" },
+  { date: "Jan 5, 2025", category: "Academics", title: "Thorfinn University launches Industry-Integrated Semester Program with leading tech firms", category2: "Placements" },
 ];
 
 const EVENTS = [
@@ -245,6 +246,21 @@ export default function HomePage() {
                       <p className="text-sm text-slate-500 font-medium">{item.date}</p>
                     </motion.div>
                   ))}
+                  {/* 4th article */}
+                  <motion.div
+                    variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} custom={3}
+                    className="group cursor-pointer mt-8"
+                  >
+                    <div className="aspect-[4/3] w-full bg-slate-200 rounded-3xl mb-5 overflow-hidden">
+                      <img src="https://picsum.photos/seed/thorfinnind4/600/400" alt={NEWS[4].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <span className="border border-slate-300 rounded-full px-3 py-1 text-[10px] font-bold text-slate-800 uppercase tracking-widest leading-none">ACADEMICS</span>
+                      <span className="border border-slate-300 rounded-full px-3 py-1 text-[10px] font-bold text-slate-800 uppercase tracking-widest leading-none">PLACEMENTS</span>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-tight mb-2 group-hover:text-[#1e3a8a] transition-colors">{NEWS[4].title}</h3>
+                    <p className="text-sm text-slate-500 font-medium">{NEWS[4].date}</p>
+                  </motion.div>
                 </div>
               </div>
             </div>
