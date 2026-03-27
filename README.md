@@ -13,17 +13,21 @@ The platform is built to be deployable in under 10 minutes with three environmen
 ---
 
 ## Features at a Glance
+1. Interactive Campus Map with Live Event Markers
+2. Happening Now Real-Time Campus Feed (Supabase Realtime)
+3. Career Path Simulator (End-to-End Academic → Placement Flow)
+4. AI Chatbot (Groq Llama 3.1 Integration)
 
-- Public Website (12 pages)
-- Authentication System (Student / Faculty / Admin roles)
-- Student Dashboard — Overview, Announcements, Grades, Attendance, Timetable, Event Calendar
-- Student Campus Tools — Career Path Simulator, Roommate Matchmaker, University in a Day, Map Markers (Admin)
-- Faculty Dashboard — Courses, Attendance Marking, Grades, Student Overview, Notices
-- Admin Dashboard — Departments, User Management, Placements, Notices, Settings
-- Interactive Campus Map — zoomable, pannable, marker-based event map
-- Happening Now Live Feed — real-time event posting and upvoting via Supabase Realtime
-- AI Chatbot — Groq-powered assistant available on every public page
+5. Role-Based Authentication System (Student / Faculty / Admin)
+6. Student Dashboard (Grades, Attendance, CGPA, Timetable, Events)
+7. Faculty Dashboard (Course + Attendance + Grading)
+8. Admin Dashboard (User Management + Analytics + Controls)
 
+9. Roommate Matchmaker (Compatibility Engine)
+10. University in a Day (Interactive Timeline Experience)
+
+11. Public Website (12 Fully Designed Pages)
+12. Cloudinary Video Integration (Optimized Streaming)
 ---
 
 ## Live Features
