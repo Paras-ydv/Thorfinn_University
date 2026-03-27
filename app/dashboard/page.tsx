@@ -363,9 +363,7 @@ export default function DashboardPage() {
       `}>
         {/* Logo */}
         <div className="flex items-center gap-2.5 px-5 h-14 border-b border-slate-200 flex-shrink-0">
-          <div className="w-7 h-7 bg-[#1e3a8a] rounded flex items-center justify-center">
-            <GraduationCap className="w-4 h-4 text-white" />
-          </div>
+          <img src="/images/favicon.png" alt="Thorfinn University" className="w-7 h-7 rounded" />
           <span className="font-semibold text-slate-900 text-sm">Thorfinn University</span>
         </div>
 
