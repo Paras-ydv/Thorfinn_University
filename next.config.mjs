@@ -8,9 +8,6 @@ const nextConfig = {
       { protocol: "https", hostname: "avatars.githubusercontent.com" },
     ],
   },
-  experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
-  },
 };
 
 export default nextConfig;
