@@ -9,7 +9,7 @@ import { cn } from "@/utils";
 const NAV = [
   { label: "About",       href: "/about" },
   { label: "Academics",   href: "/academics" },
-  { label: "Departments", href: "/departments" },
+  //{ label: "Departments", href: "/departments" },
   { label: "Research",    href: "/research" },
   { label: "Admissions",  href: "/admissions" },
   { label: "Placements",  href: "/placements" },
