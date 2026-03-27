@@ -20,12 +20,12 @@ const CLUBS = [
 ];
 
 const FACILITIES = [
-  { icon: Dumbbell,  title: "Sports Complex",  desc: "Olympic-size pool, gym, courts for cricket, football, basketball, tennis." },
-  { icon: BookOpen,  title: "Central Library", desc: "1M+ books, 24/7 digital access, quiet study zones and collaboration spaces." },
-  { icon: Utensils,  title: "Food Court",      desc: "8 cafeterias serving diverse cuisines. Special dietary options available." },
-  { icon: Music,     title: "Auditorium",      desc: "3000-seat auditorium for cultural events, conferences, and performances." },
-  { icon: Trophy,    title: "Innovation Hub",  desc: "Maker space, 3D printers, prototyping labs for student projects." },
-  { icon: Heart,     title: "Health Center",   desc: "24/7 medical facility with doctors, counselors, and emergency care." },
+  { icon: Dumbbell,  title: "Sports Complex",  desc: "Olympic-size pool, gym, courts for cricket, football, basketball, tennis.", img: "https://res.cloudinary.com/dblwlysku/image/upload/v1774617937/in1oni78hseqgtyq415z.jpg" },
+  { icon: BookOpen,  title: "Central Library", desc: "1M+ books, 24/7 digital access, quiet study zones and collaboration spaces.", img: "https://res.cloudinary.com/dblwlysku/image/upload/v1774617955/xdvniutajfb3deoub9lm.jpg" },
+  { icon: Utensils,  title: "Food Court",      desc: "8 cafeterias serving diverse cuisines. Special dietary options available.", img: "https://res.cloudinary.com/dblwlysku/image/upload/v1774617955/xdvniutajfb3deoub9lm.jpg" },
+  { icon: Music,     title: "Auditorium",      desc: "3000-seat auditorium for cultural events, conferences, and performances.", img: "https://res.cloudinary.com/dblwlysku/image/upload/v1774618067/kpa1oubdmnctxxut0u0n.jpg" },
+  { icon: Trophy,    title: "Innovation Hub",  desc: "Maker space, 3D printers, prototyping labs for student projects.", img: "https://res.cloudinary.com/dblwlysku/image/upload/v1774618250/tj0eqfvff0m2teg3bskm.jpg" },
+  { icon: Heart,     title: "Health Center",   desc: "24/7 medical facility with doctors, counselors, and emergency care.", img: "https://res.cloudinary.com/dblwlysku/image/upload/v1774618192/q9kd5kbfxfb2nwxddblw.jpg" },
 ];
 
 const ANNUAL_EVENTS = [
@@ -94,12 +94,17 @@ export default function CampusLifePage() {
                 {FACILITIES.map((f) => {
                   const Icon = f.icon;
                   return (
-                    <div key={f.title} className="card p-8 hover:shadow-md transition-shadow">
-                      <div className="w-14 h-14 rounded bg-blue-50 flex items-center justify-center mb-6">
-                        <Icon className="w-7 h-7 text-[#1e3a8a]" />
+                    <div key={f.title} className="card overflow-hidden hover:shadow-md transition-shadow">
+                      {f.img && (
+                        <img src={f.img} alt={f.title} className="w-full h-36 object-cover" />
+                      )}
+                      <div className="p-8">
+                        <div className="w-14 h-14 rounded bg-blue-50 flex items-center justify-center mb-6">
+                          <Icon className="w-7 h-7 text-[#1e3a8a]" />
+                        </div>
+                        <h3 className="font-bold text-slate-900 text-xl mb-3">{f.title}</h3>
+                        <p className="text-base text-slate-600 leading-relaxed">{f.desc}</p>
                       </div>
-                      <h3 className="font-bold text-slate-900 text-xl mb-3">{f.title}</h3>
-                      <p className="text-base text-slate-600 leading-relaxed">{f.desc}</p>
                     </div>
                   );
                 })}

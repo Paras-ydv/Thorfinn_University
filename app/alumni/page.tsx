@@ -77,27 +77,96 @@ export default function AlumniPage() {
             {/* Global Network */}
             <section>
               <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">Global Presence</h2>
-              <div className="card overflow-hidden" style={{ height: 280 }}>
-                <div className="relative w-full h-full bg-slate-50">
-                  {NETWORK_NODES.map((node, i) => (
-                    <motion.div
-                      key={node.label}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.15 }}
-                      className="absolute flex flex-col items-center"
-                      style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}
-                    >
-                      <motion.div
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                        className="w-4 h-4 rounded-full bg-[#1e3a8a] shadow-lg mb-1"
-                      />
-                      <span className="text-xs text-slate-800 font-bold bg-white border border-slate-200 px-2 py-0.5 rounded">{node.label}</span>
-                      <span className="text-xs text-slate-500 mt-0.5">{node.count.toLocaleString()}</span>
-                    </motion.div>
-                  ))}
+              <div className="card overflow-hidden bg-slate-50">
+                <div className="relative w-full" style={{ paddingBottom: "50%" }}>
+                  <svg
+                    viewBox="0 0 1000 500"
+                    className="absolute inset-0 w-full h-full"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {/* Ocean background */}
+                    <rect width="1000" height="500" fill="#f0f4f8" />
+
+                    {/* Continent shapes — simplified flat paths */}
+                    {/* North America */}
+                    <path d="M80,80 L180,70 L220,90 L240,130 L230,180 L200,220 L170,240 L140,230 L110,200 L90,160 L70,120 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+                    {/* South America */}
+                    <path d="M170,260 L220,250 L250,270 L260,320 L250,380 L220,420 L190,410 L170,370 L160,320 L155,280 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+                    {/* Europe */}
+                    <path d="M420,60 L480,55 L510,70 L520,100 L500,120 L470,130 L440,120 L420,100 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+                    {/* Africa */}
+                    <path d="M430,140 L490,135 L520,160 L530,220 L520,290 L490,340 L460,350 L430,330 L410,270 L405,200 L415,160 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+                    {/* Asia */}
+                    <path d="M530,50 L700,45 L780,70 L800,110 L780,150 L740,170 L680,175 L620,160 L570,140 L540,110 L525,80 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+                    {/* India subcontinent */}
+                    <path d="M620,160 L660,155 L680,175 L670,220 L650,250 L630,245 L615,210 L610,175 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+                    {/* Southeast Asia */}
+                    <path d="M740,170 L800,165 L820,185 L810,210 L780,215 L750,200 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+                    {/* Australia */}
+                    <path d="M760,300 L840,290 L880,310 L890,360 L860,390 L810,395 L770,375 L750,340 Z" fill="#dde6f0" stroke="#b8cce0" strokeWidth="1" />
+
+                    {/* ── Alumni markers ── */}
+                    {/* India */}
+                    <g>
+                      <circle cx="645" cy="185" r="10" fill="#1e3a8a" opacity="0.15" />
+                      <circle cx="645" cy="185" r="6" fill="#1e3a8a" />
+                      <circle cx="645" cy="185" r="3" fill="white" />
+                      <rect x="655" y="172" width="90" height="26" rx="5" fill="white" stroke="#e2e8f0" strokeWidth="1" filter="url(#shadow)" />
+                      <text x="700" y="183" textAnchor="middle" fontSize="8" fontWeight="700" fill="#1e293b">India</text>
+                      <text x="700" y="193" textAnchor="middle" fontSize="7" fill="#64748b">28,000 alumni</text>
+                    </g>
+                    {/* USA */}
+                    <g>
+                      <circle cx="155" cy="155" r="9" fill="#1e3a8a" opacity="0.15" />
+                      <circle cx="155" cy="155" r="5.5" fill="#1e3a8a" />
+                      <circle cx="155" cy="155" r="2.5" fill="white" />
+                      <rect x="165" y="143" width="76" height="26" rx="5" fill="white" stroke="#e2e8f0" strokeWidth="1" />
+                      <text x="203" y="154" textAnchor="middle" fontSize="8" fontWeight="700" fill="#1e293b">USA</text>
+                      <text x="203" y="164" textAnchor="middle" fontSize="7" fill="#64748b">8,500 alumni</text>
+                    </g>
+                    {/* UK */}
+                    <g>
+                      <circle cx="448" cy="88" r="7" fill="#1e3a8a" opacity="0.15" />
+                      <circle cx="448" cy="88" r="4.5" fill="#1e3a8a" />
+                      <circle cx="448" cy="88" r="2" fill="white" />
+                      <rect x="457" y="77" width="66" height="26" rx="5" fill="white" stroke="#e2e8f0" strokeWidth="1" />
+                      <text x="490" y="88" textAnchor="middle" fontSize="8" fontWeight="700" fill="#1e293b">UK</text>
+                      <text x="490" y="98" textAnchor="middle" fontSize="7" fill="#64748b">3,200 alumni</text>
+                    </g>
+                    {/* Germany */}
+                    <g>
+                      <circle cx="490" cy="88" r="7" fill="#3b82f6" opacity="0.15" />
+                      <circle cx="490" cy="100" r="4.5" fill="#3b82f6" />
+                      <circle cx="490" cy="100" r="2" fill="white" />
+                      <rect x="499" y="89" width="82" height="26" rx="5" fill="white" stroke="#e2e8f0" strokeWidth="1" />
+                      <text x="540" y="100" textAnchor="middle" fontSize="8" fontWeight="700" fill="#1e293b">Germany</text>
+                      <text x="540" y="110" textAnchor="middle" fontSize="7" fill="#64748b">1,800 alumni</text>
+                    </g>
+                    {/* Canada */}
+                    <g>
+                      <circle cx="120" cy="95" r="7" fill="#1e3a8a" opacity="0.15" />
+                      <circle cx="120" cy="95" r="4.5" fill="#1e3a8a" />
+                      <circle cx="120" cy="95" r="2" fill="white" />
+                      <rect x="129" y="84" width="76" height="26" rx="5" fill="white" stroke="#e2e8f0" strokeWidth="1" />
+                      <text x="167" y="95" textAnchor="middle" fontSize="8" fontWeight="700" fill="#1e293b">Canada</text>
+                      <text x="167" y="105" textAnchor="middle" fontSize="7" fill="#64748b">2,400 alumni</text>
+                    </g>
+                    {/* Singapore */}
+                    <g>
+                      <circle cx="768" cy="210" r="7" fill="#1e3a8a" opacity="0.15" />
+                      <circle cx="768" cy="210" r="4.5" fill="#1e3a8a" />
+                      <circle cx="768" cy="210" r="2" fill="white" />
+                      <rect x="660" y="218" width="88" height="26" rx="5" fill="white" stroke="#e2e8f0" strokeWidth="1" />
+                      <text x="704" y="229" textAnchor="middle" fontSize="8" fontWeight="700" fill="#1e293b">Singapore</text>
+                      <text x="704" y="239" textAnchor="middle" fontSize="7" fill="#64748b">2,100 alumni</text>
+                    </g>
+
+                    <defs>
+                      <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="1" stdDeviation="2" floodOpacity="0.08" />
+                      </filter>
+                    </defs>
+                  </svg>
                 </div>
               </div>
             </section>
