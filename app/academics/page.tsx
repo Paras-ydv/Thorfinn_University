@@ -108,11 +108,11 @@ const CALENDAR = [
   { event: "Semester I Commencement", date: "July 15, 2024" },
   { event: "Mid-Semester Examinations", date: "Sep 10–20, 2024" },
   { event: "Semester I End Examinations", date: "Nov 25 – Dec 5, 2024" },
-  { event: "Winter Break", date: "Dec 6 – Jan 5, 2025" },
-  { event: "Semester II Commencement", date: "January 6, 2025" },
-  { event: "Mid-Semester Examinations", date: "Mar 5–15, 2025" },
-  { event: "End Semester Examinations", date: "May 1–20, 2025" },
-  { event: "Summer Break", date: "May 21 – Jul 14, 2025" },
+  { event: "Winter Break", date: "Dec 6 – Jan 5, 2026" },
+  { event: "Semester II Commencement", date: "January 6, 2026" },
+  { event: "Mid-Semester Examinations", date: "Mar 5–15, 2026" },
+  { event: "End Semester Examinations", date: "May 1–20, 2026" },
+  { event: "Summer Break", date: "May 21 – Jul 14, 2026" },
 ];
 
 export default function AcademicsPage() {

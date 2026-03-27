@@ -9,9 +9,9 @@ import { Eye, EyeOff, Loader2, ChevronDown } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 
 const TEST_ACCOUNTS = [
-  { label: "Admin — Arjun Mehta",        email: "admin.thorfinn@gmail.com",   password: "Admin@2025",   role: "Admin" },
-  { label: "Faculty — Dr. Priya Sharma", email: "faculty.thorfinn@gmail.com", password: "Faculty@2025", role: "Faculty" },
-  { label: "Student — Rahul Verma",      email: "student.thorfinn@gmail.com", password: "Student@2025", role: "Student" },
+  { label: "Admin — Arjun Mehta",        email: "admin.thorfinn@gmail.com",   password: "Admin@2026",   role: "Admin" },
+  { label: "Faculty — Dr. Priya Sharma", email: "faculty.thorfinn@gmail.com", password: "Faculty@2026", role: "Faculty" },
+  { label: "Student — Rahul Verma",      email: "student.thorfinn@gmail.com", password: "Student@2026", role: "Student" },
 ];
 
 const ROLE_COLORS: Record<string, string> = {

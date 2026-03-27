@@ -11,7 +11,7 @@ import { SmartCalendar } from "./components/SmartCalendar";
 const ANNOUNCEMENTS = [
   { id: 1, title: "End Semester Examination Schedule Released",    date: "Dec 10, 2024", category: "Academic",  urgent: true },
   { id: 2, title: "Library will remain closed on Dec 25–26",       date: "Dec 9, 2024",  category: "General",   urgent: false },
-  { id: 3, title: "Placement drive by Infosys on January 8, 2025", date: "Dec 8, 2024",  category: "Placement", urgent: true },
+  { id: 3, title: "Placement drive by Infosys on January 8, 2026", date: "Dec 8, 2024",  category: "Placement", urgent: true },
   { id: 4, title: "Fee payment deadline extended to December 20",   date: "Dec 7, 2024",  category: "Finance",   urgent: false },
   { id: 5, title: "Research symposium registrations now open",      date: "Dec 5, 2024",  category: "Research",  urgent: false },
 ];

@@ -1,16 +1,17 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { GraduationCap, Briefcase, Globe, Award } from "lucide-react";
+import { ChevronRight, GraduationCap, Briefcase, Globe, Award } from "lucide-react";
 
 const ALUMNI_NOTABLE = [
-  { name: "Arjun Kapoor", batch: "2010, CSE", role: "CTO, TechCorp", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200", company: "TechCorp" },
-  { name: "Priya Nair", batch: "2012, MBA", role: "VP, Goldman Sachs", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200", company: "Goldman Sachs" },
-  { name: "Rahul Sharma", batch: "2008, ECE", role: "Founder, StartupX", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200", company: "StartupX" },
-  { name: "Ananya Patel", batch: "2015, CSBS", role: "ML Engineer, Google", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200", company: "Google" },
-  { name: "Vikram Rao", batch: "2011, ME", role: "Director, Tata Motors", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200", company: "Tata Motors" },
-  { name: "Sneha Iyer", batch: "2014, CSE", role: "Research Scientist, Meta", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200", company: "Meta" },
+  { name: "Arjun Kapoor", batch: "2010, CSE", role: "CTO, TechCorp", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" },
+  { name: "Priya Nair", batch: "2012, MBA", role: "VP, Goldman Sachs", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200" },
+  { name: "Rahul Sharma", batch: "2008, ECE", role: "Founder, StartupX", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200" },
+  { name: "Ananya Patel", batch: "2015, CSBS", role: "ML Engineer, Google", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200" },
+  { name: "Vikram Rao", batch: "2011, ME", role: "Director, Tata Motors", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200" },
+  { name: "Sneha Iyer", batch: "2014, CSE", role: "Research Scientist, Meta", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" },
 ];
 
 const NETWORK_NODES = [
@@ -22,86 +23,140 @@ const NETWORK_NODES = [
   { label: "Canada", count: 2400, x: 15, y: 25 },
 ];
 
-import Image from "next/image";
-
 export default function AlumniPage() {
   return (
-    <div className="bg-slate-50 pt-16">
-      <section className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/20 to-pink-900/20" />
-        <div className="container-max relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
-              <span className="gradient-text">Alumni</span> Network
-            </h1>
-            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
-              50,000+ alumni across 80+ countries, leading industries and shaping the world.
-            </p>
-          </motion.div>
+    <div className="bg-white pt-16">
+      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
+        <div className="container-max py-20 lg:py-24 w-full">
+          <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-slate-300">Alumni</span>
+          </nav>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">Alumni Network</h1>
+          <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
+            50,000+ alumni across 80+ countries, leading industries and shaping the world.
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* Stats */}
-      <section className="section-padding container-max">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {[
-            { icon: GraduationCap, value: "50,000+", label: "Alumni Worldwide" },
-            { icon: Globe, value: "80+", label: "Countries" },
-            { icon: Briefcase, value: "200+", label: "CEOs & Founders" },
-            { icon: Award, value: "15+", label: "Nobel Laureates" },
-          ].map(({ icon: Icon, value, label }, i) => (
-            <motion.div key={label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-8 text-center">
-              <Icon className="w-10 h-10 text-violet-400 mx-auto mb-4" />
-              <p className="text-3xl lg:text-4xl font-extrabold gradient-text tracking-tight">{value}</p>
-              <p className="text-base font-medium text-slate-600 mt-2">{label}</p>
-            </motion.div>
-          ))}
-        </div>
+      <div className="container-max py-16">
+        <div className="grid lg:grid-cols-3 gap-12">
 
-        {/* Network Visualization */}
-        <SectionHeader badge="Global Network" title="Alumni Around the World" />
-        <div className="glass rounded-3xl p-8 mb-16 relative overflow-hidden" style={{ height: 300 }}>
-          <div className="absolute inset-0 opacity-10">
-            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-violet-500 rounded-3xl" />
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-12">
+
+            {/* Stats */}
+            <section>
+              <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">Alumni by the Numbers</h2>
+              <div className="grid sm:grid-cols-2 gap-6">
+                {[
+                  { icon: GraduationCap, value: "50,000+", label: "Alumni Worldwide" },
+                  { icon: Globe, value: "80+", label: "Countries" },
+                  { icon: Briefcase, value: "200+", label: "CEOs & Founders" },
+                  { icon: Award, value: "15+", label: "Nobel Laureates" },
+                ].map(({ icon: Icon, value, label }) => (
+                  <div key={label} className="card p-8 flex items-center gap-5">
+                    <div className="w-14 h-14 rounded bg-blue-50 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-7 h-7 text-[#1e3a8a]" />
+                    </div>
+                    <div>
+                      <p className="text-3xl font-bold text-slate-900">{value}</p>
+                      <p className="text-sm font-medium text-slate-500 mt-1">{label}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Global Network */}
+            <section>
+              <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">Global Presence</h2>
+              <div className="card overflow-hidden" style={{ height: 280 }}>
+                <div className="relative w-full h-full bg-slate-50">
+                  {NETWORK_NODES.map((node, i) => (
+                    <motion.div
+                      key={node.label}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.15 }}
+                      className="absolute flex flex-col items-center"
+                      style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}
+                    >
+                      <motion.div
+                        animate={{ scale: [1, 1.3, 1] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                        className="w-4 h-4 rounded-full bg-[#1e3a8a] shadow-lg mb-1"
+                      />
+                      <span className="text-xs text-slate-800 font-bold bg-white border border-slate-200 px-2 py-0.5 rounded">{node.label}</span>
+                      <span className="text-xs text-slate-500 mt-0.5">{node.count.toLocaleString()}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Notable Alumni */}
+            <section>
+              <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">Notable Alumni</h2>
+              <div className="card overflow-hidden">
+                <div className="divide-y divide-slate-100">
+                  {ALUMNI_NOTABLE.map((alumni, i) => (
+                    <motion.div
+                      key={alumni.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06 }}
+                      className="p-6 hover:bg-slate-50 transition-colors flex items-center gap-5"
+                    >
+                      <div className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-slate-200">
+                        <Image src={alumni.img} alt={alumni.name} fill className="object-cover" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-slate-900 text-lg">{alumni.name}</h3>
+                        <p className="text-sm font-medium text-[#1e3a8a]">{alumni.role}</p>
+                        <p className="text-sm text-slate-500 mt-0.5">{alumni.batch}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
           </div>
-          {NETWORK_NODES.map((node, i) => (
-            <motion.div
-              key={node.label}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="absolute flex flex-col items-center"
-              style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}
-            >
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                className="w-4 h-4 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50 mb-1"
-              />
-              <span className="text-xs text-slate-900 font-semibold bg-white/80 px-2 py-0.5 rounded-full">{node.label}</span>
-              <span className="text-xs text-blue-400">{node.count.toLocaleString()}</span>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* Notable Alumni */}
-        <SectionHeader badge="Notable Alumni" title="Thorfinn Legends" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ALUMNI_NOTABLE.map((alumni, i) => (
-            <motion.div key={alumni.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="glass rounded-2xl p-6 md:p-8 flex items-center gap-5 card-hover">
-              <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-violet-500/20">
-                <Image src={alumni.img} alt={alumni.name} fill className="object-cover" />
+          {/* Sidebar */}
+          <div className="space-y-6">
+            <div className="card overflow-hidden">
+              <div className="px-6 py-5 bg-slate-50 border-b border-slate-200">
+                <h3 className="text-xl font-bold text-slate-800">Alumni by Region</h3>
+                <p className="text-sm text-slate-500 mt-1">Top locations worldwide</p>
               </div>
-              <div className="pl-1">
-                <h3 className="font-bold text-slate-900 text-xl md:text-2xl mb-1 tracking-tight">{alumni.name}</h3>
-                <p className="text-base font-medium text-violet-600 mb-1">{alumni.role}</p>
-                <p className="text-sm text-slate-500 font-medium">{alumni.batch}</p>
+              <div className="divide-y divide-slate-100">
+                {NETWORK_NODES.sort((a, b) => b.count - a.count).map((node) => (
+                  <div key={node.label} className="flex justify-between items-center p-5">
+                    <span className="font-medium text-slate-700">{node.label}</span>
+                    <span className="text-sm font-bold text-[#1e3a8a]">{node.count.toLocaleString()}</span>
+                  </div>
+                ))}
               </div>
-            </motion.div>
-          ))}
+            </div>
+
+            <div className="card p-6 bg-slate-900 text-white">
+              <h3 className="text-lg font-bold mb-3">Stay Connected</h3>
+              <p className="text-slate-300 text-sm mb-6 leading-relaxed">
+                Join the alumni portal to network, mentor students, and stay updated with Thorfinn events.
+              </p>
+              <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-slate-300 transition-colors">
+                Get in Touch →
+              </Link>
+            </div>
+          </div>
+
         </div>
-      </section>
+      </div>
     </div>
   );
 }

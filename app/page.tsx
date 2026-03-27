@@ -23,15 +23,15 @@ const DEPARTMENTS = [
 const NEWS = [
   { date: "Dec 12, 2024", category: "Research", title: "Thorfinn researchers develop low-power AI chip for edge computing" },
   { date: "Dec 8, 2024", category: "Placements", title: "Record 94% placement rate achieved for the batch of 2024" },
-  { date: "Dec 3, 2024", category: "Events", title: "Annual TechSummit 2024 to be held on January 15–17, 2025" },
-  { date: "Nov 28, 2024", category: "Admissions", title: "Applications for B.Tech 2025 intake now open — deadline March 31" },
+  { date: "Dec 3, 2024", category: "Events", title: "Annual TechSummit 2024 to be held on January 15–17, 2026" },
+  { date: "Nov 28, 2024", category: "Admissions", title: "Applications for B.Tech 2026 intake now open — deadline March 31" },
 ];
 
 const EVENTS = [
-  { date: "Jan 15", title: "TechSummit 2025", type: "Technical", venue: "Main Auditorium" },
+  { date: "Jan 15", title: "TechSummit 2026", type: "Technical", venue: "Main Auditorium" },
   { date: "Jan 20", title: "Admissions Open Day", type: "Admissions", venue: "Admin Block" },
   { date: "Feb 5", title: "Annual Sports Meet", type: "Sports", venue: "Sports Complex" },
-  { date: "Feb 14", title: "Research Symposium 2025", type: "Research", venue: "Conference Hall" },
+  { date: "Feb 14", title: "Research Symposium 2026", type: "Research", venue: "Conference Hall" },
 ];
 
 const RESEARCH = [
@@ -70,7 +70,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/admissions" className="btn-primary">
-                Apply for 2025 <ArrowRight className="w-4 h-4" />
+                Apply for 2026 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/academics" className="btn-outline border-slate-400 text-slate-200 hover:bg-white hover:text-[#1e3a8a]">
                 Explore Programs
@@ -294,10 +294,10 @@ export default function HomePage() {
         <div className="container-max py-14 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h2 className="font-serif text-2xl font-bold text-white mb-1">
-              Applications for 2025 are now open
+              Applications for 2026 are now open
             </h2>
             <p className="text-blue-200 text-sm">
-              Deadline: March 31, 2025. Limited seats available across all programs.
+              Deadline: March 31, 2026. Limited seats available across all programs.
             </p>
           </div>
           <div className="flex gap-3 flex-shrink-0">

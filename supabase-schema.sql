@@ -153,9 +153,9 @@ on conflict do nothing;
 -- TEST ACCOUNTS
 -- Creates 3 users directly in auth.users (bypasses email confirm)
 -- Passwords are hashed with bcrypt — these are the plain passwords:
---   Admin:   Thorfinn@Admin2025
---   Faculty: Thorfinn@Faculty2025
---   Student: Thorfinn@Student2025
+--   Admin:   Thorfinn@Admin2026
+--   Faculty: Thorfinn@Faculty2026
+--   Student: Thorfinn@Student2026
 -- ============================================================
 
 -- Admin account
@@ -175,7 +175,7 @@ begin
     admin_id,
     '00000000-0000-0000-0000-000000000000',
     'admin@thorfinn.test',
-    crypt('Thorfinn@Admin2025', gen_salt('bf')),
+    crypt('Thorfinn@Admin2026', gen_salt('bf')),
     now(),
     '{"name":"Arjun Mehta","role":"Admin"}'::jsonb,
     '{"provider":"email","providers":["email"]}'::jsonb,
@@ -197,7 +197,7 @@ begin
     faculty_id,
     '00000000-0000-0000-0000-000000000000',
     'faculty@thorfinn.test',
-    crypt('Thorfinn@Faculty2025', gen_salt('bf')),
+    crypt('Thorfinn@Faculty2026', gen_salt('bf')),
     now(),
     '{"name":"Dr. Priya Sharma","role":"Faculty"}'::jsonb,
     '{"provider":"email","providers":["email"]}'::jsonb,
@@ -219,7 +219,7 @@ begin
     student_id,
     '00000000-0000-0000-0000-000000000000',
     'student@thorfinn.test',
-    crypt('Thorfinn@Student2025', gen_salt('bf')),
+    crypt('Thorfinn@Student2026', gen_salt('bf')),
     now(),
     '{"name":"Rahul Verma","role":"Student"}'::jsonb,
     '{"provider":"email","providers":["email"]}'::jsonb,

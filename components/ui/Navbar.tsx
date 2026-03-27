@@ -14,7 +14,7 @@ const NAV = [
   { label: "Research", href: "/research" },
   { label: "Admissions", href: "/admissions" },
   { label: "Placements", href: "/placements" },
-  { label: "Campus Life", href: "/campus-life" },
+  { label: "Campus", href: "/campus-life" },
 ];
 
 const MORE = [
@@ -269,8 +269,8 @@ export function Navbar() {
             <Link href="/login" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
               Login
             </Link>
-            <Link href="/admissions" className="px-4 py-1 text-sm font-medium text-white bg-[#1e3a8a] hover:bg-blue-800 rounded transition-colors">
-              Apply Now
+            <Link href="/admissions" className="px-6 py-2 text-sm font-medium text-white bg-[#1e3a8a] hover:bg-blue-800 rounded transition-colors ">
+              Apply 
             </Link>
           </div>
 
