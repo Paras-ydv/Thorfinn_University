@@ -1,0 +1,93 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { BookOpen, Clock, Award, ChevronRight } from "lucide-react";
+
+const PROGRAMS = [
+  { level: "Undergraduate", programs: ["B.Tech CSE", "B.Tech ECE", "B.Tech ME", "B.Tech CE", "B.Tech CSBS", "BBA"], duration: "4 Years", seats: "120 per program" },
+  { level: "Postgraduate", programs: ["M.Tech AI/ML", "M.Tech VLSI", "M.Tech Manufacturing", "MBA", "M.Sc Data Science"], duration: "2 Years", seats: "60 per program" },
+  { level: "Doctoral", programs: ["Ph.D CSE", "Ph.D ECE", "Ph.D ME", "Ph.D Management", "Ph.D Civil"], duration: "3–5 Years", seats: "20 per program" },
+];
+
+export default function AcademicsPage() {
+  return (
+    <div className="bg-dark-900 pt-16">
+      <section className="relative section-padding overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-violet-900/20" />
+        <div className="container-max relative z-10 text-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+            <h1 className="text-5xl sm:text-6xl font-bold text-white mb-4">
+              <span className="gradient-text">Academics</span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Rigorous programs designed to challenge, inspire, and prepare you for the future.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="section-padding container-max">
+        <SectionHeader badge="Programs" title="Academic Programs" subtitle="From undergraduate to doctoral — find your path." />
+        <div className="space-y-6">
+          {PROGRAMS.map((level, i) => (
+            <motion.div
+              key={level.level}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="glass rounded-3xl p-8"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+                <div>
+                  <h2 className="text-2xl font-bold text-white">{level.level}</h2>
+                  <div className="flex gap-4 mt-2 text-sm text-gray-400">
+                    <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {level.duration}</span>
+                    <span className="flex items-center gap-1"><Award className="w-4 h-4" /> {level.seats}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {level.programs.map((prog) => (
+                  <div key={prog} className="flex items-center gap-3 glass rounded-xl p-4 hover:bg-white/10 transition-colors cursor-pointer group">
+                    <BookOpen className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm flex-1">{prog}</span>
+                    <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-blue-400 transition-colors" />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Academic Calendar */}
+      <section className="section-padding container-max">
+        <SectionHeader badge="Calendar" title="Academic Calendar 2024–25" />
+        <div className="glass rounded-3xl p-8 max-w-3xl mx-auto">
+          {[
+            { event: "Semester I Begins", date: "July 15, 2024" },
+            { event: "Mid-Semester Exams", date: "September 10–20, 2024" },
+            { event: "Semester I Ends", date: "November 30, 2024" },
+            { event: "Semester II Begins", date: "January 6, 2025" },
+            { event: "Mid-Semester Exams", date: "March 5–15, 2025" },
+            { event: "End Semester Exams", date: "May 1–20, 2025" },
+          ].map((item, i) => (
+            <motion.div
+              key={item.event}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="flex items-center justify-between py-4 border-b border-white/10 last:border-0"
+            >
+              <span className="text-gray-300 font-medium">{item.event}</span>
+              <span className="text-blue-400 text-sm font-semibold">{item.date}</span>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
