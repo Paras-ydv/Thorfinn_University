@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronRight, Music, Trophy, Utensils, Dumbbell, BookOpen, Heart,
-  ArrowRight, Radio,
+  ArrowRight, Radio, X, Calendar, Users, MapPin,
 } from "lucide-react";
 import { HappeningNow } from "@/app/dashboard/components/HappeningNow";
 import { CampusMapImage } from "./components/CampusMapImage";
@@ -28,13 +30,74 @@ const FACILITIES = [
   { icon: Heart,     title: "Health Center",   desc: "24/7 medical facility with doctors, counselors, and emergency care.", img: "https://res.cloudinary.com/dblwlysku/image/upload/v1774618192/q9kd5kbfxfb2nwxddblw.jpg" },
 ];
 
-const ANNUAL_EVENTS = [
-  { name: "Thorfinn Fest", type: "Cultural",  date: "February", desc: "3-day cultural extravaganza with 10,000+ attendees." },
-  { name: "TechSummit",    type: "Technical", date: "October",  desc: "National-level hackathon and tech conference." },
-  { name: "Sports Week",   type: "Sports",    date: "December", desc: "Inter-college sports tournament across 15 disciplines." },
+type AnnualEvent = {
+  name: string;
+  type: string;
+  date: string;
+  desc: string;
+  img: string;
+  attendees: string;
+  venue: string;
+  highlights: string[];
+  edition: string;
+};
+
+const ANNUAL_EVENTS: AnnualEvent[] = [
+  {
+    name: "Thorfinn Fest",
+    type: "Cultural",
+    date: "February",
+    desc: "3-day cultural extravaganza with 10,000+ attendees.",
+    img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80",
+    attendees: "10,000+",
+    venue: "Open Amphitheatre & Campus Grounds",
+    edition: "32nd Edition",
+    highlights: [
+      "Live performances by national recording artists",
+      "Inter-college dance, drama and music competitions",
+      "Art installations and photography exhibitions",
+      "Street food festival with 40+ stalls",
+      "Fashion show and stand-up comedy nights",
+    ],
+  },
+  {
+    name: "TechSummit",
+    type: "Technical",
+    date: "October",
+    desc: "National-level hackathon and tech conference.",
+    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80",
+    attendees: "5,000+",
+    venue: "Innovation Hub & Main Auditorium",
+    edition: "14th Edition",
+    highlights: [
+      "48-hour hackathon with ₹5 Lakh prize pool",
+      "Keynotes from Google, Microsoft and Sequoia leaders",
+      "Workshops on AI, Web3 and Cloud Architecture",
+      "Startup pitch competition with investor panel",
+      "Paper presentations and project expo",
+    ],
+  },
+  {
+    name: "Sports Week",
+    type: "Sports",
+    date: "December",
+    desc: "Inter-college sports tournament across 15 disciplines.",
+    img: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=80",
+    attendees: "8,000+",
+    venue: "Sports Complex & Athletic Grounds",
+    edition: "28th Edition",
+    highlights: [
+      "15 disciplines including cricket, football and athletics",
+      "Teams from 60+ colleges across the country",
+      "Opening ceremony with torch relay",
+      "Prize distribution by national sports personalities",
+      "Marathon open to all students and faculty",
+    ],
+  },
 ];
 
 export default function CampusLifePage() {
+  const [selectedEvent, setSelectedEvent] = useState<AnnualEvent | null>(null);
   return (
     <div className="bg-white pt-16">
       <div className="relative min-h-[60vh] flex items-center overflow-hidden">
@@ -113,24 +176,32 @@ export default function CampusLifePage() {
 
             <section>
               <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">Annual Events</h2>
-              <div className="card overflow-hidden">
-                <div className="divide-y divide-slate-100">
-                  {ANNUAL_EVENTS.map((event) => (
-                    <div key={event.name} className="p-6 sm:p-8 hover:bg-slate-50 transition-colors flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
-                      <div className="max-w-md">
-                        <span className="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider rounded mb-3">
-                          {event.type}
-                        </span>
-                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{event.name}</h3>
-                        <p className="text-base text-slate-600">{event.desc}</p>
-                      </div>
-                      <div className="flex-shrink-0 text-left sm:text-right border-t sm:border-t-0 sm:border-l border-slate-100 pt-4 sm:pt-0 sm:pl-6">
-                        <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Month</p>
-                        <p className="text-xl font-bold text-[#1e3a8a]">{event.date}</p>
+              <div className="grid sm:grid-cols-3 gap-5">
+                {ANNUAL_EVENTS.map((event) => (
+                  <button
+                    key={event.name}
+                    onClick={() => setSelectedEvent(event)}
+                    className="group relative rounded-xl overflow-hidden h-64 text-left shadow-sm hover:shadow-lg transition-shadow"
+                  >
+                    <img
+                      src={event.img}
+                      alt={event.name}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/40 to-transparent" />
+                    <div className="absolute inset-0 p-5 flex flex-col justify-between">
+                      <span className="self-start text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-white/15 backdrop-blur-sm text-white border border-white/20">
+                        {event.type}
+                      </span>
+                      <div>
+                        <p className="text-xs text-slate-300 font-medium mb-1">{event.date} &middot; {event.edition}</p>
+                        <h3 className="text-xl font-bold text-white mb-1">{event.name}</h3>
+                        <p className="text-sm text-slate-300 leading-snug line-clamp-2">{event.desc}</p>
+                        <p className="mt-3 text-xs font-semibold text-white/70 group-hover:text-white transition-colors">View details &rarr;</p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </button>
+                ))}
               </div>
             </section>
 
@@ -169,6 +240,82 @@ export default function CampusLifePage() {
           </div>
         </div>
       </div>
+
+      {/* Annual event modal */}
+      <AnimatePresence>
+        {selectedEvent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            onClick={() => setSelectedEvent(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl overflow-hidden max-w-lg w-full shadow-2xl"
+            >
+              {/* Image hero */}
+              <div className="relative h-52">
+                <img
+                  src={selectedEvent.img}
+                  alt={selectedEvent.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 via-[#0f172a]/30 to-transparent" />
+                <button
+                  onClick={() => setSelectedEvent(null)}
+                  className="absolute top-3 right-3 w-8 h-8 bg-black/30 hover:bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+                <div className="absolute bottom-4 left-5">
+                  <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-white/15 backdrop-blur-sm text-white border border-white/20">
+                    {selectedEvent.type}
+                  </span>
+                  <h2 className="font-serif text-2xl font-bold text-white mt-2">{selectedEvent.name}</h2>
+                  <p className="text-sm text-slate-300">{selectedEvent.edition}</p>
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="p-6">
+                {/* Meta row */}
+                <div className="flex flex-wrap gap-4 mb-4">
+                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <Calendar className="w-3.5 h-3.5 text-slate-400" />{selectedEvent.date}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <MapPin className="w-3.5 h-3.5 text-slate-400" />{selectedEvent.venue}
+                  </span>
+                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <Users className="w-3.5 h-3.5 text-slate-400" />{selectedEvent.attendees} attendees
+                  </span>
+                </div>
+
+                <p className="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">{selectedEvent.desc}</p>
+
+                {/* Highlights */}
+                <div className="mt-4">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Highlights</p>
+                  <ul className="space-y-1.5">
+                    {selectedEvent.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-2 text-sm text-slate-700">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] flex-shrink-0 mt-1.5" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
