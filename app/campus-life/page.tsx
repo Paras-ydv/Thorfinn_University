@@ -48,12 +48,12 @@ export default function CampusLifePage() {
           {FACILITIES.map((f, i) => {
             const Icon = f.icon;
             return (
-              <motion.div key={f.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="glass rounded-2xl p-6 card-hover">
-                <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-orange-400" />
+              <motion.div key={f.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="glass rounded-2xl p-8 card-hover">
+                <div className="w-14 h-14 rounded-2xl bg-orange-500/20 flex items-center justify-center mb-5">
+                  <Icon className="w-7 h-7 text-orange-400" />
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2">{f.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold text-slate-900 text-lg mb-3">{f.title}</h3>
+                <p className="text-base text-slate-600 leading-relaxed">{f.desc}</p>
               </motion.div>
             );
           })}
@@ -63,11 +63,11 @@ export default function CampusLifePage() {
         <SectionHeader badge="Student Life" title="Clubs & Societies" subtitle="50+ clubs across technical, cultural, sports, and social categories." />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {CLUBS.map((club, i) => (
-            <motion.div key={club.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="glass rounded-2xl p-5 text-center card-hover cursor-pointer">
-              <div className="text-3xl mb-3">{club.icon}</div>
-              <h3 className="font-semibold text-slate-900 text-sm mb-1">{club.name}</h3>
-              <p className="text-xs text-slate-500">{club.members} members</p>
-              <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{club.category}</span>
+            <motion.div key={club.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="glass rounded-2xl p-6 text-center card-hover cursor-pointer">
+              <div className="text-4xl mb-4">{club.icon}</div>
+              <h3 className="font-bold text-slate-900 text-base mb-1.5">{club.name}</h3>
+              <p className="text-sm font-medium text-slate-500">{club.members} members</p>
+              <span className="inline-block mt-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">{club.category}</span>
             </motion.div>
           ))}
         </div>
@@ -82,11 +82,11 @@ export default function CampusLifePage() {
             { name: "TechSummit", type: "Technical", date: "October", desc: "National-level hackathon and tech conference." },
             { name: "Sports Week", type: "Sports", date: "December", desc: "Inter-college sports tournament across 15 disciplines." },
           ].map((event, i) => (
-            <motion.div key={event.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-6 card-hover">
-              <span className="text-xs font-semibold text-orange-400 bg-orange-500/10 px-2 py-1 rounded-full">{event.type}</span>
-              <h3 className="text-xl font-bold text-slate-900 mt-3 mb-1">{event.name}</h3>
-              <p className="text-sm text-blue-400 mb-3">{event.date}</p>
-              <p className="text-sm text-slate-600">{event.desc}</p>
+            <motion.div key={event.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-8 card-hover">
+              <span className="text-sm font-bold tracking-wide text-orange-500 bg-orange-500/10 px-3 py-1.5 rounded-full">{event.type}</span>
+              <h3 className="text-2xl font-bold text-slate-900 mt-5 mb-2">{event.name}</h3>
+              <p className="text-base font-semibold text-blue-500 mb-4">{event.date}</p>
+              <p className="text-base text-slate-600 leading-relaxed">{event.desc}</p>
             </motion.div>
           ))}
         </div>

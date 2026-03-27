@@ -45,8 +45,21 @@ export default function HomePage() {
   return (
     <div className="bg-white">
       {/* ── HERO ── */}
-      <section className="relative bg-[#0f172a] pt-16">
-        <div className="container-max py-20 lg:py-28">
+      <section className="relative bg-[#0f172a] pt-16 overflow-hidden min-h-[85vh] flex items-center">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-50 z-0 pointer-events-none"
+        >
+          <source src="/videos/s_Aerial_drone_shot_sweepi.mp4" type="video/mp4" />
+        </video>
+
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 via-[#0f172a]/60 to-transparent z-0"></div>
+
+        <div className="container-max py-24 lg:py-32 relative z-10 w-full">
           <div className="max-w-3xl">
             <p className="section-label text-blue-400 mb-4">Est. 1965 — Ranked #1 in Innovation</p>
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
@@ -74,9 +87,9 @@ export default function HomePage() {
         <div className="container-max">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-slate-200">
             {STATS.map((s) => (
-              <div key={s.label} className="px-6 py-8 text-center">
-                <p className="text-2xl font-bold text-[#1e3a8a] font-serif">{s.value}</p>
-                <p className="text-xs text-slate-500 mt-1 leading-snug">{s.label}</p>
+              <div key={s.label} className="px-6 py-10 lg:py-12 text-center flex flex-col justify-center">
+                <p className="text-3xl lg:text-4xl font-extrabold text-[#1e3a8a] font-serif tracking-tight">{s.value}</p>
+                <p className="text-sm font-medium text-slate-600 mt-2 leading-snug">{s.label}</p>
               </div>
             ))}
           </div>
@@ -99,17 +112,19 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-slate-200">
             {DEPARTMENTS.map((dept) => (
               <Link key={dept.short} href={dept.href}>
-                <div className="bg-white p-6 hover:bg-slate-50 transition-colors group h-full">
-                  <div className="flex items-start justify-between mb-3">
-                    <span className="text-xs font-bold text-[#1e3a8a] bg-blue-50 px-2 py-1 rounded">
-                      {dept.short}
-                    </span>
-                    <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#1e3a8a] transition-colors" />
+                <div className="bg-white p-6 hover:bg-slate-50 transition-colors group h-full flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-start justify-between mb-4">
+                      <span className="text-sm font-bold text-[#1e3a8a] bg-blue-50 px-3 py-1 rounded-md">
+                        {dept.short}
+                      </span>
+                      <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-[#1e3a8a] transition-colors" />
+                    </div>
+                    <h3 className="font-bold text-slate-900 text-lg leading-snug mb-3 group-hover:text-[#1e3a8a] transition-colors">
+                      {dept.name}
+                    </h3>
                   </div>
-                  <h3 className="font-semibold text-slate-900 text-sm leading-snug mb-3 group-hover:text-[#1e3a8a] transition-colors">
-                    {dept.name}
-                  </h3>
-                  <div className="flex gap-4 text-xs text-slate-500">
+                  <div className="flex gap-5 text-sm font-medium text-slate-500 mt-2">
                     <span>{dept.students} students</span>
                     <span>{dept.faculty} faculty</span>
                   </div>
@@ -143,13 +158,13 @@ export default function HomePage() {
               </div>
               <div className="divide-y divide-slate-100">
                 {NEWS.map((item) => (
-                  <div key={item.title} className="py-4 flex gap-4 group cursor-pointer">
-                    <div className="flex-shrink-0 text-right w-24">
-                      <p className="text-xs text-slate-400">{item.date}</p>
+                  <div key={item.title} className="py-5 flex gap-5 group cursor-pointer">
+                    <div className="flex-shrink-0 text-right w-28 mt-0.5">
+                      <p className="text-sm font-medium text-slate-500">{item.date}</p>
                     </div>
                     <div>
-                      <span className="badge-blue mb-1.5">{item.category}</span>
-                      <p className="text-sm font-medium text-slate-800 group-hover:text-[#1e3a8a] transition-colors leading-snug">
+                      <span className="badge-blue mb-2 inline-block px-2.5 py-1 text-xs">{item.category}</span>
+                      <p className="text-base font-semibold text-slate-800 group-hover:text-[#1e3a8a] transition-colors leading-relaxed">
                         {item.title}
                       </p>
                     </div>
@@ -164,20 +179,20 @@ export default function HomePage() {
                 <p className="section-label">Upcoming</p>
                 <h2 className="font-serif text-2xl font-bold text-slate-900">Events</h2>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {EVENTS.map((ev) => (
-                  <div key={ev.title} className="card p-4 hover:shadow-sm transition-shadow cursor-pointer">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0 w-12 text-center">
-                        <p className="text-lg font-bold text-[#1e3a8a] font-serif leading-none">
+                  <div key={ev.title} className="card p-5 hover:shadow-sm transition-shadow cursor-pointer">
+                    <div className="flex gap-5 items-center">
+                      <div className="flex-shrink-0 w-16 text-center border-r border-slate-100 pr-5">
+                        <p className="text-2xl sm:text-3xl font-bold text-[#1e3a8a] font-serif leading-none">
                           {ev.date.split(" ")[1]}
                         </p>
-                        <p className="text-xs text-slate-500 uppercase">{ev.date.split(" ")[0]}</p>
+                        <p className="text-xs sm:text-sm font-medium text-slate-500 uppercase mt-1.5 tracking-wider">{ev.date.split(" ")[0]}</p>
                       </div>
-                      <div>
-                        <p className="text-sm font-semibold text-slate-800 leading-snug">{ev.title}</p>
-                        <p className="text-xs text-slate-500 mt-1">{ev.venue}</p>
-                        <span className="badge-gray mt-1.5">{ev.type}</span>
+                      <div className="pl-1">
+                        <p className="text-base font-semibold text-slate-800 leading-snug">{ev.title}</p>
+                        <p className="text-sm text-slate-500 mt-1">{ev.venue}</p>
+                        <span className="badge-gray mt-2 inline-block px-2.5 py-1 text-xs">{ev.type}</span>
                       </div>
                     </div>
                   </div>
@@ -207,8 +222,8 @@ export default function HomePage() {
                 <p className="text-xs text-slate-500 mb-1">Principal Investigator</p>
                 <p className="text-xs font-medium text-slate-700">{r.pi}</p>
                 <div className="mt-4 pt-4 border-t border-slate-100">
-                  <p className="text-xl font-bold text-[#1e3a8a] font-serif">{r.papers}</p>
-                  <p className="text-xs text-slate-500">Publications</p>
+                  <p className="text-2xl sm:text-3xl font-extrabold text-[#1e3a8a] font-serif tracking-tight">{r.papers}</p>
+                  <p className="text-xs sm:text-sm font-medium text-slate-600 mt-1">Publications</p>
                 </div>
               </div>
             ))}
@@ -234,9 +249,9 @@ export default function HomePage() {
                   { v: "80+",     l: "Countries" },
                   { v: "200+",    l: "CEOs & Founders" },
                 ].map((s) => (
-                  <div key={s.l} className="text-center p-4 bg-slate-50 rounded border border-slate-200">
-                    <p className="text-xl font-bold text-[#1e3a8a] font-serif">{s.v}</p>
-                    <p className="text-xs text-slate-500 mt-1">{s.l}</p>
+                  <div key={s.l} className="text-center p-5 bg-slate-50 rounded-lg border border-slate-200 shadow-sm flex flex-col justify-center">
+                    <p className="text-2xl sm:text-3xl font-extrabold text-[#1e3a8a] font-serif tracking-tight">{s.v}</p>
+                    <p className="text-xs sm:text-sm font-medium text-slate-600 mt-1.5">{s.l}</p>
                   </div>
                 ))}
               </div>
