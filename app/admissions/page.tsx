@@ -6,15 +6,15 @@ import { ChevronRight } from "lucide-react";
 export const metadata: Metadata = { title: "Admissions" };
 
 const DATES = [
-  { event: "Application Portal Opens",       date: "January 1, 2026" },
-  { event: "Application Deadline (B.Tech)",  date: "March 31, 2026" },
-  { event: "Application Deadline (M.Tech)",  date: "April 15, 2026" },
-  { event: "Application Deadline (MBA)",     date: "April 30, 2026" },
-  { event: "Entrance Exam (University Test)",date: "May 10, 2026" },
-  { event: "Results Announcement",           date: "May 25, 2026" },
-  { event: "Counseling & Seat Allotment",    date: "June 1–15, 2026" },
-  { event: "Fee Payment Deadline",           date: "June 20, 2026" },
-  { event: "Commencement of Classes",        date: "July 15, 2026" },
+  { event: "Application Portal Opens",       date: "January 1, 2025" },
+  { event: "Application Deadline (B.Tech)",  date: "March 31, 2025" },
+  { event: "Application Deadline (M.Tech)",  date: "April 15, 2025" },
+  { event: "Application Deadline (MBA)",     date: "April 30, 2025" },
+  { event: "Entrance Exam (University Test)",date: "May 10, 2025" },
+  { event: "Results Announcement",           date: "May 25, 2025" },
+  { event: "Counseling & Seat Allotment",    date: "June 1–15, 2025" },
+  { event: "Fee Payment Deadline",           date: "June 20, 2025" },
+  { event: "Commencement of Classes",        date: "July 15, 2025" },
 ];
 
 const PROGRAMS = [
@@ -44,9 +44,9 @@ export default function AdmissionsPage() {
             <ChevronRight className="w-4 h-4" />
             <span className="text-slate-300">Admissions</span>
           </nav>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">Admissions 2026</h1>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">Admissions 2025</h1>
           <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
-            Applications for the 2026 intake are now open. Review eligibility criteria and apply before the deadline.
+            Applications for the 2025 intake are now open. Review eligibility criteria and apply before the deadline.
           </p>
         </div>
       </div>
@@ -131,7 +131,7 @@ export default function AdmissionsPage() {
           <div className="space-y-5">
             <div className="bg-[#1e3a8a] rounded-lg p-5 text-white">
               <p className="text-xs font-semibold uppercase tracking-widest text-blue-200 mb-3">Apply Now</p>
-              <p className="text-sm text-blue-100 mb-4">Applications for 2026 are open. Deadline: March 31, 2026.</p>
+              <p className="text-sm text-blue-100 mb-4">Applications for 2025 are open. Deadline: March 31, 2025.</p>
               <Link href="/signup" className="block text-center bg-white text-[#1e3a8a] font-semibold text-sm py-2.5 rounded hover:bg-blue-50 transition-colors">
                 Start Application
               </Link>

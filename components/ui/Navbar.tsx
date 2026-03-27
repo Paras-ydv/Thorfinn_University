@@ -37,12 +37,7 @@ const MORE = [
     desc: "Reach admissions, faculty, or support",
     image: "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=80&q=70",
   },
-  {
-    label: "Students",
-    href: "/students",
-    desc: "Student life, clubs, and activities",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=80&q=70",
-  },
+
 ];
 
 // All searchable pages / sections
@@ -109,8 +104,7 @@ const ALL_PAGES = [
   { label: "Login", href: "/login", description: "Student & faculty login", keywords: "login sign in student faculty portal" },
   { label: "Sign Up", href: "/signup", description: "Create a new account", keywords: "sign up register create account new user" },
 
-  // ── Students ───────────────────────────────────────────────────────────
-  { label: "Students", href: "/students", description: "Student resources & services", keywords: "students resources services portal" },
+
 ];
 
 
@@ -272,15 +266,6 @@ export function Navbar() {
                       onClick={() => setMoreOpen(false)}
                       className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors duration-150 group"
                     >
-                      <div className="relative w-10 h-10 flex-shrink-0 rounded-md overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.label}
-                          fill
-                          className="object-cover"
-                          sizes="40px"
-                        />
-                      </div>
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-slate-800 group-hover:text-slate-900">{item.label}</p>
                         <p className="text-xs text-slate-500 truncate mt-0.5">{item.desc}</p>

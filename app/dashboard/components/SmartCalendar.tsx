@@ -5,12 +5,18 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, isSameDay } from "date-fns";
 
 const EVENTS = [
-  { date: new Date(2026, 0, 8),  title: "Infosys Placement Drive",       type: "Placement" },
-  { date: new Date(2026, 0, 15), title: "TechSummit 2026",               type: "Technical" },
-  { date: new Date(2026, 0, 20), title: "Admissions Open Day",           type: "Admissions" },
-  { date: new Date(2026, 1, 5),  title: "Annual Sports Meet",            type: "Sports" },
-  { date: new Date(2026, 1, 14), title: "Research Symposium",            type: "Research" },
-  { date: new Date(2026, 2, 5),  title: "Mid-Semester Examinations",     type: "Academic" },
+  { date: new Date(2025, 0, 8),  title: "Infosys Placement Drive",         type: "Placement" },
+  { date: new Date(2025, 0, 15), title: "TechSummit 2025",                 type: "Technical" },
+  { date: new Date(2025, 0, 20), title: "Admissions Open Day",             type: "Admissions" },
+  { date: new Date(2025, 1, 5),  title: "Annual Sports Meet",              type: "Sports" },
+  { date: new Date(2025, 1, 14), title: "Research Symposium",              type: "Research" },
+  { date: new Date(2025, 2, 5),  title: "Mid-Semester Examinations",       type: "Academic" },
+  { date: new Date(2025, 2, 18), title: "Google Campus Recruitment",       type: "Placement" },
+  { date: new Date(2025, 2, 22), title: "Inter-College Hackathon",         type: "Technical" },
+  { date: new Date(2025, 3, 2),  title: "Thorfinn Cultural Fest",          type: "Cultural" },
+  { date: new Date(2025, 3, 10), title: "End-Semester Examinations Begin", type: "Academic" },
+  { date: new Date(2025, 3, 25), title: "Alumni Meet 2025",                type: "General" },
+  { date: new Date(2025, 4, 3),  title: "Graduation Ceremony",            type: "Academic" },
 ];
 
 const TYPE_COLOR: Record<string, string> = {
@@ -20,16 +26,18 @@ const TYPE_COLOR: Record<string, string> = {
   Sports:     "bg-orange-500",
   Research:   "bg-teal-500",
   Academic:   "bg-red-500",
+  Cultural:   "bg-pink-500",
+  General:    "bg-slate-400",
 };
 
 export function SmartCalendar() {
-  const [current,  setCurrent]  = useState(new Date(2026, 0, 1));
+  const [current,  setCurrent]  = useState(new Date(2025, 0, 1));
   const [selected, setSelected] = useState<Date | null>(null);
 
   const days     = eachDayOfInterval({ start: startOfMonth(current), end: endOfMonth(current) });
   const startDay = startOfMonth(current).getDay();
   const dayEvents = (d: Date) => EVENTS.filter(e => isSameDay(e.date, d));
-  const upcoming  = EVENTS.filter(e => e.date >= new Date()).slice(0, 6);
+  const upcoming  = EVENTS.filter(e => e.date >= new Date());
 
   return (
     <div className="grid lg:grid-cols-3 gap-6 max-w-4xl">

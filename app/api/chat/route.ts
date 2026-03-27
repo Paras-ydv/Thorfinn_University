@@ -10,7 +10,7 @@ Key facts:
 - Programs: B.Tech (4 yrs, JEE Main), M.Tech (2 yrs, GATE), MBA (2 yrs, CAT/MAT), Ph.D (3-5 yrs)
 - Placement rate: 94% | Highest package: 45 LPA | Average: 12.4 LPA
 - Top recruiters: Google, Microsoft, Amazon, Goldman Sachs, McKinsey
-- Admissions 2026 deadline: March 31, 2026
+- Admissions 2025 deadline: March 31, 2025
 - Contact: info@thorfinn.edu | +91 80 2345 6789
 
 Keep responses under 80 words. Be factual and professional.`;
