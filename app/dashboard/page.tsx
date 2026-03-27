@@ -77,7 +77,6 @@ const NAV = [
       { id: "attendance",    label: "Attendance",     icon: ClipboardList },
       { id: "timetable",     label: "Timetable",      icon: Clock },
       { id: "calendar",      label: "Event Calendar", icon: Calendar },
-      { id: "academics",     label: "Resources",      icon: BookOpen },
     ],
   },
   {
@@ -332,20 +331,6 @@ export default function DashboardPage() {
       case "roommate":    return <RoommateMatch />;
       case "dayinlife":   return <UniversityInADay />;
       case "mapmarkers":  return user?.role === "Admin" ? <MapMarkersAdmin /> : <p className="text-sm text-slate-500">Admin access required.</p>;
-
-      case "academics": return (
-        <div>
-          <h2 className="font-semibold text-slate-900 mb-4">Academic Resources</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {ACADEMIC_LINKS.map(l => (
-              <Link key={l.label} href={l.href} className="card p-4 flex items-center justify-between hover:shadow-sm transition-shadow group">
-                <span className="text-sm font-medium text-slate-700 group-hover:text-[#1e3a8a] transition-colors">{l.label}</span>
-                <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#1e3a8a] transition-colors" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      );
 
       default: return null;
     }
