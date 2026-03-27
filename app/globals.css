@@ -134,4 +134,17 @@
   .badge-gray {
     @apply badge bg-slate-100 text-slate-600;
   }
+
+  /* ── Fallback Classes for Alternate Templates ── */
+  .section-padding {
+    @apply section-pad;
+  }
+
+  .glass {
+    @apply card shadow-sm;
+  }
+
+  .gradient-text {
+    @apply text-[#1e3a8a]; /* Replaced gradient with solid brand color for professional aesthetic */
+  }
 }

@@ -105,14 +105,14 @@ const PROGRAMS = [
 ];
 
 const CALENDAR = [
-  { event: "Semester I Commencement",     date: "July 15, 2024" },
-  { event: "Mid-Semester Examinations",   date: "Sep 10–20, 2024" },
+  { event: "Semester I Commencement", date: "July 15, 2024" },
+  { event: "Mid-Semester Examinations", date: "Sep 10–20, 2024" },
   { event: "Semester I End Examinations", date: "Nov 25 – Dec 5, 2024" },
-  { event: "Winter Break",                date: "Dec 6 – Jan 5, 2025" },
-  { event: "Semester II Commencement",    date: "January 6, 2025" },
-  { event: "Mid-Semester Examinations",   date: "Mar 5–15, 2025" },
-  { event: "End Semester Examinations",   date: "May 1–20, 2025" },
-  { event: "Summer Break",                date: "May 21 – Jul 14, 2025" },
+  { event: "Winter Break", date: "Dec 6 – Jan 5, 2025" },
+  { event: "Semester II Commencement", date: "January 6, 2025" },
+  { event: "Mid-Semester Examinations", date: "Mar 5–15, 2025" },
+  { event: "End Semester Examinations", date: "May 1–20, 2025" },
+  { event: "Summer Break", date: "May 21 – Jul 14, 2025" },
 ];
 
 export default function AcademicsPage() {
@@ -127,13 +127,13 @@ export default function AcademicsPage() {
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 via-[#0f172a]/60 to-transparent z-0" />
         <div className="container-max py-20 lg:py-24 relative z-10 w-full">
-          <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+          <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
+            <ChevronRight className="w-4 h-4" />
             <span className="text-slate-300">Academics</span>
           </nav>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">Academic Programs</h1>
-          <p className="text-slate-400 mt-2 text-sm max-w-xl">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">Academic Programs</h1>
+          <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
             Rigorous, research-driven programs designed to prepare graduates for leadership in their fields.
           </p>
         </div>
@@ -146,8 +146,8 @@ export default function AcademicsPage() {
           <div className="lg:col-span-2 space-y-12">
             {([
               { label: "Undergraduate Programs", key: "Undergraduate", badge: "bg-blue-600" },
-              { label: "Postgraduate Programs",  key: "Postgraduate",  badge: "bg-green-600" },
-              { label: "Doctoral Programs",       key: "Doctoral",      badge: "bg-gray-700" },
+              { label: "Postgraduate Programs", key: "Postgraduate", badge: "bg-green-600" },
+              { label: "Doctoral Programs", key: "Doctoral", badge: "bg-gray-700" },
             ] as const).map((section) => (
               <div key={section.key}>
                 {/* Section heading */}
@@ -217,25 +217,31 @@ export default function AcademicsPage() {
           <div className="space-y-6">
             <div className="card overflow-hidden">
               <div className="px-6 py-5 bg-slate-50 border-b border-slate-200">
-                <h3 className="text-base font-bold text-slate-800">Academic Calendar 2024–25</h3>
+                <h3 className="text-xl font-bold text-slate-800">Academic Calendar 2024–25</h3>
               </div>
               <div className="divide-y divide-slate-100">
                 {CALENDAR.map((c) => (
-                  <div key={c.event} className="px-6 py-4">
-                    <p className="text-sm font-semibold text-slate-800">{c.event}</p>
-                    <p className="text-sm font-medium text-slate-500 mt-1">{c.date}</p>
+                  <div key={c.event} className="px-6 py-5">
+                    <p className="text-lg font-semibold text-slate-800 leading-snug">{c.event}</p>
+                    <p className="text-base font-medium text-slate-500 mt-1">{c.date}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="card p-6">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-[#1e3a8a] mb-5">Grading System</h3>
-              <table className="data-table text-sm">
-                <thead><tr><th>Grade</th><th>Points</th><th>Range</th></tr></thead>
-                <tbody>
-                  {[["O","10","90–100"],["A+","9","80–89"],["A","8","70–79"],["B+","7","60–69"],["B","6","50–59"],["C","5","40–49"],["F","0","<40"]].map(([g,p,r]) => (
-                    <tr key={g}><td className="font-medium">{g}</td><td>{p}</td><td>{r}</td></tr>
+              <h3 className="text-base font-bold uppercase tracking-widest text-[#1e3a8a] mb-6">Grading System</h3>
+              <table className="data-table text-base w-full text-left">
+                <thead>
+                  <tr className="border-b border-slate-200 text-slate-500">
+                    <th className="py-2 font-medium">Grade</th>
+                    <th className="py-2 font-medium">Points</th>
+                    <th className="py-2 font-medium">Range</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[["O", "10", "90–100"], ["A+", "9", "80–89"], ["A", "8", "70–79"], ["B+", "7", "60–69"], ["B", "6", "50–59"], ["C", "5", "40–49"], ["F", "0", "<40"]].map(([g, p, r]) => (
+                    <tr key={g}><td className="py-3 font-semibold text-slate-800">{g}</td><td className="py-3 text-slate-600">{p}</td><td className="py-3 text-slate-600">{r}</td></tr>
                   ))}
                 </tbody>
               </table>

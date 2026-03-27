@@ -142,58 +142,65 @@ export default function HomePage() {
       </section>
 
       {/* ── NEWS + EVENTS ── */}
-      <section className="section-pad border-b border-slate-100">
+      <section className="section-pad border-b border-slate-100 bg-[#fefdfa]">
         <div className="container-max">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
             {/* News */}
             <div className="lg:col-span-2">
-              <div className="flex items-end justify-between mb-6">
-                <div>
-                  <p className="section-label">Latest Updates</p>
-                  <h2 className="font-serif text-2xl font-bold text-slate-900">News & Announcements</h2>
-                </div>
-                <Link href="#" className="text-sm text-[#1e3a8a] font-medium hover:underline hidden sm:flex items-center gap-1">
-                  All News <ChevronRight className="w-4 h-4" />
-                </Link>
+              <div className="mb-8">
+                <h2 className="font-serif text-3xl md:text-4xl font-light text-slate-800 tracking-tight">Latest Updates</h2>
               </div>
-              <div className="divide-y divide-slate-100">
-                {NEWS.map((item) => (
-                  <div key={item.title} className="py-5 flex gap-5 group cursor-pointer">
-                    <div className="flex-shrink-0 text-right w-28 mt-0.5">
-                      <p className="text-sm font-medium text-slate-500">{item.date}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left Column (2 smaller stacked cards) */}
+                <div className="flex flex-col gap-8">
+                  {NEWS.slice(0, 2).map((item, idx) => (
+                    <div key={item.title} className="group cursor-pointer">
+                      <div className="aspect-[4/3] w-full bg-slate-200 rounded-3xl mb-5 overflow-hidden">
+                        <img src={`https://picsum.photos/seed/thorfinnnews${idx}/600/400`} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <span className="border border-slate-300 rounded-full px-3 py-1 text-[10px] font-bold text-slate-800 uppercase tracking-widest leading-none">LATEST NEWS</span>
+                        <span className="border border-slate-300 rounded-full px-3 py-1 text-[10px] font-bold text-slate-800 uppercase tracking-widest leading-none">{item.category}</span>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 leading-tight mb-2 group-hover:text-[#1e3a8a] transition-colors">{item.title}</h3>
+                      <p className="text-sm text-slate-500 font-medium">{item.date}</p>
                     </div>
-                    <div>
-                      <span className="badge-blue mb-2 inline-block px-2.5 py-1 text-xs">{item.category}</span>
-                      <p className="text-base font-semibold text-slate-800 group-hover:text-[#1e3a8a] transition-colors leading-relaxed">
-                        {item.title}
-                      </p>
+                  ))}
+                </div>
+                
+                {/* Right Column (1 large card) */}
+                <div className="flex flex-col">
+                  {NEWS.slice(2, 3).map((item) => (
+                    <div key={item.title} className="group cursor-pointer h-full">
+                      <div className="aspect-[4/3] md:aspect-[3/4] w-full bg-slate-200 rounded-[2rem] md:rounded-[3rem] mb-6 overflow-hidden">
+                        <img src={`https://picsum.photos/seed/thorfinnmainnews/800/1000`} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="border border-slate-300 rounded-full px-3 py-1 text-[10px] font-bold text-slate-800 uppercase tracking-widest leading-none">LATEST NEWS</span>
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight mb-3 underline decoration-slate-300 decoration-2 underline-offset-4 group-hover:text-[#1e3a8a] transition-colors">{item.title}</h3>
+                      <p className="text-sm text-slate-500 font-medium">{item.date}</p>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Events */}
             <div>
-              <div className="mb-6">
-                <p className="section-label">Upcoming</p>
-                <h2 className="font-serif text-2xl font-bold text-slate-900">Events</h2>
+              <div className="mb-8">
+                <h2 className="font-serif text-3xl md:text-4xl font-light text-slate-800 tracking-tight">Upcoming Events</h2>
               </div>
-              <div className="space-y-4">
-                {EVENTS.map((ev) => (
-                  <div key={ev.title} className="card p-5 hover:shadow-sm transition-shadow cursor-pointer">
-                    <div className="flex gap-5 items-center">
-                      <div className="flex-shrink-0 w-16 text-center border-r border-slate-100 pr-5">
-                        <p className="text-2xl sm:text-3xl font-bold text-[#1e3a8a] font-serif leading-none">
-                          {ev.date.split(" ")[1]}
-                        </p>
-                        <p className="text-xs sm:text-sm font-medium text-slate-500 uppercase mt-1.5 tracking-wider">{ev.date.split(" ")[0]}</p>
-                      </div>
-                      <div className="pl-1">
-                        <p className="text-base font-semibold text-slate-800 leading-snug">{ev.title}</p>
-                        <p className="text-sm text-slate-500 mt-1">{ev.venue}</p>
-                        <span className="badge-gray mt-2 inline-block px-2.5 py-1 text-xs">{ev.type}</span>
-                      </div>
+              <div className="divide-y divide-slate-300 border-y border-slate-300">
+                {EVENTS.map((ev, idx) => (
+                  <div key={ev.title} className="py-6 group cursor-pointer flex gap-5">
+                    <div className="flex-shrink-0 w-20 h-20 bg-slate-200 rounded-2xl overflow-hidden relative">
+                      <img src={`https://picsum.photos/seed/thorfinnevent${idx}/200/200`} alt={ev.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <p className="text-sm text-slate-600 mb-0.5">Saturday. {ev.date}, 2026</p>
+                      <p className="text-sm text-slate-400 mb-1.5 font-light">12:00 pm–2:00 pm</p>
+                      <p className="text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-[#1e3a8a] transition-colors">{ev.title}</p>
                     </div>
                   </div>
                 ))}

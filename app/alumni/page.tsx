@@ -50,10 +50,10 @@ export default function AlumniPage() {
             { icon: Briefcase, value: "200+", label: "CEOs & Founders" },
             { icon: Award, value: "15+", label: "Nobel Laureates" },
           ].map(({ icon: Icon, value, label }, i) => (
-            <motion.div key={label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-6 text-center">
-              <Icon className="w-8 h-8 text-violet-400 mx-auto mb-3" />
-              <p className="text-2xl font-bold gradient-text">{value}</p>
-              <p className="text-sm text-slate-600 mt-1">{label}</p>
+            <motion.div key={label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-8 text-center">
+              <Icon className="w-10 h-10 text-violet-400 mx-auto mb-4" />
+              <p className="text-3xl lg:text-4xl font-extrabold gradient-text tracking-tight">{value}</p>
+              <p className="text-base font-medium text-slate-600 mt-2">{label}</p>
             </motion.div>
           ))}
         </div>
@@ -89,14 +89,14 @@ export default function AlumniPage() {
         <SectionHeader badge="Notable Alumni" title="Thorfinn Legends" />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {ALUMNI_NOTABLE.map((alumni, i) => (
-            <motion.div key={alumni.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="glass rounded-2xl p-6 flex items-center gap-4 card-hover">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-violet-500/30">
+            <motion.div key={alumni.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="glass rounded-2xl p-6 md:p-8 flex items-center gap-5 card-hover">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 ring-4 ring-violet-500/20">
                 <Image src={alumni.img} alt={alumni.name} fill className="object-cover" />
               </div>
-              <div>
-                <h3 className="font-bold text-slate-900">{alumni.name}</h3>
-                <p className="text-sm text-violet-400">{alumni.role}</p>
-                <p className="text-xs text-slate-500 mt-1">{alumni.batch}</p>
+              <div className="pl-1">
+                <h3 className="font-bold text-slate-900 text-xl md:text-2xl mb-1 tracking-tight">{alumni.name}</h3>
+                <p className="text-base font-medium text-violet-600 mb-1">{alumni.role}</p>
+                <p className="text-sm text-slate-500 font-medium">{alumni.batch}</p>
               </div>
             </motion.div>
           ))}

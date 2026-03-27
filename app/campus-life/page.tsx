@@ -1,18 +1,18 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ChevronRight, Music, Trophy, Utensils, Dumbbell, BookOpen, Heart, ArrowRight } from "lucide-react";
 
-import { motion } from "framer-motion";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Music, Trophy, Utensils, Dumbbell, BookOpen, Heart } from "lucide-react";
+export const metadata: Metadata = { title: "Campus Life" };
 
 const CLUBS = [
-  { name: "Coding Club", members: 450, icon: "💻", category: "Technical" },
-  { name: "Robotics Society", members: 280, icon: "🤖", category: "Technical" },
-  { name: "Music Band", members: 120, icon: "🎵", category: "Cultural" },
-  { name: "Drama Club", members: 95, icon: "🎭", category: "Cultural" },
-  { name: "Photography Club", members: 200, icon: "📷", category: "Creative" },
-  { name: "Entrepreneurship Cell", members: 350, icon: "🚀", category: "Professional" },
-  { name: "NSS", members: 500, icon: "🌱", category: "Social" },
-  { name: "Sports Council", members: 800, icon: "⚽", category: "Sports" },
+  { name: "Coding Club", members: 450, category: "Technical" },
+  { name: "Robotics Society", members: 280, category: "Technical" },
+  { name: "Music Band", members: 120, category: "Cultural" },
+  { name: "Drama Club", members: 95, category: "Cultural" },
+  { name: "Photography Club", members: 200, category: "Creative" },
+  { name: "Entrepreneurship", members: 350, category: "Professional" },
+  { name: "NSS", members: 500, category: "Social" },
+  { name: "Sports Council", members: 800, category: "Sports" },
 ];
 
 const FACILITIES = [
@@ -24,73 +24,112 @@ const FACILITIES = [
   { icon: Heart, title: "Health Center", desc: "24/7 medical facility with doctors, counselors, and emergency care." },
 ];
 
+const EVENTS = [
+  { name: "Thorfinn Fest", type: "Cultural", date: "February", desc: "3-day cultural extravaganza with 10,000+ attendees." },
+  { name: "TechSummit", type: "Technical", date: "October", desc: "National-level hackathon and tech conference." },
+  { name: "Sports Week", type: "Sports", date: "December", desc: "Inter-college sports tournament across 15 disciplines." },
+];
+
 export default function CampusLifePage() {
   return (
-    <div className="bg-slate-50 pt-16">
-      <section className="relative section-padding overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-900/20 to-pink-900/20" />
-        <div className="container-max relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-5xl sm:text-6xl font-bold text-slate-900 mb-4">
-              <span className="gradient-text">Campus Life</span>
-            </h1>
-            <p className="text-xl text-slate-700 max-w-2xl mx-auto">
-              200 acres of vibrant campus life — where learning meets living.
-            </p>
-          </motion.div>
+    <div className="bg-white pt-16">
+      <div className="bg-[#0f172a]">
+        <div className="container-max py-20 lg:py-24">
+          <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-slate-300">Campus Life</span>
+          </nav>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">Campus Life</h1>
+          <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
+            200 acres of vibrant campus life — where excellence in learning meets holistic student living.
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* Facilities */}
-      <section className="section-padding container-max">
-        <SectionHeader badge="Facilities" title="World-Class Facilities" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {FACILITIES.map((f, i) => {
-            const Icon = f.icon;
-            return (
-              <motion.div key={f.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="glass rounded-2xl p-8 card-hover">
-                <div className="w-14 h-14 rounded-2xl bg-orange-500/20 flex items-center justify-center mb-5">
-                  <Icon className="w-7 h-7 text-orange-400" />
+      <div className="container-max py-16">
+        <div className="grid lg:grid-cols-3 gap-12">
+          
+          <div className="lg:col-span-2 space-y-12">
+            
+            <section>
+              <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">World-Class Facilities</h2>
+              <div className="grid sm:grid-cols-2 gap-6">
+                {FACILITIES.map((f) => {
+                  const Icon = f.icon;
+                  return (
+                    <div key={f.title} className="card p-8 hover:shadow-md transition-shadow">
+                      <div className="w-14 h-14 rounded bg-blue-50 flex items-center justify-center mb-6">
+                        <Icon className="w-7 h-7 text-[#1e3a8a]" />
+                      </div>
+                      <h3 className="font-bold text-slate-900 text-xl mb-3">{f.title}</h3>
+                      <p className="text-base text-slate-600 leading-relaxed">{f.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            <section>
+              <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">Annual Events</h2>
+              <div className="card overflow-hidden">
+                <div className="divide-y divide-slate-100">
+                  {EVENTS.map((event) => (
+                    <div key={event.name} className="p-6 sm:p-8 hover:bg-slate-50 transition-colors flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
+                      <div className="max-w-md">
+                        <span className="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider rounded mb-3">
+                          {event.type}
+                        </span>
+                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{event.name}</h3>
+                        <p className="text-base text-slate-600">{event.desc}</p>
+                      </div>
+                      <div className="flex-shrink-0 text-left sm:text-right border-t sm:border-t-0 sm:border-l border-slate-100 pt-4 sm:pt-0 sm:pl-6">
+                         <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Month</p>
+                         <p className="text-xl font-bold text-[#1e3a8a]">{event.date}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <h3 className="font-bold text-slate-900 text-lg mb-3">{f.title}</h3>
-                <p className="text-base text-slate-600 leading-relaxed">{f.desc}</p>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+            </section>
+            
+          </div>
 
-        {/* Clubs */}
-        <SectionHeader badge="Student Life" title="Clubs & Societies" subtitle="50+ clubs across technical, cultural, sports, and social categories." />
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {CLUBS.map((club, i) => (
-            <motion.div key={club.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }} className="glass rounded-2xl p-6 text-center card-hover cursor-pointer">
-              <div className="text-4xl mb-4">{club.icon}</div>
-              <h3 className="font-bold text-slate-900 text-base mb-1.5">{club.name}</h3>
-              <p className="text-sm font-medium text-slate-500">{club.members} members</p>
-              <span className="inline-block mt-3 text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">{club.category}</span>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+          {/* Right Sidebar */}
+          <div className="space-y-6">
+            <div className="card overflow-hidden">
+              <div className="px-6 py-5 bg-slate-50 border-b border-slate-200">
+                <h3 className="text-xl font-bold text-slate-800">Clubs & Societies</h3>
+                <p className="text-sm text-slate-500 mt-1">50+ active student groups</p>
+              </div>
+              <ul className="divide-y divide-slate-100">
+                {CLUBS.map((club) => (
+                  <li key={club.name} className="flex justify-between items-center p-6 hover:bg-slate-50 transition-colors">
+                    <div>
+                      <h4 className="font-bold text-slate-900 text-lg mb-1">{club.name}</h4>
+                      <p className="text-sm font-medium text-slate-500">{club.members} Members</p>
+                    </div>
+                    <span className="text-xs font-bold text-[#1e3a8a] bg-blue-50 px-2.5 py-1 rounded">
+                      {club.category}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="card p-6 bg-slate-900 text-white">
+              <h3 className="text-lg font-bold mb-3">Hostel Accommodation</h3>
+              <p className="text-slate-300 text-sm mb-6 leading-relaxed">
+                Experience a comfortable home away from home with our modern hostel facilities and top-tier security.
+              </p>
+              <Link href="/hostel" className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-slate-300 transition-colors">
+                Explore Hostels <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
 
-      {/* Events */}
-      <section className="section-padding container-max">
-        <SectionHeader badge="Events" title="Annual Events" />
-        <div className="grid sm:grid-cols-3 gap-6">
-          {[
-            { name: "Thorfinn Fest", type: "Cultural", date: "February", desc: "3-day cultural extravaganza with 10,000+ attendees." },
-            { name: "TechSummit", type: "Technical", date: "October", desc: "National-level hackathon and tech conference." },
-            { name: "Sports Week", type: "Sports", date: "December", desc: "Inter-college sports tournament across 15 disciplines." },
-          ].map((event, i) => (
-            <motion.div key={event.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="glass rounded-2xl p-8 card-hover">
-              <span className="text-sm font-bold tracking-wide text-orange-500 bg-orange-500/10 px-3 py-1.5 rounded-full">{event.type}</span>
-              <h3 className="text-2xl font-bold text-slate-900 mt-5 mb-2">{event.name}</h3>
-              <p className="text-base font-semibold text-blue-500 mb-4">{event.date}</p>
-              <p className="text-base text-slate-600 leading-relaxed">{event.desc}</p>
-            </motion.div>
-          ))}
         </div>
-      </section>
+      </div>
     </div>
   );
 }

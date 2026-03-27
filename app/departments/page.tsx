@@ -17,53 +17,53 @@ export default function DepartmentsPage() {
   return (
     <div className="bg-white pt-16">
       <div className="bg-[#0f172a]">
-        <div className="container-max py-12">
-          <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+        <div className="container-max py-20 lg:py-24">
+          <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
+            <ChevronRight className="w-4 h-4" />
             <span className="text-slate-300">Departments</span>
           </nav>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">Schools & Departments</h1>
-          <p className="text-slate-400 mt-2 text-sm">Six departments offering world-class programs and research opportunities.</p>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight">Schools & Departments</h1>
+          <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">Six departments offering world-class programs and research opportunities.</p>
         </div>
       </div>
 
-      <div className="container-max py-12">
+      <div className="container-max py-16">
         <div className="card overflow-hidden">
-          <table className="data-table">
+          <table className="data-table text-base w-full">
             <thead>
-              <tr>
-                <th>Department</th>
-                <th>Head of Department</th>
-                <th>Students</th>
-                <th>Faculty</th>
-                <th>Programs</th>
-                <th></th>
+              <tr className="text-slate-500 border-b border-slate-200">
+                <th className="py-5 font-semibold">Department</th>
+                <th className="py-5 font-semibold">Head of Department</th>
+                <th className="py-5 font-semibold">Students</th>
+                <th className="py-5 font-semibold">Faculty</th>
+                <th className="py-5 font-semibold">Programs</th>
+                <th className="py-5"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-slate-100">
               {DEPARTMENTS.map((d) => (
-                <tr key={d.slug}>
-                  <td>
-                    <div>
-                      <span className="text-xs font-bold text-[#1e3a8a] mr-2">{d.short}</span>
-                      <span className="font-medium text-slate-900">{d.name}</span>
+                <tr key={d.slug} className="hover:bg-slate-50 transition-colors">
+                  <td className="py-5 px-6">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="text-sm font-bold text-[#1e3a8a] bg-blue-50 px-2.5 py-1 rounded-md">{d.short}</span>
+                      <span className="font-bold text-slate-900 text-lg">{d.name}</span>
                     </div>
                   </td>
-                  <td className="text-slate-600">{d.hod}</td>
-                  <td>{d.students}</td>
-                  <td>{d.faculty}</td>
-                  <td>
-                    <div className="flex flex-wrap gap-1">
+                  <td className="text-slate-600 font-medium py-5 px-6">{d.hod}</td>
+                  <td className="text-slate-700 font-semibold py-5 px-6">{d.students}</td>
+                  <td className="text-slate-700 font-semibold py-5 px-6">{d.faculty}</td>
+                  <td className="py-5 px-6">
+                    <div className="flex flex-wrap gap-2">
                       {d.programs.slice(0, 2).map(p => (
-                        <span key={p} className="badge-gray">{p}</span>
+                        <span key={p} className="badge-gray px-3 py-1.5 text-xs font-semibold">{p}</span>
                       ))}
-                      {d.programs.length > 2 && <span className="badge-gray">+{d.programs.length - 2}</span>}
+                      {d.programs.length > 2 && <span className="badge-gray px-3 py-1.5 text-xs font-semibold">+{d.programs.length - 2}</span>}
                     </div>
                   </td>
-                  <td>
-                    <Link href={`/departments/${d.slug}`} className="text-xs text-[#1e3a8a] hover:underline flex items-center gap-1 whitespace-nowrap">
-                      View <ChevronRight className="w-3 h-3" />
+                  <td className="py-5 px-6 text-right">
+                    <Link href={`/departments/${d.slug}`} className="text-sm font-bold text-[#1e3a8a] hover:underline flex items-center gap-1 justify-end whitespace-nowrap">
+                      View <ChevronRight className="w-5 h-5" />
                     </Link>
                   </td>
                 </tr>
