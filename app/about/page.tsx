@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { LeadershipCard, FacultyGridCard, StaffCard } from "@/components/ui/FacultyCard";
+import { LEADERSHIP, FACULTY, NON_FACULTY_STAFF } from "@/lib/facultyData";
 
 export const metadata: Metadata = { title: "About" };
-
-const LEADERSHIP = [
-  { name: "Prof. Arjun Mehta",  role: "Vice Chancellor",    dept: "Office of the Vice Chancellor" },
-  { name: "Dr. Kavitha Rao",    role: "Pro Vice Chancellor", dept: "Academic Affairs" },
-  { name: "Prof. Suresh Nair",  role: "Dean of Academics",  dept: "Academic Programs" },
-  { name: "Dr. Ananya Singh",   role: "Dean of Research",   dept: "Research & Innovation" },
-  { name: "Dr. Vikram Patel",   role: "Dean of Students",   dept: "Student Affairs" },
-  { name: "Prof. Meera Iyer",   role: "Registrar",          dept: "Administration" },
-];
 
 const MILESTONES = [
   { year: "1965", event: "University established by Act of Parliament with four founding departments." },
@@ -22,6 +15,8 @@ const MILESTONES = [
   { year: "2015", event: "Innovation & Entrepreneurship Centre inaugurated. 100+ startups incubated." },
   { year: "2024", event: "AI Research Institute launched. 94% placement rate. 50,000+ alumni." },
 ];
+
+const ALL_FACULTY = Object.values(FACULTY);
 
 export default function AboutPage() {
   return (
@@ -144,17 +139,32 @@ export default function AboutPage() {
           <p className="section-label">Administration</p>
           <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">University Leadership</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {LEADERSHIP.map((p) => (
-              <div key={p.name} className="card p-5 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-                  {p.name.split(" ").slice(-1)[0][0]}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-slate-900">{p.name}</p>
-                  <p className="text-xs text-[#1e3a8a] font-medium mt-0.5">{p.role}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{p.dept}</p>
-                </div>
-              </div>
+            {Object.values(LEADERSHIP).map((member) => (
+              <LeadershipCard key={member.name} member={member} />
+            ))}
+          </div>
+        </section>
+
+        {/* Faculty */}
+        <section className="mt-14 pt-10 border-t border-slate-200">
+          <p className="section-label">People</p>
+          <h2 className="font-serif text-2xl font-bold text-slate-900 mb-2">Faculty</h2>
+          <p className="text-sm text-slate-500 mb-6">{ALL_FACULTY.length} faculty members across all departments. Click any card to view full profile.</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {ALL_FACULTY.map((member) => (
+              <FacultyGridCard key={member.name} member={member} />
+            ))}
+          </div>
+        </section>
+
+        {/* Non-Faculty Staff */}
+        <section className="mt-14 pt-10 border-t border-slate-200">
+          <p className="section-label">Staff</p>
+          <h2 className="font-serif text-2xl font-bold text-slate-900 mb-2">Non-Teaching Staff</h2>
+          <p className="text-sm text-slate-500 mb-6">Administrative, technical, and support staff who keep the university running.</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {NON_FACULTY_STAFF.map((member) => (
+              <StaffCard key={member.name} member={member} />
             ))}
           </div>
         </section>

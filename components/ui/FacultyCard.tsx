@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Mail, BookOpen, Briefcase, GraduationCap } from "lucide-react";
-import type { FacultyMember, LeadershipMember } from "@/lib/facultyData";
+import type { FacultyMember, LeadershipMember, StaffMember } from "@/lib/facultyData";
 
 /* ── shared modal ── */
 type ModalProps = {
@@ -179,6 +179,65 @@ export function LeadershipCard({ member }: { member: LeadershipMember }) {
             onClose={() => setOpen(false)}
           />
         )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+/* ── Staff card (used in about page non-faculty section) ── */
+export function StaffCard({ member }: { member: StaffMember }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="card p-5 flex items-start gap-4 w-full text-left group hover:shadow-md transition-shadow"
+      >
+        <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-slate-200 group-hover:ring-[#1e3a8a] transition-all">
+          <Image src={member.img} alt={member.name} fill className="object-cover" />
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-slate-900 group-hover:text-[#1e3a8a] transition-colors">{member.name}</p>
+          <p className="text-xs text-[#1e3a8a] font-medium mt-0.5">{member.role}</p>
+          <p className="text-xs text-slate-500 mt-0.5">{member.dept}</p>
+        </div>
+      </button>
+      <AnimatePresence>
+        {open && (
+          <Modal
+            name={member.name}
+            designation={member.role}
+            email={member.email}
+            img={member.img}
+            bio={member.bio}
+            onClose={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+/* ── Faculty grid card (used in about page faculty section) ── */
+export function FacultyGridCard({ member }: { member: FacultyMember }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="card p-5 flex items-start gap-4 w-full text-left group hover:shadow-md transition-shadow"
+      >
+        <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-slate-200 group-hover:ring-[#1e3a8a] transition-all">
+          <Image src={member.img} alt={member.name} fill className="object-cover" />
+        </div>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-slate-900 group-hover:text-[#1e3a8a] transition-colors truncate">{member.name}</p>
+          <p className="text-xs text-[#1e3a8a] font-medium mt-0.5">{member.designation}</p>
+          <p className="text-xs text-slate-500 mt-0.5 truncate">{member.specialization}</p>
+        </div>
+      </button>
+      <AnimatePresence>
+        {open && <Modal {...member} onClose={() => setOpen(false)} />}
       </AnimatePresence>
     </>
   );
