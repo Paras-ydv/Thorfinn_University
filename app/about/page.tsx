@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { LeadershipCard } from "@/components/ui/FacultyCard";
-import { LEADERSHIP } from "@/lib/facultyData";
 
 export const metadata: Metadata = { title: "About" };
 
-const LEADERSHIP_LIST = [
-  "Prof. Arjun Mehta",
-  "Dr. Kavitha Rao",
-  "Prof. Suresh Nair",
-  "Dr. Ananya Singh",
-  "Dr. Vikram Patel",
-  "Prof. Meera Iyer",
+const LEADERSHIP = [
+  { name: "Prof. Arjun Mehta",  role: "Vice Chancellor",    dept: "Office of the Vice Chancellor" },
+  { name: "Dr. Kavitha Rao",    role: "Pro Vice Chancellor", dept: "Academic Affairs" },
+  { name: "Prof. Suresh Nair",  role: "Dean of Academics",  dept: "Academic Programs" },
+  { name: "Dr. Ananya Singh",   role: "Dean of Research",   dept: "Research & Innovation" },
+  { name: "Dr. Vikram Patel",   role: "Dean of Students",   dept: "Student Affairs" },
+  { name: "Prof. Meera Iyer",   role: "Registrar",          dept: "Administration" },
 ];
 
 const MILESTONES = [
@@ -28,16 +26,21 @@ const MILESTONES = [
 export default function AboutPage() {
   return (
     <div className="bg-white pt-16">
-      {/* Header */}
-      <div className="bg-[#0f172a]">
-        <div className="container-max py-12">
-          <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
+      {/* Hero */}
+      <div className="relative bg-[#0f172a] overflow-hidden min-h-[60vh] flex items-center">
+        <video autoPlay loop muted playsInline preload="none"
+          className="absolute inset-0 w-full h-full object-cover opacity-50 z-0 pointer-events-none">
+          <source src="https://res.cloudinary.com/dblwlysku/video/upload/v1774619431/s_Aerial_drone_shot_sweepi_gnrpov.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/90 via-[#0f172a]/60 to-transparent z-0" />
+        <div className="container-max py-20 lg:py-24 relative z-10 w-full">
+          <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
+            <ChevronRight className="w-4 h-4" />
             <span className="text-slate-300">About</span>
           </nav>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">About Thorfinn University</h1>
-          <p className="text-slate-400 mt-2 text-sm max-w-xl">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">About Thorfinn University</h1>
+          <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
             A legacy of academic excellence, research leadership, and public service since 1965.
           </p>
         </div>
@@ -141,11 +144,18 @@ export default function AboutPage() {
           <p className="section-label">Administration</p>
           <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">University Leadership</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {LEADERSHIP_LIST.map((name) =>
-              LEADERSHIP[name] ? (
-                <LeadershipCard key={name} member={LEADERSHIP[name]} />
-              ) : null
-            )}
+            {LEADERSHIP.map((p) => (
+              <div key={p.name} className="card p-5 flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                  {p.name.split(" ").slice(-1)[0][0]}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">{p.name}</p>
+                  <p className="text-xs text-[#1e3a8a] font-medium mt-0.5">{p.role}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{p.dept}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </div>
