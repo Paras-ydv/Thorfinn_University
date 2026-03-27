@@ -1,39 +1,37 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ChevronRight, Music, Trophy, Utensils, Dumbbell, BookOpen, Heart, ArrowRight, Radio } from "lucide-react";
+import {
+  ChevronRight, Music, Trophy, Utensils, Dumbbell, BookOpen, Heart,
+  ArrowRight, Radio,
+} from "lucide-react";
 import { HappeningNow } from "@/app/dashboard/components/HappeningNow";
-
-const CampusMap3D = dynamic(
-  () => import("@/components/ui/CampusMap3D").then((m) => ({ default: m.CampusMap3D })),
-  { ssr: false, loading: () => <div className="w-full h-[520px] rounded-2xl bg-slate-100 animate-pulse flex items-center justify-center text-slate-400 text-sm">Loading campus map…</div> }
-);
+import { CampusMapImage } from "./components/CampusMapImage";
 
 const CLUBS = [
-  { name: "Coding Club", members: 450, category: "Technical" },
-  { name: "Robotics Society", members: 280, category: "Technical" },
-  { name: "Music Band", members: 120, category: "Cultural" },
-  { name: "Drama Club", members: 95, category: "Cultural" },
-  { name: "Photography Club", members: 200, category: "Creative" },
-  { name: "Entrepreneurship", members: 350, category: "Professional" },
-  { name: "NSS", members: 500, category: "Social" },
-  { name: "Sports Council", members: 800, category: "Sports" },
+  { name: "Coding Club",       members: 450, category: "Technical" },
+  { name: "Robotics Society",  members: 280, category: "Technical" },
+  { name: "Music Band",        members: 120, category: "Cultural" },
+  { name: "Drama Club",        members: 95,  category: "Cultural" },
+  { name: "Photography Club",  members: 200, category: "Creative" },
+  { name: "Entrepreneurship",  members: 350, category: "Professional" },
+  { name: "NSS",               members: 500, category: "Social" },
+  { name: "Sports Council",    members: 800, category: "Sports" },
 ];
 
 const FACILITIES = [
-  { icon: Dumbbell, title: "Sports Complex", desc: "Olympic-size pool, gym, courts for cricket, football, basketball, tennis." },
-  { icon: BookOpen, title: "Central Library", desc: "1M+ books, 24/7 digital access, quiet study zones and collaboration spaces." },
-  { icon: Utensils, title: "Food Court", desc: "8 cafeterias serving diverse cuisines. Special dietary options available." },
-  { icon: Music, title: "Auditorium", desc: "3000-seat auditorium for cultural events, conferences, and performances." },
-  { icon: Trophy, title: "Innovation Hub", desc: "Maker space, 3D printers, prototyping labs for student projects." },
-  { icon: Heart, title: "Health Center", desc: "24/7 medical facility with doctors, counselors, and emergency care." },
+  { icon: Dumbbell,  title: "Sports Complex",  desc: "Olympic-size pool, gym, courts for cricket, football, basketball, tennis." },
+  { icon: BookOpen,  title: "Central Library", desc: "1M+ books, 24/7 digital access, quiet study zones and collaboration spaces." },
+  { icon: Utensils,  title: "Food Court",      desc: "8 cafeterias serving diverse cuisines. Special dietary options available." },
+  { icon: Music,     title: "Auditorium",      desc: "3000-seat auditorium for cultural events, conferences, and performances." },
+  { icon: Trophy,    title: "Innovation Hub",  desc: "Maker space, 3D printers, prototyping labs for student projects." },
+  { icon: Heart,     title: "Health Center",   desc: "24/7 medical facility with doctors, counselors, and emergency care." },
 ];
 
-const EVENTS = [
-  { name: "Thorfinn Fest", type: "Cultural", date: "February", desc: "3-day cultural extravaganza with 10,000+ attendees." },
-  { name: "TechSummit", type: "Technical", date: "October", desc: "National-level hackathon and tech conference." },
-  { name: "Sports Week", type: "Sports", date: "December", desc: "Inter-college sports tournament across 15 disciplines." },
+const ANNUAL_EVENTS = [
+  { name: "Thorfinn Fest", type: "Cultural",  date: "February", desc: "3-day cultural extravaganza with 10,000+ attendees." },
+  { name: "TechSummit",    type: "Technical", date: "October",  desc: "National-level hackathon and tech conference." },
+  { name: "Sports Week",   type: "Sports",    date: "December", desc: "Inter-college sports tournament across 15 disciplines." },
 ];
 
 export default function CampusLifePage() {
@@ -51,7 +49,9 @@ export default function CampusLifePage() {
             <ChevronRight className="w-4 h-4" />
             <span className="text-slate-300">Campus Life</span>
           </nav>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">Campus Life</h1>
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
+            Campus Life
+          </h1>
           <p className="text-slate-300 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
             200 acres of vibrant campus life — where excellence in learning meets holistic student living.
           </p>
@@ -60,33 +60,34 @@ export default function CampusLifePage() {
 
       <div className="container-max py-16 space-y-16">
 
-        {/* ── HAPPENING NOW ── */}
+        {/* ── MAP SECTION ── */}
         <section>
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-2">
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
             </span>
             <Radio className="w-5 h-5 text-[#1e3a8a]" />
             <h2 className="font-serif text-3xl font-bold text-slate-900 tracking-tight">Happening Now</h2>
             <span className="text-xs font-bold text-red-500 uppercase tracking-widest ml-1">Live</span>
           </div>
-          <p className="text-slate-500 text-sm mb-6 max-w-2xl">
-            See where things are happening across campus right now. Click any building to view live events — study groups, food stalls, sessions, and more.
+          <p className="text-slate-500 text-sm mb-5 max-w-2xl">
+            Explore the campus map. Click any marker to see live events happening right now.
           </p>
-          <CampusMap3D />
 
-          {/* Live text feed below the map */}
+          <CampusMapImage />
+
+          {/* Live text feed */}
           <div className="mt-10">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Live Feed</p>
             <HappeningNow />
           </div>
         </section>
 
+        {/* ── Facilities + Events + Sidebar ── */}
         <div className="grid lg:grid-cols-3 gap-12">
-          
           <div className="lg:col-span-2 space-y-12">
-            
+
             <section>
               <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">World-Class Facilities</h2>
               <div className="grid sm:grid-cols-2 gap-6">
@@ -109,7 +110,7 @@ export default function CampusLifePage() {
               <h2 className="font-serif text-3xl font-bold text-slate-900 mb-8 tracking-tight">Annual Events</h2>
               <div className="card overflow-hidden">
                 <div className="divide-y divide-slate-100">
-                  {EVENTS.map((event) => (
+                  {ANNUAL_EVENTS.map((event) => (
                     <div key={event.name} className="p-6 sm:p-8 hover:bg-slate-50 transition-colors flex flex-col sm:flex-row gap-6 sm:items-center justify-between">
                       <div className="max-w-md">
                         <span className="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-wider rounded mb-3">
@@ -119,18 +120,17 @@ export default function CampusLifePage() {
                         <p className="text-base text-slate-600">{event.desc}</p>
                       </div>
                       <div className="flex-shrink-0 text-left sm:text-right border-t sm:border-t-0 sm:border-l border-slate-100 pt-4 sm:pt-0 sm:pl-6">
-                         <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Month</p>
-                         <p className="text-xl font-bold text-[#1e3a8a]">{event.date}</p>
+                        <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Month</p>
+                        <p className="text-xl font-bold text-[#1e3a8a]">{event.date}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
             </section>
-            
+
           </div>
 
-          {/* Right Sidebar */}
           <div className="space-y-6">
             <div className="card overflow-hidden">
               <div className="px-6 py-5 bg-slate-50 border-b border-slate-200">
@@ -151,7 +151,7 @@ export default function CampusLifePage() {
                 ))}
               </ul>
             </div>
-            
+
             <div className="card p-6 bg-slate-900 text-white">
               <h3 className="text-lg font-bold mb-3">Hostel Accommodation</h3>
               <p className="text-slate-300 text-sm mb-6 leading-relaxed">
@@ -162,7 +162,6 @@ export default function CampusLifePage() {
               </Link>
             </div>
           </div>
-
         </div>
       </div>
     </div>

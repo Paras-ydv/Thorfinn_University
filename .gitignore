@@ -26,3 +26,7 @@ coverage/
 # Videos
 *.mp4
 public/videos/
+
+app/campus-map/ 
+components/ui/CampusMap3D.tsx
+public/3D_model/campus.glb

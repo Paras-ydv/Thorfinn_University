@@ -119,6 +119,38 @@ create table if not exists alumni (
   created_at timestamptz default now()
 );
 
+-- ── MAP MARKERS ───────────────────────────────────────────
+create table if not exists map_markers (
+  id uuid default uuid_generate_v4() primary key,
+  title text not null,
+  description text,
+  location text,
+  time text,
+  date text,
+  tag text default 'General',
+  type text check (type in ('live', 'upcoming', 'recurring')) default 'upcoming',
+  attendees integer,
+  x_pct numeric not null default 50,
+  y_pct numeric not null default 50,
+  color text default '#3b82f6',
+  created_at timestamptz default now()
+);
+
+alter table map_markers enable row level security;
+
+drop policy if exists "Anyone can view map markers" on map_markers;
+drop policy if exists "Admins can manage map markers" on map_markers;
+
+create policy "Anyone can view map markers" on map_markers
+  for select using (true);
+
+create policy "Admins can manage map markers" on map_markers
+  for all using (
+    exists (
+      select 1 from profiles where id = auth.uid() and role = 'Admin'
+    )
+  );
+
 -- ── REALTIME ───────────────────────────────────────────────
 alter publication supabase_realtime add table events;
 

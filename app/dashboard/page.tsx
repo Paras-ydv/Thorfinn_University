@@ -13,6 +13,7 @@ import { SmartCalendar } from "./components/SmartCalendar";
 import { CareerSimulator } from "./components/CareerSimulator";
 import { RoommateMatch } from "./components/RoommateMatch";
 import { UniversityInADay } from "./components/UniversityInADay";
+import { MapMarkersAdmin } from "./components/MapMarkersAdmin";
 
 /* ── static data ── */
 const ANNOUNCEMENTS = [
@@ -82,9 +83,10 @@ const NAV = [
   {
     group: "Campus",
     items: [
-      { id: "career",     label: "Career Simulator", icon: Briefcase },
-      { id: "roommate",   label: "Roommate Match",  icon: Users },
-      { id: "dayinlife",  label: "Day in Life",     icon: Layers },
+      { id: "career",      label: "Career Simulator", icon: Briefcase },
+      { id: "roommate",    label: "Roommate Match",   icon: Users },
+      { id: "dayinlife",   label: "Day in Life",      icon: Layers },
+      { id: "mapmarkers",  label: "Map Markers",      icon: AlertCircle },
     ],
   },
 ];
@@ -325,10 +327,11 @@ export default function DashboardPage() {
         </div>
       );
 
-      case "calendar":  return <SmartCalendar />;
-      case "career":    return <CareerSimulator />;
-      case "roommate":  return <RoommateMatch />;
-      case "dayinlife": return <UniversityInADay />;
+      case "calendar":    return <SmartCalendar />;
+      case "career":      return <CareerSimulator />;
+      case "roommate":    return <RoommateMatch />;
+      case "dayinlife":   return <UniversityInADay />;
+      case "mapmarkers":  return user?.role === "Admin" ? <MapMarkersAdmin /> : <p className="text-sm text-slate-500">Admin access required.</p>;
 
       case "academics": return (
         <div>
