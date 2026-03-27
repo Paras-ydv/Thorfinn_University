@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { ChevronRight, Mail } from "lucide-react";
 import { DeptVideo } from "@/components/ui/DeptVideo";
+import { FacultyRow, HoDCard } from "@/components/ui/FacultyCard";
+import { FACULTY } from "@/lib/facultyData";
 
 const DEPARTMENTS: Record<string, {
   name: string; short: string; hod: string; hodEmail: string; description: string;
@@ -290,13 +291,17 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
                       <tr><th>Name</th><th>Designation</th><th>Specialization</th></tr>
                     </thead>
                     <tbody>
-                      {dept.facultyList.map(f => (
-                        <tr key={f.name}>
-                          <td className="font-medium text-slate-900">{f.name}</td>
-                          <td className="text-slate-600">{f.designation}</td>
-                          <td><span className="badge-gray">{f.specialization}</span></td>
-                        </tr>
-                      ))}
+                      {dept.facultyList.map(f => {
+                        const member = FACULTY[f.name];
+                        if (!member) return (
+                          <tr key={f.name}>
+                            <td className="font-medium text-slate-900">{f.name}</td>
+                            <td className="text-slate-600">{f.designation}</td>
+                            <td><span className="badge-gray">{f.specialization}</span></td>
+                          </tr>
+                        );
+                        return <FacultyRow key={f.name} member={member} />;
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -309,18 +314,23 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
           <div className="space-y-5">
             <div className="card p-5">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Head of Department</h3>
-              <div className="flex items-start gap-3">
-                <div className="w-12 h-12 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white font-semibold flex-shrink-0">
-                  {dept.hod.split(" ").slice(-1)[0][0]}
-                </div>
-                <div>
-                  <p className="font-semibold text-slate-900 text-sm">{dept.hod}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">Head of Department</p>
-                  <a href={`mailto:${dept.hodEmail}`} className="flex items-center gap-1 text-xs text-[#1e3a8a] hover:underline mt-2">
-                    <Mail className="w-3 h-3" /> {dept.hodEmail}
-                  </a>
-                </div>
-              </div>
+              {FACULTY[dept.hod]
+                ? <HoDCard member={FACULTY[dept.hod]} email={dept.hodEmail} />
+                : (
+                  <div className="flex items-start gap-3">
+                    <div className="w-12 h-12 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white font-semibold flex-shrink-0">
+                      {dept.hod.split(" ").slice(-1)[0][0]}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-slate-900 text-sm">{dept.hod}</p>
+                      <p className="text-xs text-slate-500 mt-0.5">Head of Department</p>
+                      <a href={`mailto:${dept.hodEmail}`} className="flex items-center gap-1 text-xs text-[#1e3a8a] hover:underline mt-2">
+                        <Mail className="w-3 h-3" /> {dept.hodEmail}
+                      </a>
+                    </div>
+                  </div>
+                )
+              }
             </div>
 
             <div className="card p-5">

@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { LeadershipCard } from "@/components/ui/FacultyCard";
+import { LEADERSHIP } from "@/lib/facultyData";
 
 export const metadata: Metadata = { title: "About" };
 
-const LEADERSHIP = [
-  { name: "Prof. Arjun Mehta",  role: "Vice Chancellor",    dept: "Office of the Vice Chancellor" },
-  { name: "Dr. Kavitha Rao",    role: "Pro Vice Chancellor", dept: "Academic Affairs" },
-  { name: "Prof. Suresh Nair",  role: "Dean of Academics",  dept: "Academic Programs" },
-  { name: "Dr. Ananya Singh",   role: "Dean of Research",   dept: "Research & Innovation" },
-  { name: "Dr. Vikram Patel",   role: "Dean of Students",   dept: "Student Affairs" },
-  { name: "Prof. Meera Iyer",   role: "Registrar",          dept: "Administration" },
+const LEADERSHIP_LIST = [
+  "Prof. Arjun Mehta",
+  "Dr. Kavitha Rao",
+  "Prof. Suresh Nair",
+  "Dr. Ananya Singh",
+  "Dr. Vikram Patel",
+  "Prof. Meera Iyer",
 ];
 
 const MILESTONES = [
@@ -139,18 +141,11 @@ export default function AboutPage() {
           <p className="section-label">Administration</p>
           <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">University Leadership</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {LEADERSHIP.map((p) => (
-              <div key={p.name} className="card p-5 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#1e3a8a] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-                  {p.name.split(" ").slice(-1)[0][0]}
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-slate-900">{p.name}</p>
-                  <p className="text-xs text-[#1e3a8a] font-medium mt-0.5">{p.role}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{p.dept}</p>
-                </div>
-              </div>
-            ))}
+            {LEADERSHIP_LIST.map((name) =>
+              LEADERSHIP[name] ? (
+                <LeadershipCard key={name} member={LEADERSHIP[name]} />
+              ) : null
+            )}
           </div>
         </section>
       </div>
