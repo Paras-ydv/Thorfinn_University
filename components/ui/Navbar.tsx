@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, ChevronDown, Search } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/utils";
 
 const NAV = [
@@ -18,9 +19,30 @@ const NAV = [
 ];
 
 const MORE = [
-  { label: "Alumni", href: "/alumni" },
-  { label: "Hostel", href: "/hostel" },
-  { label: "Contact", href: "/contact" },
+  {
+    label: "Alumni",
+   href: "/alumni",
+    desc: "Connect with our global graduate network",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=80&q=70",
+  },
+  {
+    label: "Hostel",
+   href: "/hostel",
+    desc: "On-campus accommodation and facilities",
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=80&q=70",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    desc: "Reach admissions, faculty, or support",
+    image: "https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=80&q=70",
+  },
+  {
+    label: "Students",
+    href: "/students",
+    desc: "Student life, clubs, and activities",
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=80&q=70",
+  },
 ];
 
 // All searchable pages / sections
@@ -222,37 +244,54 @@ export function Navbar() {
               </Link>
             ))}
 
-            {/* More */}
-            <div className="relative">
-              <button
-                onMouseEnter={openMore}
-                onMouseLeave={closeMore}
-                onClick={() => setMoreOpen(!moreOpen)}
-                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded transition-colors"
-              >
-                More <ChevronDown className={cn("w-3.5 h-3.5 transition-transform", moreOpen && "rotate-180")} />
-              </button>
-              <div
-                onMouseEnter={openMore}
-                onMouseLeave={closeMore}
-                className={cn(
-                  "absolute top-full right-0 mt-0.5 w-44 bg-white border border-slate-200 rounded-lg shadow-lg overflow-hidden transition-all duration-200",
-                  moreOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none"
-                )}
-              >
-                {MORE.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors"
-                    onClick={() => setMoreOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </nav>
+          {/* More */}
+          <div className="relative">
+            <button
+              onMouseEnter={openMore}
+              onMouseLeave={closeMore}
+              onClick={() => setMoreOpen(!moreOpen)}
+              className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded transition-colors"
+            >
+              More <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", moreOpen && "rotate-180")} />
+            </button>
+            <AnimatePresence>
+              {moreOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                  onMouseEnter={openMore}
+                  onMouseLeave={closeMore}
+                  className="absolute top-full right-0 mt-1 w-72 bg-white border border-slate-200 rounded-lg shadow-xl overflow-hidden py-2"
+                >
+                  {MORE.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMoreOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors duration-150 group"
+                    >
+                      <div className="relative w-10 h-10 flex-shrink-0 rounded-md overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt={item.label}
+                          fill
+                          className="object-cover"
+                          sizes="40px"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-slate-800 group-hover:text-slate-900">{item.label}</p>
+                        <p className="text-xs text-slate-500 truncate mt-0.5">{item.desc}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </nav>
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3">

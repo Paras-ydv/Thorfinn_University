@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight, FlaskConical, Award, Globe, Users, ArrowRight } from "lucide-react";
 
+const RESEARCH_VIDEO = "https://res.cloudinary.com/dblwlysku/video/upload/v1774610292/research_pwfwuh.mp4";
+
 export const metadata: Metadata = { title: "Research & Innovation" };
 
 const RESEARCH_AREAS = [
@@ -23,9 +25,14 @@ const RECENT_PAPERS = [
 export default function ResearchPage() {
   return (
     <div className="bg-white pt-16">
-      {/* Dark Hero like Academics */}
-      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
-        <div className="container-max py-20 lg:py-24 w-full">
+      {/* Hero */}
+      <div className="relative min-h-[60vh] flex items-center overflow-hidden">
+        <video autoPlay loop muted playsInline preload="none"
+          className="absolute inset-0 w-full h-full object-cover object-center">
+          <source src={RESEARCH_VIDEO} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#0f172a]/75" />
+        <div className="relative z-10 container-max py-20 lg:py-24 w-full">
           <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />

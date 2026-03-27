@@ -3,14 +3,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight, Mail } from "lucide-react";
+import { DeptVideo } from "@/components/ui/DeptVideo";
 
 const DEPARTMENTS: Record<string, {
   name: string; short: string; hod: string; hodEmail: string; description: string;
   students: number; faculty: number;
   labs: string[]; courses: string[];
   facultyList: { name: string; specialization: string; designation: string }[];
-  heroImage: string;
-  contentImage: string;
+  videoKey: string;
+  heroImage?: string;
 }> = {
   "computer-science": {
     name: "Computer Science & Engineering", short: "CSE",
@@ -20,13 +21,12 @@ const DEPARTMENTS: Record<string, {
     labs: ["Artificial Intelligence & ML Lab", "Cybersecurity Research Lab", "Human-Computer Interaction Lab", "Cloud & Distributed Systems Lab"],
     courses: ["B.Tech Computer Science & Engineering", "B.Tech CS & Business Systems", "M.Tech Artificial Intelligence & ML", "Ph.D Computer Science"],
     facultyList: [
-      { name: "Dr. Arun Patel",    specialization: "Machine Learning",      designation: "Professor" },
-      { name: "Dr. Sneha Iyer",    specialization: "Computer Vision",       designation: "Associate Professor" },
-      { name: "Dr. Ravi Shankar",  specialization: "Distributed Systems",   designation: "Associate Professor" },
-      { name: "Dr. Priya Menon",   specialization: "Cybersecurity",         designation: "Assistant Professor" },
+      { name: "Dr. Arun Patel",   specialization: "Machine Learning",    designation: "Professor" },
+      { name: "Dr. Sneha Iyer",   specialization: "Computer Vision",     designation: "Associate Professor" },
+      { name: "Dr. Ravi Shankar", specialization: "Distributed Systems", designation: "Associate Professor" },
+      { name: "Dr. Priya Menon",  specialization: "Cybersecurity",       designation: "Assistant Professor" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1400&q=80",
-    contentImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=900&q=70",
+    videoKey: "cse",
   },
   "electronics": {
     name: "Electronics & Communication Engineering", short: "ECE",
@@ -36,13 +36,12 @@ const DEPARTMENTS: Record<string, {
     labs: ["VLSI Design Lab", "IoT & Embedded Systems Lab", "Signal Processing Lab", "RF & Microwave Lab"],
     courses: ["B.Tech Electronics & Communication", "M.Tech VLSI Design", "Ph.D Electronics"],
     facultyList: [
-      { name: "Dr. Anil Verma",    specialization: "VLSI Design",           designation: "Professor & HOD" },
-      { name: "Dr. Kavya Reddy",   specialization: "Signal Processing",     designation: "Associate Professor" },
-      { name: "Dr. Suresh Babu",   specialization: "Embedded Systems",      designation: "Assistant Professor" },
-      { name: "Dr. Nisha Thomas",  specialization: "RF Engineering",        designation: "Assistant Professor" },
+      { name: "Dr. Anil Verma",   specialization: "VLSI Design",       designation: "Professor & HOD" },
+      { name: "Dr. Kavya Reddy",  specialization: "Signal Processing", designation: "Associate Professor" },
+      { name: "Dr. Suresh Babu",  specialization: "Embedded Systems",  designation: "Assistant Professor" },
+      { name: "Dr. Nisha Thomas", specialization: "RF Engineering",    designation: "Assistant Professor" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=80",
-    contentImage: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=900&q=70",
+    videoKey: "ece",
   },
   "mechanical": {
     name: "Mechanical Engineering", short: "ME",
@@ -52,13 +51,12 @@ const DEPARTMENTS: Record<string, {
     labs: ["CAD/CAM & Rapid Prototyping Lab", "Thermal & Fluid Sciences Lab", "Robotics & Automation Lab", "Materials Testing Lab"],
     courses: ["B.Tech Mechanical Engineering", "M.Tech Manufacturing Systems", "Ph.D Mechanical Engineering"],
     facultyList: [
-      { name: "Dr. Priya Sharma",   specialization: "Manufacturing",         designation: "Professor & HOD" },
-      { name: "Dr. Arjun Das",      specialization: "Thermal Engineering",   designation: "Professor" },
-      { name: "Dr. Leela Krishnan", specialization: "Robotics",              designation: "Associate Professor" },
-      { name: "Dr. Mohan Rao",      specialization: "Materials Science",     designation: "Assistant Professor" },
+      { name: "Dr. Priya Sharma",   specialization: "Manufacturing",       designation: "Professor & HOD" },
+      { name: "Dr. Arjun Das",      specialization: "Thermal Engineering", designation: "Professor" },
+      { name: "Dr. Leela Krishnan", specialization: "Robotics",            designation: "Associate Professor" },
+      { name: "Dr. Mohan Rao",      specialization: "Materials Science",   designation: "Assistant Professor" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=1400&q=80",
-    contentImage: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=900&q=70",
+    videoKey: "mech",
   },
   "civil": {
     name: "Civil Engineering", short: "CE",
@@ -68,13 +66,12 @@ const DEPARTMENTS: Record<string, {
     labs: ["Structural Engineering Lab", "Geotechnical Lab", "Environmental Engineering Lab", "Survey & GIS Lab"],
     courses: ["B.Tech Civil Engineering", "M.Tech Structural Engineering", "Ph.D Civil Engineering"],
     facultyList: [
-      { name: "Dr. Sunita Patel",  specialization: "Structural Engineering", designation: "Professor & HOD" },
-      { name: "Dr. Ramesh Gupta",  specialization: "Geotechnics",            designation: "Professor" },
-      { name: "Dr. Anita Joshi",   specialization: "Environmental Engg.",    designation: "Associate Professor" },
-      { name: "Dr. Kiran Mehta",   specialization: "Transportation",         designation: "Assistant Professor" },
+      { name: "Dr. Sunita Patel", specialization: "Structural Engineering", designation: "Professor & HOD" },
+      { name: "Dr. Ramesh Gupta", specialization: "Geotechnics",            designation: "Professor" },
+      { name: "Dr. Anita Joshi",  specialization: "Environmental Engg.",    designation: "Associate Professor" },
+      { name: "Dr. Kiran Mehta",  specialization: "Transportation",         designation: "Assistant Professor" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80",
-    contentImage: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=70",
+    videoKey: "civil",
   },
   "mba": {
     name: "School of Business Administration", short: "MBA",
@@ -84,13 +81,12 @@ const DEPARTMENTS: Record<string, {
     labs: ["Business Analytics Lab", "Finance & Trading Lab", "Marketing Research Studio"],
     courses: ["MBA (Full-time)", "Executive MBA", "Ph.D Management"],
     facultyList: [
-      { name: "Dr. Vikram Singh",  specialization: "Strategy",              designation: "Professor & HOD" },
-      { name: "Dr. Pooja Kapoor",  specialization: "Finance",               designation: "Professor" },
-      { name: "Dr. Sanjay Mishra", specialization: "Marketing",             designation: "Associate Professor" },
-      { name: "Dr. Ritu Agarwal",  specialization: "Operations",            designation: "Assistant Professor" },
+      { name: "Dr. Vikram Singh",  specialization: "Strategy",   designation: "Professor & HOD" },
+      { name: "Dr. Pooja Kapoor",  specialization: "Finance",    designation: "Professor" },
+      { name: "Dr. Sanjay Mishra", specialization: "Marketing",  designation: "Associate Professor" },
+      { name: "Dr. Ritu Agarwal",  specialization: "Operations", designation: "Assistant Professor" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1400&q=80",
-    contentImage: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=70",
+    videoKey: "mba",
   },
   "csbs": {
     name: "CS & Business Systems", short: "CSBS",
@@ -100,13 +96,102 @@ const DEPARTMENTS: Record<string, {
     labs: ["Data Science & Analytics Lab", "ERP & Enterprise Systems Lab", "Digital Innovation Lab"],
     courses: ["B.Tech CS & Business Systems", "M.Tech Data Science"],
     facultyList: [
-      { name: "Dr. Meera Nair",    specialization: "Data Science",          designation: "Professor & HOD" },
-      { name: "Dr. Ajay Pillai",   specialization: "Business Intelligence", designation: "Associate Professor" },
-      { name: "Dr. Swati Verma",   specialization: "ERP Systems",           designation: "Assistant Professor" },
-      { name: "Dr. Nikhil Jain",   specialization: "Digital Marketing",     designation: "Assistant Professor" },
+      { name: "Dr. Meera Nair",   specialization: "Data Science",          designation: "Professor & HOD" },
+      { name: "Dr. Ajay Pillai",  specialization: "Business Intelligence", designation: "Associate Professor" },
+      { name: "Dr. Swati Verma",  specialization: "ERP Systems",           designation: "Assistant Professor" },
+      { name: "Dr. Nikhil Jain",  specialization: "Digital Marketing",     designation: "Assistant Professor" },
     ],
-    heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80",
-    contentImage: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=70",
+    videoKey: "csbs",
+  },
+  "ml": {
+    name: "Artificial Intelligence & Machine Learning", short: "AI/ML",
+    hod: "Dr. Arun Patel", hodEmail: "hod.ml@thorfinn.edu",
+    description: "The Department of Artificial Intelligence & Machine Learning offers cutting-edge programs in deep learning, NLP, computer vision, and intelligent systems with active collaborations with global tech companies.",
+    students: 600, faculty: 25,
+    labs: ["Deep Learning Lab", "NLP & Conversational AI Lab", "Computer Vision Lab", "AI Ethics & Governance Lab"],
+    courses: ["B.Tech Artificial Intelligence & Machine Learning", "M.Tech Artificial Intelligence & ML", "Ph.D Computer Science"],
+    facultyList: [
+      { name: "Dr. Arun Patel",   specialization: "Machine Learning", designation: "Professor & HOD" },
+      { name: "Dr. Sneha Iyer",   specialization: "Computer Vision",  designation: "Associate Professor" },
+      { name: "Dr. Ravi Shankar", specialization: "NLP",              designation: "Associate Professor" },
+      { name: "Dr. Priya Menon",  specialization: "AI Ethics",        designation: "Assistant Professor" },
+    ],
+    videoKey: "ml",
+  },
+  "mtech-ai-ml": {
+    name: "M.Tech Artificial Intelligence & ML", short: "M.Tech AI/ML",
+    hod: "Dr. Arun Patel", hodEmail: "hod.ml@thorfinn.edu",
+    description: "The M.Tech in Artificial Intelligence & Machine Learning is a research-intensive postgraduate program covering deep learning, NLP, computer vision, reinforcement learning, and large-scale AI systems.",
+    students: 120, faculty: 20,
+    labs: ["Deep Learning Lab", "NLP & Conversational AI Lab", "Computer Vision Lab", "Reinforcement Learning Lab"],
+    courses: ["M.Tech Artificial Intelligence & ML", "Ph.D Computer Science"],
+    facultyList: [
+      { name: "Dr. Arun Patel",   specialization: "Machine Learning", designation: "Professor & HOD" },
+      { name: "Dr. Sneha Iyer",   specialization: "Computer Vision",  designation: "Associate Professor" },
+      { name: "Dr. Ravi Shankar", specialization: "NLP",              designation: "Associate Professor" },
+      { name: "Dr. Priya Menon",  specialization: "AI Ethics",        designation: "Assistant Professor" },
+    ],
+    videoKey: "mtech_aiml",
+  },
+  "vlsi": {
+    name: "M.Tech VLSI Design", short: "M.Tech VLSI",
+    hod: "Dr. Anil Verma", hodEmail: "hod.vlsi@thorfinn.edu",
+    description: "The M.Tech in VLSI Design is a specialized postgraduate program covering chip architecture, RTL design, physical design, verification methodologies, and semiconductor fabrication processes.",
+    students: 60, faculty: 15,
+    labs: ["VLSI Design Lab", "RTL & Verification Lab", "Physical Design Lab", "Semiconductor Devices Lab"],
+    courses: ["M.Tech VLSI Design", "Ph.D Electronics"],
+    facultyList: [
+      { name: "Dr. Anil Verma",   specialization: "VLSI Design",    designation: "Professor & HOD" },
+      { name: "Dr. Kavya Reddy",  specialization: "RTL Design",     designation: "Associate Professor" },
+      { name: "Dr. Suresh Babu",  specialization: "Physical Design", designation: "Assistant Professor" },
+      { name: "Dr. Nisha Thomas", specialization: "Verification",   designation: "Assistant Professor" },
+    ],
+    videoKey: "vlsi",
+  },
+  "manufacturing": {
+    name: "M.Tech Manufacturing Systems", short: "M.Tech Mfg",
+    hod: "Dr. Priya Sharma", hodEmail: "hod.manufacturing@thorfinn.edu",
+    description: "The M.Tech in Manufacturing Systems covers advanced manufacturing processes, lean systems, automation, CNC technology, and industrial engineering with strong industry linkages.",
+    students: 60, faculty: 14,
+    labs: ["Advanced Manufacturing Lab", "CNC & Automation Lab", "Lean Systems Lab", "Industrial Engineering Lab"],
+    courses: ["M.Tech Manufacturing Systems", "Ph.D Mechanical Engineering"],
+    facultyList: [
+      { name: "Dr. Priya Sharma",   specialization: "Manufacturing",  designation: "Professor & HOD" },
+      { name: "Dr. Arjun Das",      specialization: "Automation",     designation: "Professor" },
+      { name: "Dr. Leela Krishnan", specialization: "Lean Systems",   designation: "Associate Professor" },
+      { name: "Dr. Mohan Rao",      specialization: "CNC Technology", designation: "Assistant Professor" },
+    ],
+    videoKey: "manufacturing",
+  },
+  "phd-cse": {
+    name: "Ph.D Computer Science", short: "Ph.D CSE",
+    hod: "Dr. Rajesh Kumar", hodEmail: "hod.cse@thorfinn.edu",
+    description: "The Ph.D in Computer Science is a research-intensive doctoral program focused on original contributions in distributed systems, AI, cybersecurity, and human-computer interaction.",
+    students: 80, faculty: 20,
+    labs: ["AI Research Lab", "Cybersecurity Lab", "HCI Lab", "Distributed Systems Lab"],
+    courses: ["Ph.D Computer Science"],
+    facultyList: [
+      { name: "Dr. Arun Patel",   specialization: "Machine Learning",    designation: "Professor" },
+      { name: "Dr. Sneha Iyer",   specialization: "Computer Vision",     designation: "Associate Professor" },
+      { name: "Dr. Ravi Shankar", specialization: "Distributed Systems", designation: "Associate Professor" },
+      { name: "Dr. Priya Menon",  specialization: "Cybersecurity",       designation: "Assistant Professor" },
+    ],
+    videoKey: "phd_cse",
+  },
+  "phd-mech": {
+    name: "Ph.D Mechanical Engineering", short: "Ph.D ME",
+    hod: "Dr. Priya Sharma", hodEmail: "hod.me@thorfinn.edu",
+    description: "The Ph.D in Mechanical Engineering is a research-intensive doctoral program focused on original contributions in thermal sciences, materials engineering, robotics, and next-generation manufacturing.",
+    students: 60, faculty: 15,
+    labs: ["Thermal Sciences Lab", "Materials Research Lab", "Robotics Lab", "Advanced Manufacturing Lab"],
+    courses: ["Ph.D Mechanical Engineering"],
+    facultyList: [
+      { name: "Dr. Priya Sharma",   specialization: "Manufacturing",       designation: "Professor & HOD" },
+      { name: "Dr. Arjun Das",      specialization: "Thermal Engineering", designation: "Professor" },
+      { name: "Dr. Leela Krishnan", specialization: "Robotics",            designation: "Associate Professor" },
+      { name: "Dr. Mohan Rao",      specialization: "Materials Science",   designation: "Assistant Professor" },
+    ],
+    videoKey: "phd_mech",
   },
 };
 
@@ -128,14 +213,7 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
 
       {/* ── Hero ── */}
       <div className="relative min-h-[52vh] flex items-end overflow-hidden">
-        <Image
-          src={dept.heroImage}
-          alt={dept.name}
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
+        <DeptVideo dept={dept.videoKey} className="absolute inset-0" />
         <div className="absolute inset-0 bg-[#0f172a]/70" />
         <div className="relative z-10 container-max py-14 w-full">
           <nav className="flex items-center gap-2 text-xs text-slate-400 mb-4">
@@ -154,105 +232,81 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
       <div className="container-max py-12">
         <div className="grid lg:grid-cols-3 gap-12">
 
-          {/* ── Left: content with subtle bg image ── */}
+          {/* ── Left ── */}
           <div className="lg:col-span-2">
-            <div className="relative">
-              {/* Background image layer */}
-              <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <Image
-                  src={dept.contentImage}
-                  alt=""
-                  fill
-                  className="object-cover object-center opacity-[0.06]"
-                  sizes="(max-width: 1024px) 100vw, 66vw"
-                  aria-hidden
-                />
-              </div>
+            <div className="space-y-10">
 
-              {/* Content */}
-              <div className="relative space-y-10">
+              <section>
+                <p className="section-label">Overview</p>
+                <p className="text-sm text-slate-600 leading-relaxed">{dept.description}</p>
+                <div className="grid grid-cols-3 gap-4 mt-6">
+                  {[
+                    { v: dept.students,    l: "Students" },
+                    { v: dept.faculty,     l: "Faculty" },
+                    { v: dept.labs.length, l: "Research Labs" },
+                  ].map(s => (
+                    <div key={s.l} className="card p-4 text-center">
+                      <p className="text-2xl font-bold text-[#1e3a8a] font-serif">{s.v}</p>
+                      <p className="text-xs text-slate-500 mt-1">{s.l}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
-                {/* Overview */}
-                <section>
-                  <p className="section-label">Overview</p>
-                  <p className="text-sm text-slate-600 leading-relaxed">{dept.description}</p>
-                  <div className="grid grid-cols-3 gap-4 mt-6">
-                    {[
-                      { v: dept.students,       l: "Students" },
-                      { v: dept.faculty,        l: "Faculty" },
-                      { v: dept.labs.length,    l: "Research Labs" },
-                    ].map(s => (
-                      <div key={s.l} className="card p-4 text-center">
-                        <p className="text-2xl font-bold text-[#1e3a8a] font-serif">{s.v}</p>
-                        <p className="text-xs text-slate-500 mt-1">{s.l}</p>
-                      </div>
+              <section>
+                <p className="section-label">Programs</p>
+                <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Programs Offered</h2>
+                <div className="card overflow-hidden">
+                  <ul className="divide-y divide-slate-100">
+                    {dept.courses.map(c => (
+                      <li key={c} className="flex items-center justify-between px-5 py-3 hover:bg-slate-50 transition-colors">
+                        <span className="text-sm text-slate-700">{c}</span>
+                        <Link href="/admissions" className="text-xs text-[#1e3a8a] hover:underline">Apply</Link>
+                      </li>
                     ))}
-                  </div>
-                </section>
+                  </ul>
+                </div>
+              </section>
 
-                {/* Programs */}
-                <section>
-                  <p className="section-label">Programs</p>
-                  <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Programs Offered</h2>
-                  <div className="card overflow-hidden">
-                    <ul className="divide-y divide-slate-100">
-                      {dept.courses.map(c => (
-                        <li key={c} className="flex items-center justify-between px-5 py-3 hover:bg-slate-50 transition-colors">
-                          <span className="text-sm text-slate-700">{c}</span>
-                          <Link href="/admissions" className="text-xs text-[#1e3a8a] hover:underline">Apply</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </section>
+              <section>
+                <p className="section-label">Infrastructure</p>
+                <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Research Laboratories</h2>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {dept.labs.map(lab => (
+                    <div key={lab} className="card p-4 flex items-start gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] mt-1.5 flex-shrink-0" />
+                      <p className="text-sm text-slate-700">{lab}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
-                {/* Labs */}
-                <section>
-                  <p className="section-label">Infrastructure</p>
-                  <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Research Laboratories</h2>
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    {dept.labs.map(lab => (
-                      <div key={lab} className="card p-4 flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a] mt-1.5 flex-shrink-0" />
-                        <p className="text-sm text-slate-700">{lab}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                {/* Faculty */}
-                <section>
-                  <p className="section-label">People</p>
-                  <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Faculty</h2>
-                  <div className="card overflow-hidden">
-                    <table className="data-table">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th>Designation</th>
-                          <th>Specialization</th>
+              <section>
+                <p className="section-label">People</p>
+                <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Faculty</h2>
+                <div className="card overflow-hidden">
+                  <table className="data-table">
+                    <thead>
+                      <tr><th>Name</th><th>Designation</th><th>Specialization</th></tr>
+                    </thead>
+                    <tbody>
+                      {dept.facultyList.map(f => (
+                        <tr key={f.name}>
+                          <td className="font-medium text-slate-900">{f.name}</td>
+                          <td className="text-slate-600">{f.designation}</td>
+                          <td><span className="badge-gray">{f.specialization}</span></td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {dept.facultyList.map(f => (
-                          <tr key={f.name}>
-                            <td className="font-medium text-slate-900">{f.name}</td>
-                            <td className="text-slate-600">{f.designation}</td>
-                            <td><span className="badge-gray">{f.specialization}</span></td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </section>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
 
-              </div>
             </div>
           </div>
 
           {/* ── Sidebar ── */}
           <div className="space-y-5">
-            {/* HOD Card */}
             <div className="card p-5">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Head of Department</h3>
               <div className="flex items-start gap-3">
@@ -269,7 +323,6 @@ export default function DepartmentPage({ params }: { params: { slug: string } })
               </div>
             </div>
 
-            {/* Quick links */}
             <div className="card p-5">
               <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Quick Links</h3>
               <ul className="space-y-2">

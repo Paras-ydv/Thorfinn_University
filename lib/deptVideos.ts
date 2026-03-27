@@ -1,0 +1,15 @@
+export const deptVideos: Record<string, string> = {
+  cse:           "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/cse_d3xdsw.mp4",
+  bba:           "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/bba_zlam7h.mp4",
+  ece:           "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/ece_sycekf.mp4",
+  mtech_aiml:    "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/mtechaiml_gbzzrm.mp4",
+  phd_cse:       "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/phdcse_lmiclg.mp4",
+  phd_mech:      "https://res.cloudinary.com/dblwlysku/video/upload/v1774610683/phdmech_exqpps.mp4",
+  vlsi:          "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/vlsi_ymkp4b.mp4",
+  ml:            "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/ml_avjadg.mp4",
+  mech:          "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/mech_itiibj.mp4",
+  mba:           "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/mba_pkouyx.mp4",
+  csbs:          "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/csbc_vpjib4.mp4",
+  civil:         "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/civil_bkejfa.mp4",
+  manufacturing: "https://res.cloudinary.com/dblwlysku/video/upload/q_auto,f_auto/manufacturing_systems_l3xfxr.mp4",
+};

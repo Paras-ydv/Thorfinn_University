@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
@@ -26,8 +27,18 @@ const PROGRAMS = [
 export default function AdmissionsPage() {
   return (
     <div className="bg-white pt-16">
-      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
-        <div className="container-max py-20 lg:py-24 w-full">
+      {/* Hero */}
+      <div className="relative min-h-[60vh] flex items-center overflow-hidden">
+        <Image
+          src="/images/admissions.png"
+          alt="Admissions"
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[#0f172a]/75" />
+        <div className="relative z-10 container-max py-20 lg:py-24 w-full">
           <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />

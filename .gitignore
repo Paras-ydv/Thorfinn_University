@@ -22,3 +22,7 @@ yarn-error.log*
 dist/
 build/
 coverage/
+
+# Videos
+*.mp4
+public/videos/

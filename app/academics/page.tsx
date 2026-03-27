@@ -47,6 +47,14 @@ const PROGRAMS = [
     href: "/departments/csbs",
   },
   {
+    name: "B.Tech Artificial Intelligence & Machine Learning",
+    level: "Undergraduate",
+    description: "Specialized undergraduate program covering neural networks, deep learning, data science, and intelligent systems design.",
+    duration: "4 Years", intake: "60 seats", entrance: "JEE Main",
+    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
+    href: "/departments/ml",
+  },
+  {
     name: "BBA",
     level: "Undergraduate",
     description: "Core business fundamentals covering finance, marketing, operations, and organizational management.",
@@ -60,7 +68,7 @@ const PROGRAMS = [
     description: "Advanced study in deep learning, NLP, computer vision, and large-scale AI systems research.",
     duration: "2 Years", intake: "60 seats", entrance: "GATE",
     image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80",
-    href: "/departments/computer-science",
+    href: "/departments/mtech-ai-ml",
   },
   {
     name: "M.Tech VLSI Design",
@@ -68,7 +76,7 @@ const PROGRAMS = [
     description: "Specialised training in chip architecture, RTL design, verification, and semiconductor fabrication.",
     duration: "2 Years", intake: "30 seats", entrance: "GATE",
     image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&q=80",
-    href: "/departments/electronics",
+    href: "/departments/vlsi",
   },
   {
     name: "M.Tech Manufacturing Systems",
@@ -76,7 +84,7 @@ const PROGRAMS = [
     description: "Advanced manufacturing, lean systems, automation, and industrial engineering methodologies.",
     duration: "2 Years", intake: "30 seats", entrance: "GATE",
     image: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=600&q=80",
-    href: "/departments/mechanical",
+    href: "/departments/manufacturing",
   },
   {
     name: "MBA (Full-time)",
@@ -92,7 +100,7 @@ const PROGRAMS = [
     description: "Original research in distributed systems, AI, cybersecurity, and human-computer interaction.",
     duration: "3–5 Years", intake: "20 seats", entrance: "University Entrance Test",
     image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&q=80",
-    href: "/departments/computer-science",
+    href: "/departments/phd-cse",
   },
   {
     name: "Ph.D Mechanical Engineering",
@@ -100,7 +108,7 @@ const PROGRAMS = [
     description: "Advanced research in thermal sciences, materials engineering, and next-generation manufacturing.",
     duration: "3–5 Years", intake: "15 seats", entrance: "University Entrance Test",
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80",
-    href: "/departments/mechanical",
+    href: "/departments/phd-mech",
   },
 ];
 
