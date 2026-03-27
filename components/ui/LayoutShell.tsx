@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { AIChatbot } from "./AIChatbot";
 
 const NO_SHELL_ROUTES = ["/dashboard", "/login", "/signup"];
 
@@ -17,6 +18,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
       <Navbar />
       <main>{children}</main>
       <Footer />
+      <AIChatbot />
     </>
   );
 }

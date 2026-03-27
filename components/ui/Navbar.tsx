@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/utils";
@@ -50,9 +51,7 @@ export function Navbar() {
       <div className="container-max flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-          <div className="w-8 h-8 bg-[#1e3a8a] rounded flex items-center justify-center">
-            <span className="text-white font-bold text-sm font-serif">TU</span>
-          </div>
+          <Image src="/images/favicon.png" alt="Thorfinn University" width={32} height={32} className="rounded" />
           <span className="font-semibold text-slate-900 text-base hidden sm:block">
             Thorfinn University
           </span>
