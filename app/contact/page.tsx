@@ -17,8 +17,14 @@ export default function ContactPage() {
 
   return (
     <div className="bg-white pt-16">
-      <div className="bg-[#0f172a] min-h-[60vh] flex items-center">
-        <div className="container-max py-20 lg:py-24 w-full">
+      <div className="relative min-h-[60vh] flex items-center overflow-hidden">
+        <img
+          src="https://res.cloudinary.com/dblwlysku/image/upload/v1774612732/7b6fe143-ff66-4586-9345-64dbdf32d41e.png"
+          alt="Contact"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#0f172a]/75" />
+        <div className="container-max py-20 lg:py-24 relative z-10 w-full">
           <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-4 h-4" />
