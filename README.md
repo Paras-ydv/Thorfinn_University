@@ -2,6 +2,8 @@
 
 A production-grade university web platform built for the modern student experience. Thorfinn University combines a fully functional public-facing website, role-based dashboards, real-time campus activity, AI assistance, and an interactive campus map — all in a single Next.js application.
 
+Link: https://thorfinn-university.vercel.app/
+
 ---
 
 ## Overview
